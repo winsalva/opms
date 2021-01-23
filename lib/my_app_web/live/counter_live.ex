@@ -4,21 +4,22 @@ defmodule MyAppWeb.CounterLive do
   alias MyAppWeb.CounterView
 
 
-  def mount(_session, socket) do
+  def render(assigns) do
+    render(CounterView, "index.html", assigns)
+  end
+
+  ## It's mount/3 not mount/2
+  def mount(_params, _session, socket) do
     {:ok, assign(socket, :val, 0)}
   end
 
-  def render(assigns) do
-    CounterView.render("index.html", assigns)
-  end
 
-
-  def handle_event("inc", _, socket) do
+  def handle_event("inc", _value, socket) do
     {:noreply, update(socket, :val, &(&1+1))}
   end
 
 
-  def handle_event("dec", _, socket) do
+  def handle_event("dec", _value, socket) do
     {:noreply, update(socket, :val, &(&1-1))}
   end
 end
