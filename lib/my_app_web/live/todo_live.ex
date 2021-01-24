@@ -4,14 +4,23 @@ defmodule MyAppWeb.TodoLive do
   alias MyApp.Todos
 
 
-  def mount(_params, _session, socket) do
-    IO.inspect socket
-    {:ok, assign(socket, todos: Todos.list_todos())}
+  def mount(_params, _session, %{assigns: %{live_action: :index}} = socket) do
+    {:ok, fetch(socket)}
+  end
+
+
+  def mount(_params, _session, %{assigns: %{live_action: :register}} = socket) do
+    {:ok, fetch(socket)}
   end
 
 
   def handle_event("add", %{"todo" => todo}, socket) do
     Todos.create_todo(todo)
-    {:noreply, assign(socket, todos: Todos.list_todos())}
+    {:noreply, fetch(socket)}
    end
+
+
+  defp fetch(socket) do
+    assign(socket, todos: Todos.list_todos())
+  end
 end

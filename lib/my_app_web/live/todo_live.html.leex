@@ -1,3 +1,6 @@
+<%= case @live_action do %>
+<% :index -> %>
+
 <form action="#" phx-submit="add">
   <%= text_input :todo, :title, placeholder: "Write here.." %>
   <%= submit "Add", phx_disable_with: "Adding.." %>
@@ -10,4 +13,8 @@
     <div><%= todo.title %></div>
     <% end %>
     
+<% end %>
+
+<% :register -> %>
+<div>Register here</div>
 <% end %>
