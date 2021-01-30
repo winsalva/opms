@@ -22,6 +22,13 @@ defmodule MyAppWeb.TodoLive do
    end
 
 
+  def handle_event("toggle_done", %{"id" => id}, socket) do
+    todo = Todos.get_todo!(id)
+    Todos.update_todo(todo, %{done: !todo.done})
+    {:noreply, socket}
+  end
+
+
   def handle_info({Todos, [:todo|_], _}, socket) do
     {:noreply, fetch(socket)}
   end

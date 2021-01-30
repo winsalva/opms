@@ -24,6 +24,12 @@ defmodule MyApp.Todos do
     {:ok, result}
   end
 
+  defp broadcast_change({:error, result}, event) do
+    Phoenix.PubSub.broadcast(MyApp.PubSub, @topic, {__MODULE__, event, result})
+    
+    {:error, result}
+  end
+
 
   @doc """
   Returns the list of todos.

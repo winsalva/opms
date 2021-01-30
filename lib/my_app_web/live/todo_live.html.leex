@@ -1,20 +1,9 @@
+<% alias MyAppWeb.TodoLiveView %>
+
 <%= case @live_action do %>
-<% :index -> %>
 
-<form action="#" phx-submit="add">
-  <%= text_input :todo, :title, placeholder: "Write here.." %>
-  <%= submit "Add", phx_disable_with: "Adding.." %>
-  </form>
-
-<%= if @todos == [] do %>
-<div>No items yet</div>
-<% else %>
-<%= for todo <- @todos do %>
-    <div><%= todo.title %></div>
-    <% end %>
-    
-<% end %>
+<% :index -> %> <%= Phoenix.View.render(TodoLiveView, "index.html", assigns) %>
 
 <% :register -> %>
-<div>Register here</div>
+<%= TodoLiveView.render(TodoLiveView, "register.html") %>
 <% end %>

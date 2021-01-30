@@ -1,0 +1,16 @@
+<form action="#" phx-submit="add">
+  <%= text_input :todo, :title, placeholder: "Write here.." %>
+  <%= submit "Add", phx_disable_with: "Adding.." %>
+  </form>
+
+<%= if @todos == [] do %>
+<div>No items yet</div>
+<% else %>
+<%= for todo <- @todos do %>
+    <div>
+      <%= checkbox(:todo, :done, phx_click: "toggle_done", phx_value_id: todo.id, value: todo.done) %>
+      <%= todo.title %>
+    </div>
+    <% end %>
+
+<% end %>
