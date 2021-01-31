@@ -29,6 +29,14 @@ defmodule MyAppWeb.TodoLive do
   end
 
 
+  def handle_event("delete", %{"id" => id}, socket) do
+    Todos.get_todo!(id)
+    |> Todos.delete_todo()
+
+    {:noreply, socket}
+  end
+
+
   def handle_info({Todos, [:todo|_], _}, socket) do
     {:noreply, fetch(socket)}
   end
