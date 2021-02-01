@@ -16,6 +16,11 @@ defmodule MyAppWeb.TodoLive do
   end
 
 
+  def mount(%{"id" => id}, _session, %{assigns: %{live_action: :show}} = socket) do
+    todo = Todos.get_todo!(id)
+    {:ok, assign(socket, todo: todo)}
+  end
+
   def handle_event("add", %{"todo" => todo}, socket) do
     Todos.create_todo(todo)
     {:noreply, fetch(socket)}
@@ -34,6 +39,12 @@ defmodule MyAppWeb.TodoLive do
     |> Todos.delete_todo()
 
     {:noreply, socket}
+  end
+
+
+  def handle_event("show", %{"id" => id}, socket) do
+    todo = Todos.get_todo!(id)
+    {:noreply, assign(socket, todo: todo)}
   end
 
 

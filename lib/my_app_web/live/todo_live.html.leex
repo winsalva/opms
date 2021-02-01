@@ -6,4 +6,7 @@
 
 <% :register -> %>
 <%= TodoLiveView.render(TodoLiveView, "register.html") %>
+
+<% :show -> %>
+<%= Phoenix.View.render(TodoLiveView, "show.html", assigns) %>
 <% end %>
