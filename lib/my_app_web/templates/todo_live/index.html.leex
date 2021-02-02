@@ -12,7 +12,8 @@
       <%= checkbox(:todo, :done, phx_click: "toggle_done", phx_value_id: todo.id, value: todo.done) %>
       <%= todo.title %>
       <%= link("delete", to: Routes.todo_path(@socket, :index), phx_click: "delete", phx_value_id: todo.id) %>
-      <%= link("Show", to: Routes.todo_path(@socket, :show, todo.id), phx_click: "show", phx_value_id: todo.id) %>
+      <%= link("Show", to: Routes.todo_path(@socket, :show, todo.id), phx_click: "show") %>
+      <%= link("Edit", to: Routes.todo_path(@socket, :edit, todo.id)) %>
     </div>
     <% end %>
 

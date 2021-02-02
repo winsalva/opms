@@ -21,6 +21,8 @@ defmodule MyAppWeb.Router do
     live "/counter", CounterLive
     live "/todos", TodoLive, :index
     live "/todos/:id", TodoLive, :show
+    live "/todos/:id/edit", TodoLive, :edit
+    live "/todos/update/:id", TodoLive, :update
     live "/todos/register", TodoLive, :register
   end
 

@@ -1,0 +1,6 @@
+<h1>Edit here</h1>
+
+<form action="<%= Routes.todo_path(@socket, :update, @todo.data) %>">
+  <%= text_input :todo, :title %>
+  <%= submit "Save", phx_disable_with: "Saving.." %>
+</form>

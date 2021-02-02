@@ -9,4 +9,10 @@
 
 <% :show -> %>
 <%= Phoenix.View.render(TodoLiveView, "show.html", assigns) %>
+
+<% :edit -> %>
+<%= Phoenix.View.render(TodoLiveView, "edit.html", assigns) %>
+
+<% :update -> %>
+<%= Phoenix.View.render(TodoLiveView, "index.html", assigns) %>
 <% end %>
