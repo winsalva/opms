@@ -12,7 +12,7 @@ defmodule MyAppWeb.TodoLive do
 
 
   def mount(_params, _session, %{assigns: %{live_action: :register}} = socket) do
-    {:ok, fetch(socket)}
+    {:ok, socket}
   end
 
 
@@ -31,12 +31,12 @@ defmodule MyAppWeb.TodoLive do
 
 
   def mount(%{"id" => id, "todo" => %{"title" => title}}, _session, %{assigns: %{live_action: :update}} = socket) do
-    todo =
-      Todos.get_todo!(id)
-      |> Todos.update_todo(%{"title" => title})
+    Todos.subscribe()
+    
+    Todos.get_todo!(id)
+    |> Todos.update_todo(%{"title" => title})
     
   {:ok, fetch(socket)}
-
   end
 
 
