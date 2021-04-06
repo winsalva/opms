@@ -39,6 +39,8 @@ defmodule MyAppWeb do
 
       # Include shared imports and aliases for views
       unquote(view_helpers())
+
+      import MyAppWeb.GlobalHelpers
     end
   end
 

@@ -1,0 +1,61 @@
+
+<div class="container">
+<%= form_for @user, Routes.user_page_path(@conn, :create), fn f -> %>
+
+<%= if @user.action do %>
+<div class="alert alert-danger">
+<p>Something went wrong. Please check the errors below</p>
+</div>
+<% end %>
+
+<label>First Name</label>
+<%= text_input f, :first_name, placeholder: "Enter your first name.." %>
+<%= error_tag f, :first_name %>
+
+<label>Middle name</label>
+<%= text_input f, :middle_name, placeholder: "Enter your middle name.." %>
+<%= error_tag f, :middle_name %>
+
+<label>Last name</label>
+<%= text_input f, :last_name, placeholder: "Enter your last name.." %>
+<%= error_tag f, :last_name %>
+
+<label>Email</label>
+<%= email_input f, :email, placeholder: "ex. johndoe@gmail.com" %>
+<%= error_tag f, :email %>
+
+<label>Gender</label>
+  <%= select f, :gender, [
+      "Male": "Male",
+      "Female": "Female",
+      "Others": "Others"
+      ], prompt: "Select Your Gender" %>
+  <%= error_tag f, :gender %>
+
+<label>Birth date</label>
+  <%= date_select f, :birth_date, year: [options: 1940..current_year()], builder: fn b -> %>
+  <%= b.(:day, prompt: "Day") %> /
+  <%= b.(:month, prompt: "Month") %> /
+  <%= b.(:year, prompt: "Year") %>
+  <% end %>
+  <%= error_tag f, :birth_date %>
+
+<label>Create password</label>
+<%= password_input f, :password, placeholder: "Atleast 6 characters.." %>
+<%= error_tag f, :password %>
+
+<label>Confirm password</label>
+<%= password_input f, :password_confirmation, placeholder: "Re-type your password.." %>
+<%= error_tag f, :password_confirmation %>
+
+<label>Describe yourself</label>
+<%= textarea f, :about_me, placeholder: "Say something about yourself.." %>
+<%= error_tag f, :about_me %>
+
+
+<%= submit "Create Account" %>
+
+<% end %>
+
+
+</div>

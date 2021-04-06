@@ -35,8 +35,19 @@ defmodule MyAppWeb.Router do
   end
 
 
+  ## Users ##
+
+  scope "/users", MyAppWeb.User, as: :user do
+    pipe_through [:browser]
+
+    resources "/", PageController, only: [
+      :new, :create
+    ]
+  end
+
+
   ## Home ##
-  scope "/home", MyAppWeb do
+  scope "/*home", MyAppWeb do
     pipe_through :browser
 
     get "/", PageController, :index
