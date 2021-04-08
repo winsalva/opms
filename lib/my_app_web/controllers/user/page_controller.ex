@@ -23,4 +23,16 @@ defmodule MyAppWeb.User.PageController do
 	|> render(:new, user: user)
     end
   end
+
+
+  def show(conn, %{"id" => id}) do
+    case User.get_user(id) do
+      nil ->
+        conn
+	|> redirect(to: Routes.page_path(conn, :index))
+      user ->
+        conn
+	|> render(:show, user: user)
+    end
+  end
 end
