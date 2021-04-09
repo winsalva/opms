@@ -1,5 +1,4 @@
-<nav>
-  <div class="menu-top">
+<div class="menu-top">
     <a href="#" class="nav-btn-top">News<sup class="popup-notice">9+</sup></a>
     <a href="#" class="nav-btn-top">Pages<sup class="popup-otice">9+</sup></a>
     <a href="#" class="nav-btn-top">Shop<sup class="popup-notice">9+</sup></a>
@@ -7,19 +6,3 @@
     <a href="#" class="nav-btn-top">Chat<sup class="popup-notice">9+</sup></a>
     <a href="#" class="nav-btn-top">Menu<sup class="popup-notice">9+</sup></a>
     </div>
-
-  <div class="menu-bottom">
-    <%= link "Home", to: "#" %>
-    <%= link "Friends", to: "#" %>
-    <%= link "Videos", to: "#" %>
-    <%= link "Notices", to: "#" %>
-    <%= link "Search", to: "#" %>
-    <%= link "Profile", to: "#" %>
-  </div>
-</nav>
-
-<div class="container">
-
-
-
-</div>
