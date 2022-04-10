@@ -14,9 +14,6 @@ defmodule MyAppWeb.Router do
     plug :accepts, ["json"]
   end
 
-
-
-
   ## Users ##
 
   scope "/users", MyAppWeb.User, as: :user do
@@ -34,9 +31,6 @@ defmodule MyAppWeb.Router do
 
     get "/", PageController, :index
   end
-
-
-
 
   ## LIVE ##
 

@@ -4,12 +4,8 @@ defmodule MyApp.Schema.User do
 
 
   schema "users" do
-    field(:first_name, :string)
-    field :middle_name, :string
-    field :last_name, :string
-    field :birth_date, :date
-    field :gender, :string
-    field :about_me, :string
+    field(:fullname, :string)
+    field(:role, :string)
     field(:email, :string)
     field(:password, :string, virtual: true)
     field(:hashed_password, :string)
@@ -21,12 +17,8 @@ defmodule MyApp.Schema.User do
 
 
   @allowed_fields [
-    :first_name,
-    :middle_name,
-    :last_name,
-    :birth_date,
-    :gender,
-    :about_me,
+    :fullname,
+    :role,
     :email,
     :hashed_password,
     :is_verified,
@@ -34,7 +26,7 @@ defmodule MyApp.Schema.User do
   ]
 
 
-  @required_fields @allowed_fields -- [:about_me]
+  @required_fields @allowed_fields
 
 
   @doc false
