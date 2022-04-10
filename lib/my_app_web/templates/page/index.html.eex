@@ -1,25 +1,40 @@
 <nav>
-  <div class="menu-top">
-    <a href="#" class="nav-btn-top">News<sup class="popup-notice">9+</sup></a>
-    <a href="#" class="nav-btn-top">Pages<sup class="popup-otice">9+</sup></a>
-    <a href="#" class="nav-btn-top">Shop<sup class="popup-notice">9+</sup></a>
-    <a href="#" class="nav-btn-top">Bank<sup class="popup-notice">9+</sup></a>
-    <a href="#" class="nav-btn-top">Chat<sup class="popup-notice">9+</sup></a>
-    <a href="#" class="nav-btn-top">Menu<sup class="popup-notice">9+</sup></a>
-    </div>
-
-  <div class="menu-bottom">
-    <%= link "Home", to: "#" %>
-    <%= link "Friends", to: "#" %>
-    <%= link "Videos", to: "#" %>
-    <%= link "Notices", to: "#" %>
-    <%= link "Search", to: "#" %>
-    <%= link "Profile", to: "#" %>
+  <div id="pcu-logo">
+    <img src="/images/opms-logo.png"/>
+  </div>
+  <div id="schoolname">Online Procurement Monitoring System
+  <p id="tagname">Online Procurement Monitoring System</p></div>
+  <div class="menus">
+    <li><a href="<%= Routes.session_path(@conn, :new) %>">LOG IN</a></li>
+    <li><a href="#">SIGN UP</a></li>
   </div>
 </nav>
 
-<div class="container">
+<div class="sub-container">
 
-
-<h1>Hello</h1>
+  <div class="slider-container">
+    <div class="slider-wrapper">
+      <img src="/images/opms-logo.png">
+      <img src="/images/opms-logo.png">
+      <img src="/images/opms-logo.png">
+    </div>
+  </div>
+  
 </div>
+
+<footer>
+  <p class="footer-company-name">Online Procurement Monitoring System</p>
+  <div class="under-line"></div>
+
+  <div class="footer-options">
+
+    <!-- Links here -->
+    
+  </div>
+
+  <div class="copyright">
+    <p>Copyright &copy; 2022 Online Procurement Monitoring System. <p>
+      <p>All Rights Reserved.</p>
+  </div>
+
+</footer>

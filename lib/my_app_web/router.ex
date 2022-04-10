@@ -14,7 +14,17 @@ defmodule MyAppWeb.Router do
     plug :accepts, ["json"]
   end
 
-  ## Users ##
+
+  scope "/", MyAppWeb do
+    pipe_through :browser
+
+    get "/", PageController, :index
+    get "/login", SessionController, :new
+    post "/login", SessionController, :create
+    delete "/logout", SessionController, :delete
+  end
+
+  ## USER ROUTES ##
 
   scope "/users", MyAppWeb.User, as: :user do
     pipe_through [:browser]
@@ -30,28 +40,6 @@ defmodule MyAppWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
-  end
-
-  ## LIVE ##
-
-  scope "/live", MyAppWeb do
-    pipe_through :browser
-
-    live "/", PageLive, :index
-    live "/counter", CounterLive
-    live "/todos", TodoLive, :index
-    live "/todos/:id", TodoLive, :show
-    live "/todos/:id/edit", TodoLive, :edit
-    live "/todos/update/:id", TodoLive, :update
-    live "/todos/register", TodoLive, :register
-
-
-    live "/posts", PostLive.Index, :index
-    live "/posts/new", PostLive.Index, :new
-    live "/posts/:id/edit", PostLive.Index, :edit
-
-    live "/posts/:id", PostLive.Show, :show
-    live "/posts/:id/show/edit", PostLive.Show, :edit
   end
   
 

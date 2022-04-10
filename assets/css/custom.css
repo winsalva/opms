@@ -1,0 +1,144 @@
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 15px 0 15px;
+    border: 1px solid #ddd;
+    background-color: #ddd;
+}
+nav #schoolname {
+    font-size: 22px;
+    font-family: serif;
+    font-weight: bold;
+    padding: 0;
+    position: relative;
+    margin-left: -25rem;
+}
+nav #tagname {
+    margin: -5px;
+    padding: 0 0 10px 0;
+    font-size: 14px;
+    color: #808080;
+    word-spacing: 5px;
+    text-align: center;
+    letter-spacing: 2px;
+}
+nav .menus {
+    display: flex;
+    gap: .5em;
+    font-size: 18px;
+}
+.menus li {
+    list-style: none;
+    padding: 10px;
+}
+
+.menus a {
+    font-size: 18px;
+}
+
+.position-icons {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    padding: 10px 0;
+}
+
+nav .menus a {
+    text-decoration: none;
+    color: #000000;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+nav .menus li a:hover {
+    color: #808080;
+}
+
+#pcu-logo {
+    margin: 0 2rem 1rem 0;
+    width: 60px;
+    height: 60px;
+}
+
+.footer-company-name {
+    font-size: 2rem;
+    color: #808080;
+    text-align: center;
+    margin-top: 1rem;
+    padding: 2rem 0 .5rem 0;
+}
+footer {
+    background-color: #ddd;
+    color: var(--white);
+    margin-top: .2rem;
+    margin-bottom: -2.5rem;
+    padding: 2rem 0 4rem 0;
+}
+.footer-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    padding: 1rem 1rem 0 5rem;
+}
+.footer-options li a {
+    color: #555;
+}
+.footer-options li a:hover {
+    color: #000;
+}
+.footer-options li {
+    list-style: none;
+    text-align: center;
+}
+.copyright p {
+    margin: 0;
+    padding: 0;
+    color: #808080;
+}
+
+/* Image Slider */
+/* styles for home page image animation */
+@keyframes slide {
+    0%{
+        transform: translateX(0);
+    }
+    25%{
+        transform: translateX(0);
+    }
+    30%{
+        transform: translateX(-100%);
+    }
+    65%{
+        transform: translateX(-100%);
+    }
+    70%{
+        transform: translateX(-200%);
+    }
+    100%{
+        transform: translateX(-200%);
+    }
+}
+
+.slider-container{
+    overflow: hidden;
+    border: 10px solid #ffffff;
+    border-radius: 8px;
+    box-shadow: 10px 25px 30px rgba(0,0,0,0.3);
+}
+
+.slider-wrapper{
+    width: 100%;
+    display: flex;
+    animation: slide 12s infinite;
+}
+
+/* Session form like login */
+.session-form {
+    background-color: #fff;
+    margin: 5rem auto;
+    max-width: 40rem;
+    height: 50rem;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid #fff;
+}

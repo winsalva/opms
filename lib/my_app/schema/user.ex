@@ -4,19 +4,21 @@ defmodule MyApp.Schema.User do
 
 
   schema "users" do
+    has_many :items, MyApp.Schema.Item
+    belongs_to :company, MyApp.Schema.Company
     field(:fullname, :string)
     field(:role, :string)
     field(:email, :string)
     field(:password, :string, virtual: true)
     field(:hashed_password, :string)
     field(:is_verified, :boolean, default: false)
-    field(:deactivated, :boolean, default: false)
-    
+    field(:deactivated, :boolean, default: false)  
     timestamps(type: :utc_datetime_usec)
   end
 
 
   @allowed_fields [
+    :company_id,
     :fullname,
     :role,
     :email,
