@@ -6,7 +6,7 @@
   <p id="tagname">Online Procurement Monitoring System</p></div>
   <div class="menus">
     <li><a href="<%= Routes.session_path(@conn, :new) %>">LOG IN</a></li>
-    <li><a href="#">SIGN UP</a></li>
+    <li><a href="<%= Routes.company_page_path(@conn, :new) %>">SIGN UP</a></li>
   </div>
 </nav>
 

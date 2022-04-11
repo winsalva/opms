@@ -34,6 +34,15 @@ defmodule MyAppWeb.Router do
     ]
   end
 
+  ## COMPANY ROUTES ##
+  scope "/register/company", MyAppWeb.Company, as: :company do
+    pipe_through :browser
+
+    resources "/", PageController, only: [
+      :new, :create, :show, :index
+    ]
+  end
+
 
   ## Home ##
   scope "/*home", MyAppWeb do
