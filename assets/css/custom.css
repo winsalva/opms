@@ -60,6 +60,7 @@ nav .menus li a:hover {
     height: 60px;
 }
 
+/* Footer styles */
 .footer-company-name {
     font-size: 2rem;
     color: #808080;
@@ -136,8 +137,8 @@ footer {
 .session-form {
     background-color: #fff;
     margin: 5rem auto;
-    max-width: 40rem;
-    height: 50rem;
+    max-width: 60rem;
+    max-height: 100rem;
     padding: 1.5rem;
     border-radius: 0.5rem;
     border: 1px solid #fff;

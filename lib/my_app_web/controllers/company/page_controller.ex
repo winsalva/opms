@@ -9,7 +9,14 @@ defmodule MyAppWeb.Company.PageController do
   end
 
   def create(conn, %{"company" => company}) do
-    conn
-
+    case Company.insert_company(company) do
+      {:ok, _company} ->
+        conn
+	|> put_flash(:info, "Your company account was created successfully!")
+	|> redirect(to: Routes.page_path(conn, :index))
+      {:error, %Ecto.Changeset{} = company} ->
+        conn
+	|> render("new.html", company: company)
+    end
   end
 end

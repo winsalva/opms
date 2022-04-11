@@ -11,7 +11,7 @@ defmodule MyApp.Query.Company do
   """
   def new_company do
     %Company{}
-    |> Company.changeset()
+    |> Company.changeset_with_password()
   end
 
   @doc """
@@ -19,7 +19,7 @@ defmodule MyApp.Query.Company do
   """
   def insert_company(params) do
     %Company{}
-    |> Company.changeset(params)
+    |> Company.changeset_with_password(params)
     |> Repo.insert()
   end
 

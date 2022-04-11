@@ -46,7 +46,7 @@ defmodule MyApp.Query.User do
   def get_user_by_email_and_password(email, password) do
     with user when not is_nil(user) <- get_user_by(%{email: String.trim(email)}),
          true <- MyApp.Password.verify_with_hash(password, user.hashed_password),
-         true <- user.approve do
+         true <- user.is_verified do
       user
     else
       _ -> MyApp.Password.dummy_verify
