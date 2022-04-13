@@ -4,7 +4,7 @@ defmodule MyApp.Schema.Company do
 
   schema "companies" do
     has_many :users, MyApp.Schema.User
-    field :type, :string
+    has_many :items, MyApp.Schema.Company
     field :name, :string
     field :description, :string
     field :email, :string
@@ -15,7 +15,6 @@ defmodule MyApp.Schema.Company do
   end
 
   @allowed_fields [
-    :type,
     :name,
     :description,
     :email,

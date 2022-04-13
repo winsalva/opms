@@ -3,7 +3,8 @@ defmodule MyApp.Schema.Item do
   import Ecto.Changeset
 
   schema "items" do
-    belongs_to :user, MyApp.Schema.User
+    belongs_to :company, MyApp.Schema.Company
+    field :purpose, :string
     field :title, :string
     field :image, :string
     field :description, :string
@@ -12,7 +13,8 @@ defmodule MyApp.Schema.Item do
   end
 
   @allowed_fields [
-    :user_id,
+    :company_id,
+    :purpose,
     :title,
     :image,
     :description,

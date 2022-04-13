@@ -1,7 +1,7 @@
 
 <div class="container">
 
-<p>Name <%= @user.first_name %></p>
+<p>Name <%= @user.fullname %></p>
 
 
 </div>

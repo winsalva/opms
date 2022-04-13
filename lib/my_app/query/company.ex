@@ -36,4 +36,24 @@ defmodule MyApp.Query.Company do
   def list_companies do
     Repo.all(Company)
   end
+
+  @doc """
+  Get company by attributes.
+  """
+  def get_company_by(attr) do
+    Repo.get_by(Company, attr)
+  end
+
+  @doc """
+  Get company account by email and password.
+  """
+  def get_company_by_email_and_password(email, password) do
+    with company when not is_nil(company) <- get_company_by(%{email: String.trim(email)}),
+         true <- MyApp.Password.verify_with_hash(password, company.hashed_password),
+         true <- company.approved do
+      company
+    else
+      _ -> MyApp.Password.dummy_verify
+    end
+  end
 end

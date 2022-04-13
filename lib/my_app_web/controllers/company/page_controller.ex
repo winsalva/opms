@@ -19,4 +19,9 @@ defmodule MyAppWeb.Company.PageController do
 	|> render("new.html", company: company)
     end
   end
+
+  def show(conn, %{"id" => id}) do
+    company = Company.get_company(id)
+    render(conn, :show, company: company)
+  end
 end

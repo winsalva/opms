@@ -1,21 +1,26 @@
 defmodule MyAppWeb.SessionController do
   use MyAppWeb, :controller
 
-  alias MyApp.Query.User
+  alias MyApp.Query.{User, Company}
 
   def new(conn, _params) do
     if User.list_users == [] do
-      User.insert_user(%{
-        fullname: "sysadmin",
-	role: "sysadmin",
-	email: "sysadmin@gmail.com",
-	company_id: 1,
-	is_verified: true,
-	password: "sysadmin",
-	password_confirmation: "sysadmin"
-	})
-	
-        render(conn, :new)
+      company = %{name: "SysadminCompany", description: "Sysadmin", email: "admin123@gmail.com", password: "admin123", password_confirmation: "admin123", approved: true}
+      case Company.insert_company(company) do
+        {:ok, company} ->
+	  User.insert_user(%{
+          fullname: "sysadmin",
+	  role: "sysadmin",
+	  email: "sysadmin@gmail.com",
+	  company_id: company.id,
+	  is_verified: true,
+	  password: "sysadmin",
+	  password_confirmation: "sysadmin"
+	  })
+	  render(conn, :new)
+	_error ->
+	  render(conn, :new)
+      end
     else
       render(conn, :new)
     end
@@ -23,13 +28,23 @@ defmodule MyAppWeb.SessionController do
 
   def create(conn, %{"email" => email, "password" => password}) do
     case User.get_user_by_email_and_password(email, password) do
-      %MyApp.Schema.User{} = _user ->
+      %MyApp.Schema.User{} = user ->
         conn
-	|> redirect(to: Routes.page_path(conn, :index))
+	|> put_session(:user_id, user.id)
+	|> configure_session(renew: true)
+	|> redirect(to: Routes.user_page_path(conn, :show, user.id))
       false ->
-        conn
-	|> put_flash(:error, "Email and Password combination not found!")
-	|> redirect(to: Routes.session_path(conn, :new))
+        case Company.get_company_by_email_and_password(email, password) do
+	  %MyApp.Schema.Company{} = company ->
+	    conn
+	    |> put_session(:company_id, company.id)
+            |> configure_session(renew: true)
+	    |> redirect(to: Routes.company_page_path(conn, :show, company.id))
+	  _false ->
+	    conn
+	    |> put_flash(:error, "Email and Password combination not found!")
+	    |> redirect(to: Routes.session_path(conn, :new))
+	end
     end
   end
 end

@@ -3,7 +3,6 @@ defmodule MyApp.Repo.Migrations.CreateCompany do
 
   def change do
     create table(:companies) do
-      add :type, :string
       add :name, :string
       add :description, :text
       add :email, :string

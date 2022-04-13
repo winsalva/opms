@@ -4,7 +4,6 @@ defmodule MyApp.Schema.User do
 
 
   schema "users" do
-    has_many :items, MyApp.Schema.Item
     belongs_to :company, MyApp.Schema.Company
     field(:fullname, :string)
     field(:role, :string)
