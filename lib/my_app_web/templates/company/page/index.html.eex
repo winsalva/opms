@@ -1,0 +1,11 @@
+<%= render(MyAppWeb.SharedView, "top-nav.html", conn: @conn) %>
+
+<div class="sub-container">
+  <div class="pc-content-container">
+    <%= render(MyAppWeb.SharedView, "side-menu.html", conn: @conn) %>
+    <div class="pc-content">
+      <div><a href="<%= Routes.company_account_path(@conn, :approved_companies) %>">Approved Companies <%= length(@approved) %></a></div>
+      <div><a href="<%= Routes.company_account_path(@conn, :unapproved_companies) %>">Unapproved Companies <%= length(@unapproved) %></a></div> 
+    </div>
+  </div>
+</div>

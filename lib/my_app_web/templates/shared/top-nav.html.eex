@@ -1,0 +1,11 @@
+<nav>
+  <div id="pcu-logo">
+    <img src="/images/opms-logo.png"/>
+  </div>
+  <div id="schoolname">Online Procurement Monitoring System
+  <p id="tagname">Simple, Safe, Effecient E-Procurement Transactions</p></div>
+  <div class="menus">
+    <li><a href="<%= Routes.session_path(@conn, :new) %>">LOG IN</a></li>
+    <li><a href="<%= Routes.company_page_path(@conn, :new) %>">SIGN UP</a></li>
+  </div>
+</nav>

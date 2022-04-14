@@ -18,6 +18,7 @@ defmodule MyAppWeb.Router do
   scope "/", MyAppWeb do
     pipe_through :browser
 
+    # get "/*under-maintenance", PageController, :under_maintenance
     get "/", PageController, :index
     get "/login", SessionController, :new
     post "/login", SessionController, :create
@@ -30,12 +31,25 @@ defmodule MyAppWeb.Router do
     pipe_through [:browser]
 
     resources "/", PageController, only: [
-      :new, :create, :show
+      :new, :create, :show, :index
     ]
   end
 
   ## COMPANY ROUTES ##
-  scope "/register/company", MyAppWeb.Company, as: :company do
+  scope "/companies", MyAppWeb.Company, as: :company do
+    pipe_through :browser
+
+    get "/approved-accounts", AccountController, :approved_companies
+    get "/unapproved-accounts", AccountController, :unapproved_companies
+
+    resources "/", PageController, only: [
+      :new, :create, :show, :index
+    ]
+   
+  end
+
+  ## ITEMS ROUTES ##
+  scope "/products-and-services", MyAppWeb.Item, as: :item do
     pipe_through :browser
 
     resources "/", PageController, only: [

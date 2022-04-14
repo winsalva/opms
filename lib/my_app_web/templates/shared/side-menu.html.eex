@@ -1,0 +1,5 @@
+<div class="side-menu-container">
+  <div><%= link "COMPANIES", to: Routes.company_page_path(@conn, :index) %></div>
+  <div><%= link "USERS", to: Routes.user_page_path(@conn, :index) %></div>
+  <div><%= link "PRODUCTS/SERVICES", to: Routes.item_page_path(@conn, :index) %></div>
+</div>

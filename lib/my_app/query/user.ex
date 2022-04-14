@@ -2,6 +2,8 @@ defmodule MyApp.Query.User do
   alias MyApp.Schema.User
   alias MyApp.Repo
 
+  import Ecto.Query, warn: false
+
   @doc """
   New User
   """
@@ -31,6 +33,39 @@ defmodule MyApp.Query.User do
   """
   def list_users do
     Repo.all(User)
+  end
+
+  @doc """
+  List all purchase officers.
+  """
+  def list_purchase_officers do
+    query =
+      from u in User,
+        where: u.role == "Purchase"
+
+    Repo.all(query)
+  end
+
+  @doc """
+  List all budget officers.
+  """
+  def list_budget_officers do
+    query =
+      from u in User,
+        where: u.role == "Budget"
+
+    Repo.all(query)
+  end
+
+  @doc """
+  List all inventory officers.
+  """
+  def list_inventory_officers do
+    query =
+      from u in User,
+        where: u.role == "Inventory"
+
+    Repo.all(query)
   end
 
   @doc """

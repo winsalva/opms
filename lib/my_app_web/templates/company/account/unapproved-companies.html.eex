@@ -1,0 +1,12 @@
+<%= render(MyAppWeb.SharedView, "top-nav.html", conn: @conn) %>
+
+<div class="sub-container">
+  <div class="pc-content-container">
+    <%= render(MyAppWeb.SharedView, "side-menu.html", conn: @conn) %>
+    <div class="pc-content">
+      <%= if @unapproved_companies == [] do %>
+      <h3 align="center">No Available Records Here</h3>
+      <% end %>
+    </div>
+  </div>
+</div>

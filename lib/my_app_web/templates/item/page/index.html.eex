@@ -1,0 +1,11 @@
+<%= render(MyAppWeb.SharedView, "top-nav.html", conn: @conn) %>
+
+<div class="sub-container">
+  <div class="pc-content-container">
+    <%= render(MyAppWeb.SharedView, "side-menu.html", conn: @conn) %>
+    <div class="pc-content">
+      <div><a href="">Buying - <%= length(@buys) %></a></div>
+      <div><a href="">Selling - <%= length(@sells) %></a></div>
+    </div>
+  </div>
+</div>

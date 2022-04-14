@@ -3,6 +3,16 @@ defmodule MyAppWeb.Company.PageController do
 
   alias MyApp.Query.Company
 
+  def index(conn, _params) do
+    approved = Company.list_approved_companies()
+    unapproved = Company.list_unapproved_companies()
+    params = [
+      approved: approved,
+      unapproved: unapproved
+    ]
+    render(conn, :index, params)
+  end
+
   def new(conn, _params) do
     company = Company.new_company()
     render(conn, "new.html", company: company)

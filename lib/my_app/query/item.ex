@@ -6,6 +6,8 @@ defmodule MyApp.Query.Item do
   alias MyApp.Repo
   alias MyApp.Schema.Item
 
+  import Ecto.Query, warn: false
+
   @doc """
   New item.
   """
@@ -35,5 +37,27 @@ defmodule MyApp.Query.Item do
   """
   def list_items do
     Repo.all(Item)
+  end
+
+  @doc """
+  List all posted item for buying
+  """
+  def list_posted_items_for_buying do
+    query =
+      from i in Item,
+        where: i.purpose == "Buy"
+
+    Repo.all(query)
+  end
+
+  @doc """
+  List all posted items for selling
+  """
+  def list_posted_items_for_selling do
+    query =
+      from i in Item,
+        where: i.purpose == "Sell"
+
+    Repo.all(query)
   end
 end

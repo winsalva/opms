@@ -143,3 +143,19 @@ footer {
     border-radius: 0.5rem;
     border: 1px solid #fff;
 }
+.sub-container {
+    border: 1px solid red;
+}
+.pc-content-container {
+    display: flex;
+}
+.side-menu-container {
+    border: 1px solid blue;
+    width: 25%;
+    padding: 1rem;
+}
+.pc-content {
+    padding: 1rem;
+    width: 100%;
+    border: 1px solid black;
+}

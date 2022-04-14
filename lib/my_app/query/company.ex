@@ -6,6 +6,8 @@ defmodule MyApp.Query.Company do
   alias MyApp.Repo
   alias MyApp.Schema.Company
 
+  import Ecto.Query, warn: false
+
   @doc """
   New company
   """
@@ -35,6 +37,30 @@ defmodule MyApp.Query.Company do
   """
   def list_companies do
     Repo.all(Company)
+  end
+
+  @doc """
+  List all approved companies.
+  """
+  def list_approved_companies do
+    query =
+      from c in Company,
+        where: c.approved == true and c.email != "admin123@gmail.com",
+	order_by: [desc: :inserted_at]
+
+    Repo.all(query)
+  end
+
+  @doc """
+  List all unapproved companies.
+  """
+  def list_unapproved_companies do
+    query =
+      from c in Company,
+        where: c.approved == false,
+	order_by: [desc: :inserted_at]
+
+    Repo.all(query)
   end
 
   @doc """
