@@ -1,0 +1,38 @@
+<%= render(MyAppWeb.SharedView, "top-nav.html", conn: @conn) %>
+
+<div class="sub-container">
+  <div class="pc-content-container">
+    <%= render(MyAppWeb.SharedView, "side-menu.html", conn: @conn) %>
+    <div class="pc-content">
+      <p>PERSONNELS</p>
+      
+      <dl>
+	<dt>Purchase Officer</dt>
+	<%= if @purchase != nil do %>
+	<dd><%= @purchase.fullname %></dd>
+	<% else %>
+	<dd><%= link "Add Purchase Officer Account", to: Routes.user_account_path(@conn, :new_purchaser) %></dd>
+	<% end %>
+      </dl>
+
+      <dl>
+        <dt>Budget Officer</dt>
+        <%= if @budget != nil do %>
+        <dd><%= @budget.fullname %></dd>
+        <% else %>
+        <dd><%= link "Add Budget Officer Account", to: Routes.user_account_path(@conn, :new_budget_officer) %></dd>
+        <% end %>
+      </dl>
+
+      <dl>
+        <dt>Inventory Officer</dt>
+        <%= if @inventory != nil do %>
+        <dd><%= @inventory.fullname %></dd>
+        <% else %>
+        <dd><%= link "Add Inventory Officer Account", to: Routes.user_account_path(@conn, :new_inventory_officer) %></dd>
+        <% end %>
+      </dl>
+      
+    </div>
+  </div>
+</div>

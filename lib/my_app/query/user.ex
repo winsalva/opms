@@ -69,6 +69,28 @@ defmodule MyApp.Query.User do
   end
 
   @doc """
+  List all users/personnels under company.
+  """
+  def list_company_personnels(company_id) do
+    query =
+      from u in User,
+        where: u.company_id == ^company_id
+
+    Repo.all(query)
+  end
+
+  @doc """
+  Get company personnel by role.
+  """
+  def get_company_personnel_by_role(company_id, role) do
+    query =
+      from u in User,
+        where: u.company_id == ^company_id and u.role == ^role
+
+    Repo.one(query)
+  end
+
+  @doc """
   Get user by attribute.
   """
   def get_user_by(params) do

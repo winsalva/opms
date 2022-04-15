@@ -33,6 +33,15 @@ defmodule MyApp.Query.Company do
   end
 
   @doc """
+  Edit company.
+  """
+  def edit_company(id, params) do
+    get_company(id)
+    |> Company.changeset(params)
+    |> Repo.update()
+  end
+
+  @doc """
   List all companies.
   """
   def list_companies do

@@ -1,2 +1,19 @@
+<%= render(MyAppWeb.SharedView, "top-nav.html", conn: @conn) %>
 
-<%= render(MyAppWeb.SharedView, "pc-template.html", conn: @conn, company: @company) %>
+<div class="sub-container">
+  <div class="pc-content-container">
+    <%= render(MyAppWeb.SharedView, "side-menu.html", conn: @conn) %>
+    <div class="pc-content">
+      <%= render(MyAppWeb.SharedView, "flash-messages.html", conn: @conn) %>
+      <%= if @items == [] do %>
+      <br />
+      <p>No Transaction Records Yet</p>
+      <% else %>
+      <%= for item <- @items do %>
+	  <p>Title: <%= item.title %></p>
+	  <% end %>
+	  <% end %>
+    </div>
+  </div>
+</div>
+

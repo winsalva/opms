@@ -8,6 +8,7 @@ defmodule MyAppWeb.Router do
     plug :put_root_layout, {MyAppWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug MyAppWeb.Authenticator
   end
 
   pipeline :api do
@@ -33,6 +34,14 @@ defmodule MyAppWeb.Router do
     resources "/", PageController, only: [
       :new, :create, :show, :index
     ]
+    get "/personnels/purchaser/new", AccountController, :new_purchaser
+    get "/personnels/budget-officer/new", AccountController, :new_budget_officer
+    get "/personnels/inventory-officer/new", AccountController, :new_inventory_officer
+    
+    post "/personnels/purchaser/", AccountController, :create_purchaser
+    post "/personnels/budget-officer/", AccountController, :create_budget_officer
+    post "/personnels/inventory-officer/", AccountController, :create_inventory_officer
+    get "/personnels/:id", AccountController, :index
   end
 
   ## COMPANY ROUTES ##
@@ -41,6 +50,8 @@ defmodule MyAppWeb.Router do
 
     get "/approved-accounts", AccountController, :approved_companies
     get "/unapproved-accounts", AccountController, :unapproved_companies
+    post "/approve-accounts/:id", AccountController, :approve_company
+    post "/cancel-approvals/:id", AccountController, :disapprove_company
 
     resources "/", PageController, only: [
       :new, :create, :show, :index

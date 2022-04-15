@@ -1,0 +1,29 @@
+<div class="session-form">
+  <div><p onclick="back();">&times</div>
+  <%= form_for @user, Routes.user_account_path(@conn, :create_purchaser), fn f -> %>
+  <h2 align="center"><strong>NEW PURCHASE OFFICER</strong></h2>
+
+  <%= render(MyAppWeb.SharedView, "flash-messages.html", conn: @conn) %>
+
+  <label>Fullname</label>
+  <%= text_input f, :fullname, placeholder: "Enter company's purchase officer's fullname.." %>
+  <%= error_tag f, :fullname %>
+
+  <label>Email</label>
+  <%= text_input f, :email, placeholder: "Enter his/her email.."  %>
+  <%= error_tag f, :email %>
+
+  <label>Password</label>
+  <%= password_input f, :password, placeholder: "Enter his/her password..." %>
+  <%= error_tag f, :password %>
+
+  <label>Re-type Password</label>
+  <%= password_input f, :password_confirmation, placeholder: "Retype his/her password.." %>
+  <%= error_tag f, :password_confirmation %>
+
+  <div align="center">
+    <br /><br />
+    <%= submit "Save Account" %>
+  </div>
+  <% end %>
+</div>

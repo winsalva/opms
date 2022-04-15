@@ -60,4 +60,16 @@ defmodule MyApp.Query.Item do
 
     Repo.all(query)
   end
+
+  @doc """
+  List posted items (products/services) by a company.
+  """
+  def list_posted_items_by_company(company_id) do
+    query =
+      from i in Item,
+        where: i.company_id == ^company_id,
+	order_by: [desc: :inserted_at]
+
+    Repo.all(query)
+  end
 end

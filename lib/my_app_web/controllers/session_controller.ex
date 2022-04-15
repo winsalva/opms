@@ -31,6 +31,8 @@ defmodule MyAppWeb.SessionController do
       %MyApp.Schema.User{} = user ->
         conn
 	|> put_session(:user_id, user.id)
+	|> put_session(:company_id, nil)
+	|> IO.inspect()
 	|> configure_session(renew: true)
 	|> redirect(to: Routes.user_page_path(conn, :show, user.id))
       false ->
@@ -38,6 +40,8 @@ defmodule MyAppWeb.SessionController do
 	  %MyApp.Schema.Company{} = company ->
 	    conn
 	    |> put_session(:company_id, company.id)
+	    |> put_session(:user_id, nil)
+	    |> IO.inspect()
             |> configure_session(renew: true)
 	    |> redirect(to: Routes.company_page_path(conn, :show, company.id))
 	  _false ->
@@ -46,5 +50,11 @@ defmodule MyAppWeb.SessionController do
 	    |> redirect(to: Routes.session_path(conn, :new))
 	end
     end
+  end
+
+  def delete(conn, _params) do
+    conn
+    |> configure_session(drop: true)
+    |> redirect(to: Routes.page_path(conn, :index))
   end
 end

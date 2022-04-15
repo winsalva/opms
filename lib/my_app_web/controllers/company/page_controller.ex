@@ -1,7 +1,7 @@
 defmodule MyAppWeb.Company.PageController do
   use MyAppWeb, :controller
 
-  alias MyApp.Query.Company
+  alias MyApp.Query.{Company, Item}
 
   def index(conn, _params) do
     approved = Company.list_approved_companies()
@@ -32,6 +32,11 @@ defmodule MyAppWeb.Company.PageController do
 
   def show(conn, %{"id" => id}) do
     company = Company.get_company(id)
-    render(conn, :show, company: company)
+    items = Item.list_posted_items_by_company(id)
+    params = [
+      company: company,
+      items: items
+    ]
+    render(conn, :show, params)
   end
 end

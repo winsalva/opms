@@ -4,8 +4,29 @@
   <div class="pc-content-container">
     <%= render(MyAppWeb.SharedView, "side-menu.html", conn: @conn) %>
     <div class="pc-content">
+      <h4 align="center">Approved Companies</h4>
       <%= if @approved_companies == [] do %>
-      <h3 align="center">No Available Records Here</h3>
+      <br />
+      <p align="center">No Available Records Here</p>
+      <% else %>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= for company <- @approved_companies do %>
+              <tr>
+                <td><%= company.name %></td>
+                <td><%= company.email %></td>
+                <td><%= link "Cancel Approval", to: Routes.company_account_path(@conn, :disapprove_company, company.id), method: :post, data: [confirm: "Are you sure?"] %></td>
+              </tr>
+              <% end %>
+        </tbody>
+      </table>
       <% end %>
     </div>
   </div>

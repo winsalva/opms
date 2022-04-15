@@ -1,5 +1,32 @@
+<%= cond do %>
+<% @conn.assigns.current_company != nil and @conn.assigns.current_company.email == "admin123@gmail.com" -> %>
 <div class="side-menu-container">
   <div><%= link "COMPANIES", to: Routes.company_page_path(@conn, :index) %></div>
   <div><%= link "USERS", to: Routes.user_page_path(@conn, :index) %></div>
   <div><%= link "PRODUCTS/SERVICES", to: Routes.item_page_path(@conn, :index) %></div>
+  <div><%= link "CONTACT US", to: "#" %></div>
+  <div><%= link "TERMS OF USE", to: "#" %></div>
+  <div><%= link "PRIVACY POLICY", to: "#" %></div>
 </div>
+<% @conn.assigns.current_company != nil -> %>
+<div class="side-menu-container">
+  <div><%= link "NEW POST", to: Routes.item_page_path(@conn, :new) %></div>
+  <div><%= link "PERSONNELS", to: Routes.user_account_path(@conn, :index, @conn.assigns.current_company.id) %></div>
+  <div><%= link "CONTACT US", to: "#" %></div>
+  <div><%= link "TERMS OF USE", to: "#" %></div>
+  <div><%= link "PRIVACY POLICY", to: "#" %></div>
+</div>
+<% @conn.assigns.current_user != nil -> %>
+<div class="side-menu-container">
+  <div><%= link "COMPANY PRODUCTS", to: "#" %></div>
+  <div><%= link "COMPANY REQUESTS", to: "#" %></div>
+  <div><%= link "CONTACT US", to: "#" %></div>
+  <div><%= link "TERMS OF USE", to: "#" %></div>
+  <div><%= link "PRIVACY POLICY", to: "#" %></div>
+</div>
+<% true -> %>
+<div class="side-menu-container">
+  <div><%= link "CONTACT US", to: "#" %></div>
+  <div><%= link "TERMS OF USE", to: "#" %></div>
+  <div><%= link "PRIVACY POLICY", to: "#" %></div></div>
+<% end %>
