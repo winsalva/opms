@@ -7,7 +7,7 @@
       <%= render(MyAppWeb.SharedView, "flash-messages.html", conn: @conn) %>
       <%= if @items == [] do %>
       <br />
-      <p>No Transaction Records Yet</p>
+      <p align="center">No Transaction Records Yet</p>
       <% else %>
       <%= for item <- @items do %>
 	  <p>Title: <%= item.title %></p>

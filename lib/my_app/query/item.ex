@@ -62,6 +62,28 @@ defmodule MyApp.Query.Item do
   end
 
   @doc """
+  List company posted items for selling.
+  """
+  def list_company_posted_items_for_selling(company_id) do
+    query =
+      from i in Item,
+        where: i.purpose == "Sell" and i.company_id == ^company_id
+
+    Repo.all(query)
+  end
+
+  @doc """
+  List company posted items for selling.
+  """
+  def list_company_posted_items_for_buying(company_id) do
+    query =
+      from i in Item,
+        where: i.purpose == "Buy" and i.company_id == ^company_id
+
+    Repo.all(query)
+  end
+
+  @doc """
   List posted items (products/services) by a company.
   """
   def list_posted_items_by_company(company_id) do

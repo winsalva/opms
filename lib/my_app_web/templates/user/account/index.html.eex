@@ -4,35 +4,39 @@
   <div class="pc-content-container">
     <%= render(MyAppWeb.SharedView, "side-menu.html", conn: @conn) %>
     <div class="pc-content">
-      <p>PERSONNELS</p>
-      
-      <dl>
-	<dt>Purchase Officer</dt>
-	<%= if @purchase != nil do %>
-	<dd><%= @purchase.fullname %></dd>
-	<% else %>
-	<dd><%= link "Add Purchase Officer Account", to: Routes.user_account_path(@conn, :new_purchaser) %></dd>
-	<% end %>
-      </dl>
+      <p class="page-titles">Personnels</p>
 
-      <dl>
-        <dt>Budget Officer</dt>
-        <%= if @budget != nil do %>
-        <dd><%= @budget.fullname %></dd>
-        <% else %>
-        <dd><%= link "Add Budget Officer Account", to: Routes.user_account_path(@conn, :new_budget_officer) %></dd>
-        <% end %>
-      </dl>
+      <div class="personnel-container">
+	<div class="personnel">
+	  <img src="/images/personnel.png"/>
+	  <p>Purchase Officer</p>
+	  <%= if @purchase != nil do %>
+	  <p><%= @purchase.fullname %></p>
+	  <% else %>
+	  <p><%= link "Add Account", to: Routes.user_account_path(@conn, :new_purchaser) %></p>
+	  <% end %>
+	</div>
 
-      <dl>
-        <dt>Inventory Officer</dt>
-        <%= if @inventory != nil do %>
-        <dd><%= @inventory.fullname %></dd>
-        <% else %>
-        <dd><%= link "Add Inventory Officer Account", to: Routes.user_account_path(@conn, :new_inventory_officer) %></dd>
-        <% end %>
-      </dl>
-      
+	<div class="personnel">
+	  <img src="/images/personnel.png"/>
+	  <p>Budget Officer</p>
+	  <%= if @budget != nil do %>
+	  <p><%= @budget.fullname %></p>
+	  <% else %>
+	  <p><%= link "Add Account", to: Routes.user_account_path(@conn, :new_budget_officer) %></p>
+	  <% end %>
+	</div>
+	
+	<div class="personnel">
+	  <img src="/images/personnel.png"/>
+	  <p>Inventory Officer</p>
+	  <%= if @inventory != nil do %>
+	  <p><%= @inventory.fullname %></p>
+	  <% else %>
+	  <p><%= link "Add Account", to: Routes.user_account_path(@conn, :new_inventory_officer) %></p>
+	  <% end %>
+	</div>
+      </div>      
     </div>
   </div>
 </div>

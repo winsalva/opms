@@ -1,0 +1,22 @@
+<%= render(MyAppWeb.SharedView, "top-nav.html", conn: @conn) %>
+
+<div class="sub-container">
+  <div class="pc-content-container">
+    <%= render(MyAppWeb.SharedView, "side-menu.html", conn: @conn) %>
+    <div class="pc-content">
+      <p class="page-titles">Posts</p>
+      <div class="items-container">
+	<a href="<%= Routes.item_page_path(@conn, :new) %>">
+	  <div class="item">Add New Post</div>
+	</a>
+	<a href="<%= Routes.item_page_path(@conn, :items_to_buy) %>">
+	  <div class="item">Items To Buy - <%= length(@items_to_buy) %></div>
+	</a>
+	<a href="<%= Routes.item_page_path(@conn, :items_to_sell) %>">
+	  <div class="item">Items To Sell - <%= length(@items_to_sell) %></div>
+	</a>
+      </div>
+    </div>
+  </div>
+</div>
+

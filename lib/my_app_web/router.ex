@@ -21,6 +21,10 @@ defmodule MyAppWeb.Router do
 
     # get "/*under-maintenance", PageController, :under_maintenance
     get "/", PageController, :index
+    get "/about-us", PageController, :about_us
+    get "/terms-of-use", PageController, :term_of_use
+    get "/privacy-policy", PageController, :privacy_policy
+    get "/contact-us", PageController, :contact_us
     get "/login", SessionController, :new
     post "/login", SessionController, :create
     delete "/logout", SessionController, :delete
@@ -62,6 +66,9 @@ defmodule MyAppWeb.Router do
   ## ITEMS ROUTES ##
   scope "/products-and-services", MyAppWeb.Item, as: :item do
     pipe_through :browser
+
+    get "/items-to-buy", PageController, :items_to_buy
+    get "/items-to-sell", PageController, :items_to_sell
 
     resources "/", PageController, only: [
       :new, :create, :show, :index

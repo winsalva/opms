@@ -1,32 +1,34 @@
 <%= cond do %>
 <% @conn.assigns.current_company != nil and @conn.assigns.current_company.email == "admin123@gmail.com" -> %>
 <div class="side-menu-container">
-  <div><%= link "COMPANIES", to: Routes.company_page_path(@conn, :index) %></div>
-  <div><%= link "USERS", to: Routes.user_page_path(@conn, :index) %></div>
-  <div><%= link "PRODUCTS/SERVICES", to: Routes.item_page_path(@conn, :index) %></div>
-  <div><%= link "CONTACT US", to: "#" %></div>
-  <div><%= link "TERMS OF USE", to: "#" %></div>
-  <div><%= link "PRIVACY POLICY", to: "#" %></div>
+  <div><%= link "Companies", to: Routes.company_page_path(@conn, :index) %></div>
+  <div><%= link "Users", to: Routes.user_page_path(@conn, :index) %></div>
+  <div><%= link "Products/Services", to: Routes.item_page_path(@conn, :index) %></div>
+  <div><%= link "Contact Us", to: Routes.page_path(@conn, :contact_us) %></div>
+  <div><%= link "Terms Of Use", to: Routes.page_path(@conn, :term_of_use) %></div>
+  <div><%= link "Privacy Policy", to: Routes.page_path(@conn, :privacy_policy) %></div>
 </div>
 <% @conn.assigns.current_company != nil -> %>
 <div class="side-menu-container">
-  <div><%= link "NEW POST", to: Routes.item_page_path(@conn, :new) %></div>
-  <div><%= link "PERSONNELS", to: Routes.user_account_path(@conn, :index, @conn.assigns.current_company.id) %></div>
-  <div><%= link "CONTACT US", to: "#" %></div>
-  <div><%= link "TERMS OF USE", to: "#" %></div>
-  <div><%= link "PRIVACY POLICY", to: "#" %></div>
+  <div><%= link "Posts", to: Routes.item_page_path(@conn, :show, @conn.assigns.current_company.id) %></div>
+  <div><%= link "Transactions", to: "#" %></div>
+  <div><%= link "Personnels", to: Routes.user_account_path(@conn, :index, @conn.assigns.current_company.id) %></div>
+  <div><%= link "Contact Us", to: Routes.page_path(@conn, :contact_us) %></div>
+  <div><%= link "Terms Of Use", to: Routes.page_path(@conn, :term_of_use) %></div>
+  <div><%= link "Privacy Policy", to: Routes.page_path(@conn, :privacy_policy) %></div>
 </div>
 <% @conn.assigns.current_user != nil -> %>
 <div class="side-menu-container">
-  <div><%= link "COMPANY PRODUCTS", to: "#" %></div>
-  <div><%= link "COMPANY REQUESTS", to: "#" %></div>
-  <div><%= link "CONTACT US", to: "#" %></div>
-  <div><%= link "TERMS OF USE", to: "#" %></div>
-  <div><%= link "PRIVACY POLICY", to: "#" %></div>
+  <div><%= link "Company Products", to: "#" %></div>
+  <div><%= link "Company Requests", to: "#" %></div>
+  <div><%= link "Contact Us", to: Routes.page_path(@conn, :contact_us) %></div>
+  <div><%= link "Terms Of Use", to: Routes.page_path(@conn, :term_of_use) %></div>
+  <div><%= link "Privacy Policy", to: Routes.page_path(@conn, :privacy_policy) %></div>
 </div>
 <% true -> %>
 <div class="side-menu-container">
-  <div><%= link "CONTACT US", to: "#" %></div>
-  <div><%= link "TERMS OF USE", to: "#" %></div>
-  <div><%= link "PRIVACY POLICY", to: "#" %></div></div>
+  <div><%= link "Contact Us", to: Routes.page_path(@conn, :contact_us) %></div>
+  <div><%= link "Terms Of Use", to: Routes.page_path(@conn, :term_of_use) %></div>
+  <div><%= link "Privacy Policy", to: Routes.page_path(@conn, :privacy_policy) %></div>
+</div>
 <% end %>

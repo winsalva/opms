@@ -31,4 +31,32 @@ defmodule MyAppWeb.Item.PageController do
 	|> render(:new, item: item)
     end
   end
+
+  def show(conn, %{"id" => company_id}) do
+    items_to_buy = Item.list_company_posted_items_for_buying(company_id)
+    items_to_sell = Item.list_company_posted_items_for_selling(company_id)
+    params = [
+      items_to_buy: items_to_buy,
+      items_to_sell: items_to_sell
+    ]
+    render(conn, :show, params)
+  end
+
+  def items_to_buy(conn, _params) do
+    company_id = conn.assigns.current_company.id
+    items_to_buy = Item.list_company_posted_items_for_buying(company_id)
+    params = [
+      items_to_buy: items_to_buy
+    ]
+    render(conn, "items-to-buy.html", params)
+  end
+
+  def items_to_sell(conn, _params) do
+    company_id = conn.assigns.current_company.id
+    items_to_sell = Item.list_company_posted_items_for_selling(company_id)
+    params = [
+      items_to_sell: items_to_sell
+    ]
+    render(conn, "items-to-sell.html", params)
+  end
 end
