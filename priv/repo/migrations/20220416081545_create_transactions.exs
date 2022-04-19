@@ -13,6 +13,7 @@ defmodule MyApp.Repo.Migrations.CreateTransactions do
       add :buyer_inventory_officer_approval, :boolean, default: false
       add :seller_inventory_officer_approval, :boolean, default: false
       add :admin_remarks, :string
+      timestamps()
     end
   end
 end

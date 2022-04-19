@@ -4,8 +4,22 @@
   <div class="pc-content-container">
     <%= render(MyAppWeb.SharedView, "side-menu.html", conn: @conn) %>
     <div class="pc-content">
-      <div><a href="">Buying - <%= length(@buys) %></a></div>
-      <div><a href="">Selling - <%= length(@sells) %></a></div>
+      <p class="page-titles">Products/Services</p>
+
+      <div class="company-logos-container">
+        <a href="">
+          <div class="company-logo-container">
+            <img src="/images/buy-sell1.png"/>
+            <p>Buying: <%= length(@buys) %></p>
+          </div>
+        </a>
+        <a href="">
+          <div class="company-logo-container">
+            <img src="/images/buy-sell2.png"/>
+            <p>Selling: <%= length(@sells) %></p>
+          </div>
+        </a>
+      </div>
     </div>
   </div>
 </div>

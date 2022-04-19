@@ -2,7 +2,8 @@
 <% @conn.assigns.current_company != nil and @conn.assigns.current_company.email == "admin123@gmail.com" -> %>
 <div class="side-menu-container">
   <div><%= link "Companies", to: Routes.company_page_path(@conn, :index) %></div>
-  <div><%= link "Users", to: Routes.user_page_path(@conn, :index) %></div>
+  <div><%= link "Personnels", to: Routes.user_page_path(@conn, :index) %></div>
+  <div><%= link "Transactions", to: Routes.company_page_path(@conn, :show, @conn.assigns.current_company.id) %></div>
   <div><%= link "Products/Services", to: Routes.item_page_path(@conn, :index) %></div>
   <div><%= link "Contact Us", to: Routes.page_path(@conn, :contact_us) %></div>
   <div><%= link "Terms Of Use", to: Routes.page_path(@conn, :term_of_use) %></div>
@@ -10,8 +11,8 @@
 </div>
 <% @conn.assigns.current_company != nil -> %>
 <div class="side-menu-container">
-  <div><%= link "Posts", to: Routes.item_page_path(@conn, :show, @conn.assigns.current_company.id) %></div>
-  <div><%= link "Transactions", to: "#" %></div>
+  <div><%= link "My Posts", to: Routes.item_page_path(@conn, :show, @conn.assigns.current_company.id) %></div>
+  <div><%= link "Transactions", to: Routes.company_page_path(@conn, :show, @conn.assigns.current_company.id) %></div>
   <div><%= link "Personnels", to: Routes.user_account_path(@conn, :index, @conn.assigns.current_company.id) %></div>
   <div><%= link "Contact Us", to: Routes.page_path(@conn, :contact_us) %></div>
   <div><%= link "Terms Of Use", to: Routes.page_path(@conn, :term_of_use) %></div>
@@ -19,8 +20,8 @@
 </div>
 <% @conn.assigns.current_user != nil -> %>
 <div class="side-menu-container">
-  <div><%= link "Company Products", to: "#" %></div>
-  <div><%= link "Company Requests", to: "#" %></div>
+  <div><%= link "Products/Services", to: Routes.item_page_path(@conn, :index) %></div>
+  <div><%= link "Transactions", to: "#" %></div>
   <div><%= link "Contact Us", to: Routes.page_path(@conn, :contact_us) %></div>
   <div><%= link "Terms Of Use", to: Routes.page_path(@conn, :term_of_use) %></div>
   <div><%= link "Privacy Policy", to: Routes.page_path(@conn, :privacy_policy) %></div>

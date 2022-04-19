@@ -4,8 +4,22 @@
   <div class="pc-content-container">
     <%= render(MyAppWeb.SharedView, "side-menu.html", conn: @conn) %>
     <div class="pc-content">
-      <div><a href="<%= Routes.company_account_path(@conn, :approved_companies) %>">Approved Companies <%= length(@approved) %></a></div>
-      <div><a href="<%= Routes.company_account_path(@conn, :unapproved_companies) %>">Unapproved Companies <%= length(@unapproved) %></a></div> 
+      <p class="page-titles">Companies</p>
+      
+      <div class="company-logos-container">
+	<a href="<%= Routes.company_account_path(@conn, :approved_companies) %>">
+	  <div class="company-logo-container">
+	    <img src="/images/opms-company.png"/>
+	    <p>Approved Companies: <%= length(@approved) %></p>
+	  </div>
+	</a>
+	<a href="<%= Routes.company_account_path(@conn, :unapproved_companies) %>">
+          <div class="company-logo-container">
+            <img src="/images/opms-company.png"/>
+            <p>Unapproved Companies: <%= length(@unapproved) %></p>
+          </div>
+        </a>
+      </div>
     </div>
   </div>
 </div>

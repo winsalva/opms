@@ -32,7 +32,6 @@ defmodule MyAppWeb.SessionController do
         conn
 	|> put_session(:user_id, user.id)
 	|> put_session(:company_id, nil)
-	|> IO.inspect()
 	|> configure_session(renew: true)
 	|> redirect(to: Routes.user_page_path(conn, :show, user.id))
       false ->
@@ -41,7 +40,6 @@ defmodule MyAppWeb.SessionController do
 	    conn
 	    |> put_session(:company_id, company.id)
 	    |> put_session(:user_id, nil)
-	    |> IO.inspect()
             |> configure_session(renew: true)
 	    |> redirect(to: Routes.company_page_path(conn, :show, company.id))
 	  _false ->

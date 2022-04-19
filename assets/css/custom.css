@@ -155,14 +155,16 @@ footer {
     padding: 1rem 1rem 2rem 1rem;
 }
 .side-menu-container a {
-    color: #000000;
-    font-size: 1.6rem;
+    color: #555;
+    font-weight: 500;
+    font-size: 1.8rem;
 }
 .side-menu-container div {
     padding: .3rem 1rem;
 }
 .side-menu-container a:hover {
-    font-weight: bold;
+    color: #0069d9;
+    text-decoration: underline;
 }
 .pc-content {
     padding: 1rem;
@@ -209,4 +211,26 @@ footer {
 }
 .item:hover {
     background-color: #c0c0c0;
+}
+
+/* Company */
+.company-logos-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.5rem;
+}
+.company-logo-container {
+    text-align: center;
+    border: 1px solid #c0c0c0;
+    border-radius: 10px;
+}
+.company-logo-container:hover {
+    border: 1px solid black;
+}
+.company-logo-container img {
+    width: 70px;
+    height: 70px;
+}
+.company-logo-container p {
+    color: #000000;
 }

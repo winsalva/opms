@@ -4,9 +4,28 @@
   <div class="pc-content-container">
     <%= render(MyAppWeb.SharedView, "side-menu.html", conn: @conn) %>
     <div class="pc-content">
-      <div><a href="">PURCHASE OFFICERS - <%= length(@purchase_officers) %></a></div>
-      <div><a href="">BUDGET OFFICERS - <%= length(@budget_officers) %></a></div>
-      <div><a href="">INVENTORY OFFICERS - <%= length(@inventory_officers) %></a></div>
+      <p class="page-titles">Users</p>
+
+      <div class="company-logos-container">
+        <a href="">
+          <div class="company-logo-container">
+            <img src="/images/opms-position1.png"/>
+            <p>Purchase Officers: <%= length(@purchase_officers) %></p>
+          </div>
+        </a>
+	<a href="">
+          <div class="company-logo-container">
+            <img src="/images/opms-position2.png"/>
+            <p>Purchase Officers: <%= length(@budget_officers) %></p>
+          </div>
+        </a>
+	<a href="">
+          <div class="company-logo-container">
+            <img src="/images/opms-position3.png"/>
+            <p>Purchase Officers: <%= length(@inventory_officers) %></p>
+          </div>
+        </a>
+      </div>
     </div>
   </div>
 </div>
