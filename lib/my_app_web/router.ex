@@ -30,6 +30,16 @@ defmodule MyAppWeb.Router do
     delete "/logout", SessionController, :delete
   end
 
+
+  ## TRANSACTION ROUTES ##
+  scope "/transactions", MyAppWeb.Transaction, as: :transaction do
+    pipe_through [:browser]
+
+    get "/new/:item_id", PageController, :new_transaction
+    post "/", PageController, :create_transaction
+  end
+
+
   ## USER ROUTES ##
 
   scope "/users", MyAppWeb.User, as: :user do

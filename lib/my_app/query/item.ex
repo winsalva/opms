@@ -36,7 +36,11 @@ defmodule MyApp.Query.Item do
   List items.
   """
   def list_items do
-    Repo.all(Item)
+    query =
+      from i in Item,
+        order_by: [desc: :inserted_at]
+	
+    Repo.all(query)
   end
 
   @doc """

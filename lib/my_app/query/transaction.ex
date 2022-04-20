@@ -13,4 +13,8 @@ defmodule MyApp.Query.Transaction do
     |> Transaction.changeset(params)
     |> Repo.insert()
   end
+
+  def list_transactions do
+    Repo.all(Transaction)
+  end
 end

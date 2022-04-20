@@ -212,6 +212,14 @@ footer {
 .item:hover {
     background-color: #c0c0c0;
 }
+.item-container {
+    text-align: center;
+    font-weight: bold;
+    color: #000000;
+    border: 1px solid #ddd;
+    border-radius: 1rem;
+}
+
 
 /* Company */
 .company-logos-container {

@@ -3,6 +3,7 @@ defmodule MyApp.Schema.Transaction do
   import Ecto.Changeset
 
   schema "transactions" do
+    has_many :user, MyApp.Schema.User
     belongs_to :item, MyApp.Schema.Item
     belongs_to :buyer_company, MyApp.Schema.Company
     belongs_to :seller_company, MyApp.Schema.Company

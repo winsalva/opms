@@ -1,0 +1,14 @@
+<div class="session-form">
+  <div><p onclick="back();">&times</div>
+  <%= form_for @negotiation, Routes.transaction_page_path(@conn, :create_transaction, %{item_id: @item.id}), fn f -> %>
+  <h2 align="center"><strong>NEGOTIATION MESSAGE</strong></h2>
+  <label>Message</label>
+  <%= textarea f, :msg, placeholder: "Write your message.."  %>
+  <%= error_tag f, :msg %>
+
+  <div align="center">
+    <br /><br />
+    <%= submit "Submit" %>
+  </div>
+  <% end %>
+</div>
