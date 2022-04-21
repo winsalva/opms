@@ -4,7 +4,7 @@
   <div class="pc-content-container">
     <%= render(MyAppWeb.SharedView, "side-menu.html", conn: @conn) %>
     <div class="pc-content">
-      <p class="page-titles">Products/Services</p>
+      <p class="page-titles">Products & Services</p>
       <%= if @items == [] do %>
       <br />
       <p align="center">No Records Yet</p>

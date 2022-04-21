@@ -1,6 +1,11 @@
 <%= cond do %>
 <% @conn.assigns.current_company != nil and @conn.assigns.current_company.email == "admin123@gmail.com" -> %>
 <div class="side-menu-container">
+  <div class="side-menu-profile">
+    <img src="/images/personnel.png"/>
+    <p><%= @conn.assigns.current_company.name %></p>
+  </div>
+  
   <div><%= link "Companies", to: Routes.company_page_path(@conn, :index) %></div>
   <div><%= link "Personnels", to: Routes.user_page_path(@conn, :index) %></div>
   <div><%= link "Transactions", to: Routes.company_page_path(@conn, :show, @conn.assigns.current_company.id) %></div>
@@ -11,6 +16,10 @@
 </div>
 <% @conn.assigns.current_company != nil -> %>
 <div class="side-menu-container">
+  <div class="side-menu-profile">
+    <img src="/images/personnel.png"/>
+    <p><%= @conn.assigns.current_company.name %></p>
+  </div>
   <div><%= link "My Posts", to: Routes.item_page_path(@conn, :show, @conn.assigns.current_company.id) %></div>
   <div><%= link "Transactions", to: Routes.company_page_path(@conn, :show, @conn.assigns.current_company.id) %></div>
   <div><%= link "Personnels", to: Routes.user_account_path(@conn, :index, @conn.assigns.current_company.id) %></div>
@@ -20,6 +29,10 @@
 </div>
 <% @conn.assigns.current_user != nil -> %>
 <div class="side-menu-container">
+  <div class="side-menu-profile">
+    <img src="/images/personnel.png"/>
+    <p><%= @conn.assigns.current_user.fullname %></p>
+  </div>
   <div><%= link "Products/Services", to: Routes.item_page_path(@conn, :index) %></div>
   <div><%= link "Transactions", to: "#" %></div>
   <div><%= link "Contact Us", to: Routes.page_path(@conn, :contact_us) %></div>
