@@ -11,10 +11,12 @@ defmodule MyApp.Schema.Company do
     field :password, :string, virtual: true
     field :hashed_password, :string
     field :approved, :boolean, default: false
+    field :is_admin, :boolean, default: false
     timestamps()
   end
 
   @allowed_fields [
+    :is_admin,
     :name,
     :description,
     :email,

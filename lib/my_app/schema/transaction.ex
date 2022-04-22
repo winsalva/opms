@@ -4,6 +4,7 @@ defmodule MyApp.Schema.Transaction do
 
   schema "transactions" do
     has_many :user, MyApp.Schema.User
+    has_many :negotiation, MyApp.Schema.Negotiation
     belongs_to :item, MyApp.Schema.Item
     belongs_to :buyer_company, MyApp.Schema.Company
     belongs_to :seller_company, MyApp.Schema.Company
@@ -13,6 +14,7 @@ defmodule MyApp.Schema.Transaction do
     field :seller_budget_officer_approval, :boolean, default: false
     field :buyer_inventory_officer_approval, :boolean, default: false
     field :seller_inventory_officer_approval, :boolean, default: false
+    field :status, :string, default: "active"
 
     timestamps()
   end
@@ -26,7 +28,8 @@ defmodule MyApp.Schema.Transaction do
     :buyer_budget_officer_approval,
     :seller_budget_officer_approval,
     :buyer_inventory_officer_approval,
-    :seller_inventory_officer_approval
+    :seller_inventory_officer_approval,
+    :status
   ]
 
   @doc false

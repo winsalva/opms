@@ -39,7 +39,7 @@ defmodule MyAppWeb.User.AccountController do
     case User.insert_user(params) do
       {:ok, _user} ->
         conn
-	|> put_flash(:info, "Purchase Officer account was added!")
+	|> put_flash(:info, "Purchase Officer account was added successfully.")
 	|> redirect(to: Routes.user_account_path(conn, :index, company_id))
       {:error, %Ecto.Changeset{} = user} ->
         conn
@@ -57,7 +57,7 @@ defmodule MyAppWeb.User.AccountController do
     case User.insert_user(params) do
       {:ok, _user} ->
         conn
-        |> put_flash(:info, "Budget Officer account was added!")
+        |> put_flash(:info, "Budget Officer account was added successfully.")
         |> redirect(to: Routes.user_account_path(conn, :index, company_id))
       {:error, %Ecto.Changeset{} = user} ->
         conn
@@ -74,7 +74,7 @@ defmodule MyAppWeb.User.AccountController do
     case User.insert_user(params) do
       {:ok, _user} ->
         conn
-        |> put_flash(:info, "Inventory Officer account was added!")
+        |> put_flash(:info, "Inventory Officer account was added successfully.")
         |> redirect(to: Routes.user_account_path(conn, :index, company_id))
       {:error, %Ecto.Changeset{} = user} ->
         conn

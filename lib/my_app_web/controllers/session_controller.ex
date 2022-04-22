@@ -5,7 +5,7 @@ defmodule MyAppWeb.SessionController do
 
   def new(conn, _params) do
     if User.list_users == [] do
-      company = %{name: "SysadminCompany", description: "Sysadmin", email: "admin123@gmail.com", password: "admin123", password_confirmation: "admin123", approved: true}
+      company = %{is_admin: true, name: "SysadminCompany", description: "Sysadmin", email: "admin123@gmail.com", password: "admin123", password_confirmation: "admin123", approved: true}
       case Company.insert_company(company) do
         {:ok, company} ->
 	  User.insert_user(%{

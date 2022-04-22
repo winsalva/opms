@@ -20,7 +20,7 @@ defmodule MyAppWeb.Item.PageController do
       {:ok, _item} ->
         conn
 	|> put_flash(:info, "Posted successfully!\n")
-	|> redirect(to: Routes.company_page_path(conn, :show, company_id))
+	|> redirect(to: Routes.item_page_path(conn, :show, company_id))
       {:error, %Ecto.Changeset{} = item} ->
         conn
 	|> render(:new, item: item)

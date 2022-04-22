@@ -5,6 +5,7 @@
     <%= render(MyAppWeb.SharedView, "side-menu.html", conn: @conn) %>
     <div class="pc-content">
       <p class="page-titles">Personnels</p>
+      <%= render(MyAppWeb.SharedView, "flash-messages.html", conn: @conn) %>
 
       <div class="personnel-container">
 	<div class="personnel">

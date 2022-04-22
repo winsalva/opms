@@ -4,7 +4,8 @@
   <div class="pc-content-container">
     <%= render(MyAppWeb.SharedView, "side-menu.html", conn: @conn) %>
     <div class="pc-content">
-      <p class="page-titles">Posts</p>
+      <p class="page-titles">My Posts</p>
+      <%= render(MyAppWeb.SharedView, "flash-messages.html", conn: @conn) %>
       <div class="items-container">
 	<a href="<%= Routes.item_page_path(@conn, :new) %>">
 	  <div class="item">Add New Post</div>

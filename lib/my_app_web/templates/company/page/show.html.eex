@@ -6,14 +6,17 @@
     <div class="pc-content">
       <p class="page-titles">Transactions</p>
       <%= render(MyAppWeb.SharedView, "flash-messages.html", conn: @conn) %>
-      <%= if @items == [] do %>
-      <br />
-      <p align="center">No Transaction Records Yet</p>
-      <% else %>
-      <%= for item <- @items do %>
-	  <p>Title: <%= item.title %></p>
-	  <% end %>
-	  <% end %>
+      <div class="items-container">
+        <a href="">
+          <div class="item">Active - <%= length(@active_transactions) %></div>
+        </a>
+	<a href="">
+          <div class="item">Canceled - <%= length(@canceled_transactions) %></div>
+        </a>
+	<a href="">
+          <div class="item">Success - <%= length(@success_transactions) %></div>
+        </a>
+      </div>
     </div>
   </div>
 </div>

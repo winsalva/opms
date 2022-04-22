@@ -1,7 +1,7 @@
 defmodule MyAppWeb.Company.PageController do
   use MyAppWeb, :controller
 
-  alias MyApp.Query.{Company, Item}
+  alias MyApp.Query.{Company, Item, Transaction}
 
   def index(conn, _params) do
     approved = Company.list_approved_companies()
@@ -32,11 +32,27 @@ defmodule MyAppWeb.Company.PageController do
 
   def show(conn, %{"id" => id}) do
     company = Company.get_company(id)
-    items = Item.list_posted_items_by_company(id)
-    params = [
-      company: company,
-      items: items
-    ]
-    render(conn, :show, params)
+
+    if(company.is_admin) do
+      active_transactions = Transaction.list_active_transactions()
+      canceled_transactions = Transaction.list_canceled_transactions()
+      success_transactions = Transaction.list_success_transactions()
+     params = [
+       active_transactions: active_transactions,
+       canceled_transactions: canceled_transactions,
+       success_transactions: success_transactions
+     ]
+     render(conn, :show, params)
+    else
+      active_transactions = Transaction.list_company_active_transactions(company.id)
+      canceled_transactions = Transaction.list_company_canceled_transactions(company.id)
+      success_transactions = Transaction.list_company_success_transactions(company.id)
+      params = [
+       active_transactions: active_transactions,
+       canceled_transactions: canceled_transactions,
+       success_transactions: success_transactions
+     ]
+       render(conn, :show, params)
+     end
   end
 end
