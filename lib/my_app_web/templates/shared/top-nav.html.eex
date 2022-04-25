@@ -1,9 +1,13 @@
 <nav>
-  <div id="pcu-logo">
-    <img src="/images/opms-logo.png"/>
+  <div class="logo-name-container">
+    <div id="pcu-logo">
+      <img src="/images/opms-logo.png"/>
+    </div>
+    <div id="schoolname">Online Procurement Monitoring System
+      <p id="tagname">Simple & Safe E-Procurement Transactions</p>
+    </div>
   </div>
-  <div id="schoolname">Online Procurement Monitoring System
-  <p id="tagname">Simple & Safe E-Procurement Transactions</p></div>
+  
   <div class="menus">
     <%= if @conn.assigns.current_company != nil or @conn.assigns.current_user != nil do %>
     <li><%= link "LOG OUT", to: Routes.session_path(@conn, :delete), method: :delete, data: [confirm: "Are you sure?"] %></li>

@@ -14,20 +14,20 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 15px 0 15px;
+    padding: 10px 15px 5px 15px;
     border: 1px solid #000;
     background-color: #000;
 }
-nav #schoolname {
+#schoolname {
     font-size: 22px;
     font-family: serif;
     font-weight: bold;
     padding: 0;
     position: relative;
-    margin-left: -25rem;
+    /*margin-left: -25rem;*/
     color: #fff;
 }
-nav #tagname {
+#tagname {
     margin: -5px;
     padding: 0 0 10px 0;
     font-size: 14px;
@@ -67,8 +67,11 @@ nav .menus li a:hover {
     color: #808080;
 }
 
+.logo-name-container {
+    display: flex;
+}
 #pcu-logo {
-    margin: 0 2rem 1rem 0;
+    margin-bottom: 5px;
     width: 60px;
     height: 60px;
 }
@@ -119,10 +122,10 @@ footer {
 }
 .copyright {
     text-align: center;
-    margin-top: 2.5rem;
+    margin-top: 3rem;
 }
 .copyright p {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     margin: 0;
     padding: 0;
     color: #eee;
@@ -217,7 +220,7 @@ footer {
 .page-titles {
     font-weight: 500;
     margin: .2rem 0 1rem .2rem;
-    color: #0069d9;
+    color: #000000;
     font-size: 1.8rem;
 }
 .personnel-container {

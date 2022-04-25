@@ -1,5 +1,5 @@
 <%= cond do %>
-<% @conn.assigns.current_company != nil and @conn.assigns.current_company.email == "admin123@gmail.com" -> %>
+<% @conn.assigns.current_company != nil and @conn.assigns.current_company.is_admin -> %>
 <div class="side-menu-container">
   <div class="side-menu-profile">
     <img src="/images/personnel.png"/>
