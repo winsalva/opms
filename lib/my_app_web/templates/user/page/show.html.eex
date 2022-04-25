@@ -4,8 +4,19 @@
   <div class="pc-content-container">
     <%= render(MyAppWeb.SharedView, "side-menu.html", conn: @conn) %>
     <div class="pc-content">
-      <p class="page-titles">User</p>
+      <p class="page-titles">Transactions</p>
       <%= render(MyAppWeb.SharedView, "flash-messages.html", conn: @conn) %>
+      <div class="items-container">
+        <a href="<%= Routes.transaction_page_path(@conn, :active_transactions) %>">
+          <div class="item">Active - <%= length(@active_transactions) %></div>
+        </a>
+	<a href="">
+          <div class="item">Canceled - <%= length(@canceled_transactions) %></div>
+        </a>
+	<a href="">
+          <div class="item">Sucess - <%= length(@success_transactions) %></div>
+        </a>
+      </div>
     </div>
   </div>
 </div>

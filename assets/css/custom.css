@@ -73,13 +73,23 @@ nav .menus li a:hover {
     height: 60px;
 }
 
+.opms-definition {
+    padding: 1rem 1.5rem 0 1.5rem;
+    text-align: center;
+}
+.opms-definition-title {
+    margin-top: 1rem;
+    font-weight: bold;
+    font-size: 2rem;
+}
 /* Footer styles */
 .footer-company-name {
-    font-size: 2rem;
-    color: #808080;
+    font-weight: 500;
+    font-size: 2.2rem;
+    color: #c0c0c0;
     text-align: center;
     margin-top: 1rem;
-    padding: 2rem 0 .5rem 0;
+    padding: 1rem 0 .5rem 0;
 }
 footer {
     background-color: #000;
@@ -89,25 +99,33 @@ footer {
     padding: 2rem 0 4rem 0;
 }
 .footer-options {
+    text-align: center;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
     padding: 1rem 1rem 0 5rem;
 }
-.footer-options li a {
-    color: #555;
+.footer-options div a {
+    color: #eee;
+    font-size: 1.6rem;
 }
-.footer-options li a:hover {
-    color: #000;
+.footer-options div a:hover {
+    color: #fff;
+    font-weight: bold;
 }
 .footer-options li {
     list-style: none;
     text-align: center;
 }
+.copyright {
+    text-align: center;
+    margin-top: 2.5rem;
+}
 .copyright p {
+    font-size: 1.6rem;
     margin: 0;
     padding: 0;
-    color: #808080;
+    color: #eee;
 }
 
 /* Image Slider */
@@ -155,6 +173,13 @@ footer {
     padding: 1.5rem;
     border-radius: 0.5rem;
     border: 1px solid #fff;
+}
+.close-btn {
+    margin: 0 .5rem;
+    font-size: 2.5rem;
+}
+.close-btn:hover {
+    color: #0069d9;
 }
 .sub-container {
  
@@ -218,7 +243,7 @@ footer {
 .items-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 1rem;
+    gap: 1.5rem 1rem;
 }
 .item {
     text-align: center;
@@ -236,11 +261,67 @@ footer {
     text-align: center;
     font-weight: bold;
     color: #000000;
-    border: 1px solid #ddd;
+    border: 1px solid #c0c0c0;
     border-radius: 1rem;
 }
+.item-container img {
+    width: 20rem;
+    max-height: 10rem;
+    object-fit: cover;
+}
+.item-container p {
+    margin: 0;
+}
+.item-container a {
+    padding: .4rem 2rem;
+    margin: .4rem 0 .8rem 0;
+    border-radius: 4px;
+    border: 1px solid #0069d9;
+}
+.item-container a:hover {
+    background-color: #0069d9;
+    color: #fff;
+    border: 1px solid #0069d9;
+}
 
-
+.item-container-show {
+    display: flex;
+}
+.item-container-show div {
+    padding: 0 1rem;
+}
+.item-title {
+    font-size: 1.8rem;
+    font-weight: 500;
+    text-align: center;
+    margin: 0 0 .5rem 0;
+}
+.item-description {
+    margin: 0 0 3rem 0;
+}
+.item-container-show img {
+    max-width: 50%;
+    max-height: 15rem;
+}
+.negotiate-btn {
+    padding: 1rem 3rem;
+    border: 1px sold #0069d9;
+    background-color: #0069d9;
+    color: #fff;
+    border-radius: 5px;
+}
+.negotiate-btn:hover {
+    background-color: #eee;
+    color: #0069d9;
+    border: 1px solid #0069d9;
+}
+.negotiator-name {
+    margin: 0 .1rem;
+    font-weight: bold;
+}
+.negotiator-msg {
+    margin: 0 1rem 1rem .1rem;
+}
 /* Company */
 .company-logos-container {
     display: grid;

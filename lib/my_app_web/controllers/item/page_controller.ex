@@ -3,9 +3,20 @@ defmodule MyAppWeb.Item.PageController do
 
   alias MyApp.Query.Item
 
+  def item(conn, %{"id" => id}) do
+    item = Item.get_item(id)
+    render(conn, "item.html", item: item)
+  end
+
   def index(conn, _params) do
-    items = Item.list_items()
-    render(conn, :index, items: items)
+    user = conn.assigns.current_user
+    if user != nil do
+      items = Item.list_items_not_owned_by_company(user.company_id)
+      render(conn, :index, items: items)
+    else
+      items = Item.list_items()
+      render(conn, :index, items: items)
+    end
   end
 
   def new(conn, _params) do

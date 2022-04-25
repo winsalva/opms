@@ -1,5 +1,5 @@
 <div class="session-form">
-  <div><p onclick="back();">&times</div>
+  <div><p class="close-btn" onclick="back();">&times</div>
   <%= form_for @negotiation, Routes.transaction_page_path(@conn, :create_transaction, %{item_id: @item.id, transaction_id: @transaction_id}), fn f -> %>
   <h2 align="center"><strong>NEGOTIATION MESSAGE</strong></h2>
   <label>Message</label>

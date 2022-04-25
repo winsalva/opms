@@ -1,7 +1,31 @@
 defmodule MyAppWeb.User.PageController do
   use MyAppWeb, :controller
 
-  alias MyApp.Query.User
+  alias MyApp.Query.{User, Transaction}
+
+  def list_purchase_officers(conn, _params) do
+    purchase_officers = User.list_purchase_officers()
+    params = [
+      purchase_officers: purchase_officers
+    ]
+    render(conn, "purchase-officers.html", params)
+  end
+
+  def list_budget_officers(conn, _params) do
+    budget_officers = User.list_budget_officers()
+    params = [
+      budget_officers: budget_officers
+    ]
+    render(conn, "budget-officers.html", params)
+  end
+
+  def list_inventory_officers(conn, _params) do
+    inventory_officers = User.list_inventory_officers()
+    params = [
+      inventory_officers: inventory_officers
+    ]
+    render(conn, "inventory-officers.html", params)
+  end
 
   def index(conn, _params) do
     purchase_officers = User.list_purchase_officers()
@@ -33,13 +57,24 @@ defmodule MyAppWeb.User.PageController do
   end
 
   def show(conn, %{"id" => id}) do
-    case User.get_user(id) do
-      nil ->
+    user = User.get_user(id)
+    cond do
+      user == nil ->
         conn
 	|> redirect(to: Routes.page_path(conn, :index))
-      user ->
+      user.role == "Purchase" ->
+        active_transactions = Transaction.list_purchase_officer_active_transactions(user)
+	canceled_transactions = Transaction.list_purchase_officer_canceled_transactions(user)
+	success_transactions = Transaction.list_purchase_officer_success_transactions(user)
+	params = [
+	  active_transactions: active_transactions,
+	  canceled_transactions: canceled_transactions,
+	  success_transactions: success_transactions
+	]
+        render(conn, :show, params)
+      true ->
         conn
-	|> render(:show, user: user)
+	|> redirect(to: Routes.page_path(conn, :index))
     end
   end
 end

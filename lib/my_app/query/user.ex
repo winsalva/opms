@@ -41,7 +41,8 @@ defmodule MyApp.Query.User do
   def list_purchase_officers do
     query =
       from u in User,
-        where: u.role == "Purchase"
+        where: u.role == "Purchase",
+	preload: [:company]
 
     Repo.all(query)
   end
@@ -52,7 +53,8 @@ defmodule MyApp.Query.User do
   def list_budget_officers do
     query =
       from u in User,
-        where: u.role == "Budget"
+        where: u.role == "Budget",
+	preload: [:company]
 
     Repo.all(query)
   end
@@ -63,7 +65,8 @@ defmodule MyApp.Query.User do
   def list_inventory_officers do
     query =
       from u in User,
-        where: u.role == "Inventory"
+        where: u.role == "Inventory",
+	preload: [:company]
 
     Repo.all(query)
   end

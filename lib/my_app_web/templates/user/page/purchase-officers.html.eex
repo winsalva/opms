@@ -1,0 +1,35 @@
+<%= render(MyAppWeb.SharedView, "top-nav.html", conn: @conn) %>
+
+<div class="sub-container">
+  <div class="pc-content-container">
+    <%= render(MyAppWeb.SharedView, "side-menu.html", conn: @conn) %>
+    <div class="pc-content">
+      <p class="page-titles">Purchase Officers</p>
+      <%= if @purchase_officers == [] do %>
+      <br />
+      <p align="center">No Records Yet</p>
+      <% else %>
+      <table>
+	<thead>
+	  <tr>
+	    <th>Fullname</th>
+	    <th>Email</th>
+	    <th>Company</th>
+	  </tr>
+	</thead>
+	<tbody>
+	  <%= for purchase_officer <- @purchase_officers do %>
+	      <tr>
+		<td><%= purchase_officer.fullname %></td>
+		<td><%= purchase_officer.email %></td>
+		<td><%= purchase_officer.company.name %></td>
+	      </tr>
+	      <% end %>
+	</tbody>
+      </table>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+      

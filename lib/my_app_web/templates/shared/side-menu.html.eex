@@ -34,13 +34,18 @@
     <p><%= @conn.assigns.current_user.fullname %></p>
   </div>
   <div><%= link "Products/Services", to: Routes.item_page_path(@conn, :index) %></div>
-  <div><%= link "Transactions", to: "#" %></div>
+  <div><%= link "Transactions", to: Routes.user_page_path(@conn, :show, @conn.assigns.current_user.id) %></div>
   <div><%= link "Contact Us", to: Routes.page_path(@conn, :contact_us) %></div>
   <div><%= link "Terms Of Use", to: Routes.page_path(@conn, :term_of_use) %></div>
   <div><%= link "Privacy Policy", to: Routes.page_path(@conn, :privacy_policy) %></div>
 </div>
 <% true -> %>
 <div class="side-menu-container">
+  <div class="side-menu-profile">                     <img src="/images/personnel.png"/>
+    <p>OPMS</p>
+  </div>
+  <div><%= link "Home", to: Routes.page_path(@conn, :index) %></div>
+  <div><%= link "About Us", to: Routes.page_path(@conn, :about_us) %></div>
   <div><%= link "Contact Us", to: Routes.page_path(@conn, :contact_us) %></div>
   <div><%= link "Terms Of Use", to: Routes.page_path(@conn, :term_of_use) %></div>
   <div><%= link "Privacy Policy", to: Routes.page_path(@conn, :privacy_policy) %></div>

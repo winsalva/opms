@@ -5,6 +5,22 @@
     <%= render(MyAppWeb.SharedView, "side-menu.html", conn: @conn) %>
     <div class="pc-content">
       <p class="page-titles">Items To Buy</p>
+      <%= if @items_to_buy == [] do %>
+      <br />
+      <p align="center">No Records Yet</p>
+      <% else %>
+      <div class="items-container">
+        <%= for item <- @items_to_buy do %>
+            <div class="item-container">
+              <img src="/images/<%= item.image %>"/>
+              <p><%= item.title %></p>
+              <%= if @conn.assigns.current_company do %>
+              <%= link "View", to: Routes.item_page_path(@conn, :item, item.id), method: :post %>
+              <% end %>
+            </div>
+            <% end %>
+      </div>
+      <% end %>
 
     </div>
   </div>

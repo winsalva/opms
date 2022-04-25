@@ -1,5 +1,5 @@
 <div class="session-form">
-  <div><p onclick="back();">&times</div>
+  <div><p class="close-btn" onclick="back();">&times</div>
   <%= form_for @company, Routes.company_page_path(@conn, :create), fn f -> %>
   <h2 align="center"><strong>REGISTER COMPANY ACCOUNT</strong></h2>
 

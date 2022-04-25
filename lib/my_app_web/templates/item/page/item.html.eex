@@ -1,0 +1,21 @@
+<%= render(MyAppWeb.SharedView, "top-nav.html", conn: @conn) %>
+
+<div class="sub-container">
+  <div class="pc-content-container">
+    <%= render(MyAppWeb.SharedView, "side-menu.html", conn: @conn) %>
+    <div class="pc-content">
+      <p class="page-titles">Products & Services</p>
+      <div class="item-container-show">
+	<div>
+	  <p class="item-title"><%= @item.title %></p>
+	  <p class="item-description"><%= @item.description %></p>
+	  <%= if @conn.assigns.current_user do %>
+          <%= link "Negotiate", to: Routes.transaction_page_path(@conn, :new_transaction, @item.id), class: "negotiate-btn", data: [confirm: "Are you sure?"] %>
+          <% end %>
+	</div>
+	  <img src="/images/<%= @item.image %>"/>
+	</div>
+      </div>
+    </div>
+  </div>
+</div>

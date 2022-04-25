@@ -11,12 +11,13 @@
       <% else %>
       <div class="items-container">
 	<%= for item <- @items do %>
-	    <div class="item-container">
-	      <img src="/images/<%= item.image %>"/>
-	      <p><%= item.title %></p>
-	      <%= link "Negotiate", to: Routes.transaction_page_path(@conn, :new_transaction, item.id) %>
-	    </div>
-	    <% end %>
+	      <div class="item-container">
+		<img src="/images/<%= item.image %>"/>
+		<p><%= item.title %></p>
+		<%= link "View", to: Routes.item_page_path(@conn, :item, item.id), method: :post %>
+	      </div>
+	  
+	      <% end %>
       </div>
       <% end %>
     </div>

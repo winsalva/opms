@@ -4,25 +4,25 @@
   <div class="pc-content-container">
     <%= render(MyAppWeb.SharedView, "side-menu.html", conn: @conn) %>
     <div class="pc-content">
-      <p class="page-titles">Users</p>
+      <p class="page-titles">Personnels</p>
 
       <div class="company-logos-container">
-        <a href="">
+        <a href="<%= Routes.user_page_path(@conn, :list_purchase_officers) %>">
           <div class="company-logo-container">
             <img src="/images/opms-position1.png"/>
             <p>Purchase Officers: <%= length(@purchase_officers) %></p>
           </div>
         </a>
-	<a href="">
+	<a href="<%= Routes.user_page_path(@conn, :list_budget_officers) %>">
           <div class="company-logo-container">
             <img src="/images/opms-position2.png"/>
-            <p>Purchase Officers: <%= length(@budget_officers) %></p>
+            <p>Budget Officers: <%= length(@budget_officers) %></p>
           </div>
         </a>
-	<a href="">
+	<a href="<%= Routes.user_page_path(@conn, :list_inventory_officers) %>">
           <div class="company-logo-container">
             <img src="/images/opms-position3.png"/>
-            <p>Purchase Officers: <%= length(@inventory_officers) %></p>
+            <p>Inventory Officers: <%= length(@inventory_officers) %></p>
           </div>
         </a>
       </div>

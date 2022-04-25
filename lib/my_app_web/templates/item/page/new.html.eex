@@ -1,5 +1,5 @@
 <div class="session-form">
-  <div><p onclick="back();">&times</div>
+  <div><p class="close-btn" onclick="back();">&times</div>
   <%= form_for @item, Routes.item_page_path(@conn, :create), fn f -> %>
   <h2 align="center"><strong>NEW POST</strong></h2>
   <label>Purpose</label>
@@ -14,7 +14,11 @@
   <%= error_tag f, :description %>
 
   <label>Image</label>
-  <%= select f, :image, [options: ["Test": "Test"]] %>
+  <%= select f, :image, [options: [
+      "Construction Supplies": "construction-supplies.jpeg",
+      "Farm Supplies": "farm-supplies.jpeg",
+      "Hotel Supplies": "hotel-supplies.jpeg",
+      "School Supplies": "school-supplies.jpeg"]] %>
   <%= error_tag f, :image %>
 
   <div align="center">

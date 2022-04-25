@@ -9,6 +9,18 @@ defmodule MyApp.Query.Item do
   import Ecto.Query, warn: false
 
   @doc """
+  List items not owned by company.
+  """
+  def list_items_not_owned_by_company(company_id) do
+    query =
+      from i in Item,
+        where: i.company_id != ^company_id,
+	order_by: [desc: :inserted_at]
+
+    Repo.all(query)
+  end
+
+  @doc """
   New item.
   """
   def new_item do

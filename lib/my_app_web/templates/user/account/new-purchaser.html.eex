@@ -1,5 +1,5 @@
 <div class="session-form">
-  <div><p onclick="back();">&times</div>
+  <div><p class="close-btn" onclick="back();">&times</div>
   <%= form_for @user, Routes.user_account_path(@conn, :create_purchaser), fn f -> %>
   <h2 align="center"><strong>NEW PURCHASE OFFICER</strong></h2>
 

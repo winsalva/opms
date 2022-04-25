@@ -5,6 +5,7 @@ defmodule MyApp.Schema.User do
 
   schema "users" do
     belongs_to :company, MyApp.Schema.Company
+    has_many :transaction, MyApp.Schema.Transaction
     field(:fullname, :string)
     field(:role, :string)
     field(:email, :string)

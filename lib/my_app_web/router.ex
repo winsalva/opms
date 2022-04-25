@@ -36,7 +36,11 @@ defmodule MyAppWeb.Router do
     pipe_through [:browser]
 
     get "/new/:item_id", PageController, :new_transaction
+    get "/active", PageController, :active_transactions
+    get "/view-transactions/:id", PageController, :view_transaction
+    post "/negotiations", PageController, :create_negotiation
     post "/", PageController, :create_transaction
+    post "/update/:id", PageController, :update_transaction
   end
 
 
@@ -44,6 +48,10 @@ defmodule MyAppWeb.Router do
 
   scope "/users", MyAppWeb.User, as: :user do
     pipe_through [:browser]
+
+    get "/list-purchase-officers", PageController, :list_purchase_officers
+    get "/list-budget-officers", PageController, :list_budget_officers
+    get "/list-inventory-officers", PageController, :list_inventory_officers
 
     resources "/", PageController, only: [
       :new, :create, :show, :index
@@ -77,9 +85,10 @@ defmodule MyAppWeb.Router do
   scope "/products-and-services", MyAppWeb.Item, as: :item do
     pipe_through :browser
 
+    post "/items/:id", PageController, :item
     get "/items-to-buy", PageController, :items_to_buy
     get "/items-to-sell", PageController, :items_to_sell
-
+ 
     resources "/", PageController, only: [
       :new, :create, :show, :index
     ]

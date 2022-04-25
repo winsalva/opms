@@ -4,10 +4,18 @@
 
   <div class="slider-container">
     <div class="slider-wrapper">
+      <img src="/images/opms3.jpg">
       <img src="/images/opms1.jpg">
       <img src="/images/opms2.jpg">
-      <img src="/images/opms3.jpg">
     </div>
+  </div>
+  <div class="opms-definition">
+    <p class="opms-definition-title">What Is E-Procurement System</p>
+    <p>Electronic procurement, also known as e-procurement or supplier exchange, is the process of requisitioning, ordering and purchasing goods and services online. It is a business-to-business process.</p>
+    <p>Unlike e-commerce, e-procurement utilizes a supplier's closed system and is only available to registered users. E-procurement facilitates interactions between preferred suppliers and customers through bids, purchase orders and invoices.</p>
+    <p>E-procurement started in the 1980s, following the development of Electronic Data Interchange (EDI). A decade later, improvements in EDI allowed organizations to develop online catalogs for vendors. Today, e-procurement involves everything from supplier evaluation and selection to contract management, electronic orders and payments.</p>
+    <p>E-procurement uses a web interface or some other kind of networked system that connects suppliers and customers. In the enterprise, a chief procurement officer or procurement department usually sets the policies governing the e-procurement of materials for the organization.</p>
+    <p>E-procurement enables organizations to request, order and buy goods and services online through a supplier's closed system. The goal of using an e-procurement system is to acquire products or services at the best possible price and at the best possible time. To meet this objective, it's important for businesses to establish relationships with suppliers. This enables procurement personnel to negotiate contracts with suppliers. They can also set guidelines or limits around budgets and spending within the e-procurement platform.</p>
   </div>
   
 </div>
@@ -19,6 +27,10 @@
   <div class="footer-options">
 
     <!-- Links here -->
+    <div><%= link "Contact Us", to: Routes.page_path(@conn, :contact_us) %></div>
+    <div><%= link "Terms Of Use", to: Routes.page_path(@conn, :term_of_use) %></div>
+    <div><%= link "Privacy Policy", to: Routes.page_path(@conn, :privacy_policy) %></div>
+    <div><%= link "About", to: Routes.page_path(@conn, :about_us) %></div>
     
   </div>
 

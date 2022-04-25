@@ -1,0 +1,76 @@
+<%= render(MyAppWeb.SharedView, "top-nav.html", conn: @conn) %>
+
+<div class="sub-container">
+  <div class="pc-content-container">
+    <%= render(MyAppWeb.SharedView, "side-menu.html", conn: @conn) %>
+    <div class="pc-content">
+      <p class="page-titles"><%= @transaction.item.title %> |
+
+	<!-- Buyer Purchase Officer Approval -->
+	<%= cond do %>
+	<% @conn.assigns.current_user != nil && @conn.assigns.current_user.company_id == @transaction.buyer_company_id && @conn.assigns.current_user.role == "Purchase" && @transaction.buyer_purchase_officer_approval == false -> %>
+
+	<%= link "Approve", to: Routes.transaction_page_path(@conn, :update_transaction, @transaction.id), method: :post, data: [confirm: "Are you sure?"] %>
+
+	<% @conn.assigns.current_user != nil && @conn.assigns.current_user.company_id == @transaction.seller_company_id && @conn.assigns.current_user.role == "Purchase" && @transaction.seller_purchase_officer_approval == false -> %>
+
+	<%= link "Approve", to: Routes.transaction_page_path(@conn, :update_transaction, @transaction.id), method: :post, data: [confirm: "Are you sure?"] %>
+
+	<% @conn.assigns.current_user != nil && @conn.assigns.current_user.company_id == @transaction.buyer_company_id && @conn.assigns.current_user.role == "Budget" && @transaction.buyer_budget_officer_approval == false -> %>
+
+        <%= link "Approve", to: Routes.transaction_page_path(@conn, :update_transaction, @transaction.id), method: :post, data: [confirm: "Are you sure?"] %>
+
+	<% @conn.assigns.current_user != nil && @conn.assigns.current_user.company_id == @transaction.seller_company_id && @conn.assigns.current_user.role == "Budget" && @transaction.seller_budget_officer_approval == false -> %>
+
+        <%= link "Approve", to: Routes.transaction_page_path(@conn, :update_transaction, @transaction.id), method: :post, data: [confirm: "Are you sure?"] %>
+
+	<% @conn.assigns.current_user != nil && @conn.assigns.current_user.company_id == @transaction.buyer_company_id && @conn.assigns.current_user.role == "Inventory" && @transaction.buyer_inventory_officer_approval == false -> %>
+
+        <%= link "Approve", to: Routes.transaction_page_path(@conn, :update_transaction, @transaction.id), method: :post, data: [confirm: "Are you sure?"] %>
+
+	<% @conn.assigns.current_user != nil && @conn.assigns.current_user.company_id == @transaction.seller_company_id && @conn.assigns.current_user.role == "Inventory" && @transaction.seller_inventory_officer_approval == false -> %>
+
+        <%= link "Approve", to: Routes.transaction_page_path(@conn, :update_transaction, @transaction.id), method: :post, data: [confirm: "Are you sure?"]  %>
+
+	<% true -> %>
+	<%= link "Approved", to: "#" %>
+	<% end %>
+
+      </p>
+      
+      <div class="item-container-show">
+        <div>
+          <p class="item-description"><%= @transaction.item.description %></p>
+	</div>
+	
+	  <img src="/images/<%= @transaction.item.image %>"/>
+      </div>
+      
+	  <%= for negotiation <- @transaction.negotiation do %>
+	      <div>
+		<%= if negotiation.user.id == @conn.assigns.current_user.id do %>
+		<p class="negotiator-name">You:</p>
+		<% else %>
+		<p class="negotiator-name"><%= negotiation.user.fullname %>:</p>
+		<% end %>
+		<p class="negotiator-msg"><%= negotiation.msg %></p>
+	      </div>
+	      <% end %>
+
+	      <%= cond do %>
+              <% (@conn.assigns.current_user != nil && @conn.assigns.current_user.company_id == @transaction.buyer_company_id && @conn.assigns.current_user.role == "Purchase" && @transaction.buyer_purchase_officer_approval == false) || (@conn.assigns.current_user != nil && @conn.assigns.current_user.company_id == @transaction.seller_company_id && @conn.assigns.current_user.role == "Purchase" && @transaction.seller_purchase_officer_approval == false) || (@conn.assigns.current_user != nil && @conn.assigns.current_user.company_id == @transaction.buyer_company_id && @conn.assigns.current_user.role == "Budget" && @transaction.buyer_budget_officer_approval == false) || (@conn.assigns.current_user != nil && @conn.assigns.current_user.company_id == @transaction.seller_company_id && @conn.assigns.current_user.role == "Budget" && @transaction.seller_budget_officer_approval == false) || (@conn.assigns.current_user != nil && @conn.assigns.current_user.company_id == @transaction.buyer_company_id && @conn.assigns.current_user.role == "Inventory" && @transaction.buyer_inventory_officer_approval == false) || (@conn.assigns.current_user != nil && @conn.assigns.current_user.company_id == @transaction.seller_company_id && @conn.assigns.current_user.role == "Inventory" && @transaction.seller_inventory_officer_approval == false) -> %>
+	      <%= form_for @negotiation, Routes.transaction_page_path(@conn, :create_negotiation, %{user_id: @conn.assigns.current_user.id, transaction_id: @transaction.id}), fn f -> %>
+	  <label>Message:</label>
+	  <%= textarea f, :msg, placeholder: "Write your message.." %>
+	  <%= error_tag f, :msg %>
+	  <div>
+	    <%= submit "Send" %>
+	    <% end %>
+
+	    <% true -> %>
+	    <button>Negotiation Closed</button>
+
+	    <% end %>
+      </div>
+    </div>
+  </div>
