@@ -81,9 +81,9 @@ nav .menus li a:hover {
     text-align: center;
 }
 .opms-definition-title {
-    margin-top: 1rem;
+    margin-top: 1.5rem;
     font-weight: bold;
-    font-size: 2rem;
+    font-size: 2.2rem;
 }
 /* Footer styles */
 .footer-company-name {
@@ -193,7 +193,7 @@ footer {
 .side-menu-container {
     background-color: #000;
     width: 25%;
-    padding-bottom: 5rem;
+    padding: 1rem 0 3rem 0;
 }
 .side-menu-container a {
     color: #eee;

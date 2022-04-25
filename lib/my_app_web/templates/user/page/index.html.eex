@@ -9,19 +9,19 @@
       <div class="company-logos-container">
         <a href="<%= Routes.user_page_path(@conn, :list_purchase_officers) %>">
           <div class="company-logo-container">
-            <img src="/images/opms-position1.png"/>
+            <img src="/images/personnel.png"/>
             <p>Purchase Officers: <%= length(@purchase_officers) %></p>
           </div>
         </a>
 	<a href="<%= Routes.user_page_path(@conn, :list_budget_officers) %>">
           <div class="company-logo-container">
-            <img src="/images/opms-position2.png"/>
+            <img src="/images/personnel.png"/>
             <p>Budget Officers: <%= length(@budget_officers) %></p>
           </div>
         </a>
 	<a href="<%= Routes.user_page_path(@conn, :list_inventory_officers) %>">
           <div class="company-logo-container">
-            <img src="/images/opms-position3.png"/>
+            <img src="/images/personnel.png"/>
             <p>Inventory Officers: <%= length(@inventory_officers) %></p>
           </div>
         </a>
