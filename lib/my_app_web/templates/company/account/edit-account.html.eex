@@ -1,0 +1,21 @@
+<div class="session-form">
+  <div><p class="close-btn" onclick="back();">&times</div>
+  <%= form_for @company, Routes.company_account_path(@conn, :update_account, %{id: @company.data.id}), fn f -> %>
+  <h2 align="center"><strong>Edit Account</strong></h2>
+
+  <%= render(MyAppWeb.SharedView, "flash-messages.html", conn: @conn) %>
+
+  <label>Name</label>
+  <%= text_input f, :name, placeholder: "Enter company name..." %>
+  <%= error_tag f, :name %>
+
+  <label>Description</label>
+  <%= textarea f, :description, placeholder: "Write a short description about your company.." %>
+  <%= error_tag f, :description %>
+
+  <div align="center">
+    <br /><br />
+    <%= submit "Save Changes" %>
+  </div>
+  <% end %>
+</div>

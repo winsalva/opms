@@ -3,6 +3,28 @@ defmodule MyAppWeb.Company.AccountController do
 
   alias MyApp.Query.Company
 
+  def account(conn, %{"id" => id}) do
+    company = Company.get_company(id)
+    render(conn, "account.html", company: company)
+  end
+
+  def edit_account(conn, %{"id" => id}) do
+    company = Company.edit_company(id)
+    render(conn, "edit-account.html", company: company)
+  end
+
+  def update_account(conn, %{"company" => params, "id" => id}) do
+    case Company.update_company(id, params) do
+      {:ok, _company} ->
+        conn
+	|> put_flash(:info, "Account updated successfully!")
+	|> redirect(to: Routes.company_account_path(conn, :account, id))
+      {:error, %Ecto.Changeset{} = company} ->
+        conn
+	|> render("edit-account.html", company: company)
+    end
+  end
+
   def approved_companies(conn, _params) do
     approved_companies = Company.list_approved_companies()
     params = [

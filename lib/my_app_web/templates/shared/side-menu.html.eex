@@ -3,51 +3,51 @@
 <div class="side-menu-container">
   <div class="side-menu-profile">
     <img src="/images/personnel.png"/>
-    <p><%= @conn.assigns.current_company.name %></p>
+    <p><a href="<%= Routes.company_account_path(@conn, :account, @conn.assigns.current_company.id) %>"><%= @conn.assigns.current_company.name %></a></p>
   </div>
   
-  <div><%= link "Companies", to: Routes.company_page_path(@conn, :index) %></div>
-  <div><%= link "Personnels", to: Routes.user_page_path(@conn, :index) %></div>
-  <div><%= link "Transactions", to: Routes.company_page_path(@conn, :show, @conn.assigns.current_company.id) %></div>
-  <div><%= link "Products/Services", to: Routes.item_page_path(@conn, :index) %></div>
-  <div><%= link "Contact Us", to: Routes.page_path(@conn, :contact_us) %></div>
-  <div><%= link "Terms Of Use", to: Routes.page_path(@conn, :term_of_use) %></div>
-  <div><%= link "Privacy Policy", to: Routes.page_path(@conn, :privacy_policy) %></div>
+  <div class="a"><%= link "Companies", to: Routes.company_page_path(@conn, :index) %></div>
+  <div class="a"><%= link "Personnels", to: Routes.user_page_path(@conn, :index) %></div>
+  <div class="a"><%= link "Transactions", to: Routes.company_page_path(@conn, :show, @conn.assigns.current_company.id) %></div>
+  <div class="a"><%= link "Products/Services", to: Routes.item_page_path(@conn, :index) %></div>
+  <div class="a"><%= link "Contact Us", to: Routes.page_path(@conn, :contact_us) %></div>
+  <div class="a"><%= link "Terms Of Use", to: Routes.page_path(@conn, :term_of_use) %></div>
+  <div class="a"><%= link "Privacy Policy", to: Routes.page_path(@conn, :privacy_policy) %></div>
 </div>
 <% @conn.assigns.current_company != nil -> %>
 <div class="side-menu-container">
   <div class="side-menu-profile">
     <img src="/images/personnel.png"/>
-    <p><%= @conn.assigns.current_company.name %></p>
+    <p><%= link @conn.assigns.current_company.name, to: Routes.company_account_path(@conn, :account, @conn.assigns.current_company.id), class: "company-profile-name" %></p>
   </div>
-  <div><%= link "My Posts", to: Routes.item_page_path(@conn, :show, @conn.assigns.current_company.id) %></div>
-  <div><%= link "Transactions", to: Routes.company_page_path(@conn, :show, @conn.assigns.current_company.id) %></div>
-  <div><%= link "Personnels", to: Routes.user_account_path(@conn, :index, @conn.assigns.current_company.id) %></div>
-  <div><%= link "Contact Us", to: Routes.page_path(@conn, :contact_us) %></div>
-  <div><%= link "Terms Of Use", to: Routes.page_path(@conn, :term_of_use) %></div>
-  <div><%= link "Privacy Policy", to: Routes.page_path(@conn, :privacy_policy) %></div>
+  <div class="a"><%= link "My Posts", to: Routes.item_page_path(@conn, :show, @conn.assigns.current_company.id) %></div>
+  <div class="a"><%= link "Transactions", to: Routes.company_page_path(@conn, :show, @conn.assigns.current_company.id) %></div>
+  <div class="a"><%= link "Personnels", to: Routes.user_account_path(@conn, :index, @conn.assigns.current_company.id) %></div>
+  <div class="a"><%= link "Contact Us", to: Routes.page_path(@conn, :contact_us) %></div>
+  <div class="a"><%= link "Terms Of Use", to: Routes.page_path(@conn, :term_of_use) %></div>
+  <div class="a"><%= link "Privacy Policy", to: Routes.page_path(@conn, :privacy_policy) %></div>
 </div>
 <% @conn.assigns.current_user != nil -> %>
 <div class="side-menu-container">
   <div class="side-menu-profile">
     <img src="/images/personnel.png"/>
-    <p><%= @conn.assigns.current_user.fullname %></p>
+    <p><%= link @conn.assigns.current_user.fullname, to: "#" %></p>
   </div>
-  <div><%= link "Products/Services", to: Routes.item_page_path(@conn, :index) %></div>
-  <div><%= link "Transactions", to: Routes.user_page_path(@conn, :show, @conn.assigns.current_user.id) %></div>
-  <div><%= link "Contact Us", to: Routes.page_path(@conn, :contact_us) %></div>
-  <div><%= link "Terms Of Use", to: Routes.page_path(@conn, :term_of_use) %></div>
-  <div><%= link "Privacy Policy", to: Routes.page_path(@conn, :privacy_policy) %></div>
+  <div class="a"><%= link "Products/Services", to: Routes.item_page_path(@conn, :index) %></div>
+  <div class="a"><%= link "Transactions", to: Routes.user_page_path(@conn, :show, @conn.assigns.current_user.id) %></div>
+  <div class="a"><%= link "Contact Us", to: Routes.page_path(@conn, :contact_us) %></div>
+  <div class="a"><%= link "Terms Of Use", to: Routes.page_path(@conn, :term_of_use) %></div>
+  <div class="a"><%= link "Privacy Policy", to: Routes.page_path(@conn, :privacy_policy) %></div>
 </div>
 <% true -> %>
 <div class="side-menu-container">
   <div class="side-menu-profile">                     <img src="/images/personnel.png"/>
     <p>OPMS</p>
   </div>
-  <div><%= link "Home", to: Routes.page_path(@conn, :index) %></div>
-  <div><%= link "About Us", to: Routes.page_path(@conn, :about_us) %></div>
-  <div><%= link "Contact Us", to: Routes.page_path(@conn, :contact_us) %></div>
-  <div><%= link "Terms Of Use", to: Routes.page_path(@conn, :term_of_use) %></div>
-  <div><%= link "Privacy Policy", to: Routes.page_path(@conn, :privacy_policy) %></div>
+  <div class="a"><%= link "Home", to: Routes.page_path(@conn, :index) %></div>
+  <div class="a"><%= link "About Us", to: Routes.page_path(@conn, :about_us) %></div>
+  <div class="a"><%= link "Contact Us", to: Routes.page_path(@conn, :contact_us) %></div>
+  <div class="a"><%= link "Terms Of Use", to: Routes.page_path(@conn, :term_of_use) %></div>
+  <div class="a"><%= link "Privacy Policy", to: Routes.page_path(@conn, :privacy_policy) %></div>
 </div>
 <% end %>

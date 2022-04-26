@@ -70,6 +70,10 @@ defmodule MyAppWeb.Router do
   scope "/companies", MyAppWeb.Company, as: :company do
     pipe_through :browser
 
+    get "/accounts/:id", AccountController, :account
+    get "/accounts/:id/edit", AccountController, :edit_account
+    put "/accounts", AccountController, :update_account
+
     get "/approved-accounts", AccountController, :approved_companies
     get "/unapproved-accounts", AccountController, :unapproved_companies
     post "/approve-accounts/:id", AccountController, :approve_company

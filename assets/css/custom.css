@@ -1,15 +1,20 @@
-.side-menu-profile {
+.sub-menu-profile {
     text-align: center;
+    border: 1px solid red;
 }
 .side-menu-profile img {
-    max-width: 6rem;
-    max-height: 6rem;
+    max-width: 5rem;
+    max-height: 5rem;
 }
-.side-menu-profile p {
-    margin: 0 0 1rem 0;
+.side-menu-profile > p {
+    margin: 0;
+}
+.side-menu-profile > p a {
+    color: red;
+}
+.side-menu-profile > p a:hover {
     color: #fff;
 }
-
 nav {
     display: flex;
     align-items: center;
@@ -190,6 +195,18 @@ footer {
     background-size: 100% 100%;
  
 }
+.page-content {
+    padding: 0 1.5rem;
+}
+.contacts {
+    display: flex;
+    padding: 5px 0;
+}
+.contacts img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
 .pc-content-container {
     display: flex;
 }
@@ -207,7 +224,7 @@ footer {
     text-align: center;
     padding: .3rem 0;
 }
-.side-menu-container div:hover {
+.side-menu-container .a:hover {
     background-color: #eee;
     color: #000;
 }
@@ -282,14 +299,7 @@ footer {
     padding: .4rem 2rem;
     margin: .4rem 0 .8rem 0;
     border-radius: 4px;
-    border: 1px solid #0069d9;
 }
-.item-container a:hover {
-    background-color: #0069d9;
-    color: #fff;
-    border: 1px solid #0069d9;
-}
-
 .item-container-show {
     display: flex;
 }

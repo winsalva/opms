@@ -6,10 +6,69 @@
     <div class="pc-content">
       <p class="page-titles">Privacy Policy</p>
 
-      <br />
+      <div class="page-content">
+	<h4><strong>Introduction</strong></h4>
+	<p>This privacy notice aims to inform you about how we collect and handle any information that we collect from you, or that you provide to us. It covers both information that could identify you (“personal information”) (“business information”)  and information that could not.</p>
+	<p>We are extremely concerned to protect your privacy and confidentiality. We understand that all users of our platform are quite rightly concerned to know that their data will not be used for any purpose unintended by them, and will not accidentally fall into the hands of a third party. Our policy is both specific and strict. It complies with the laws of all jurisdictions of which we are aware. If you think our policy falls short of your expectations or that we are failing to abide by our policy,do please tell us.</p>
+	<p>this agreement is made only in multilingual context. If there is any conflict in meaning between the English language version of this agreement and any version or translation of this agreement in any other language, the English language version shall prevail.</p>
+	<p>We regret that if there are one or more points below with which you are not happy, your only recourse is to leave our platform immediately.</p>
+	<p>Except as set out below, we do not share, or sell, or disclose to a third party, any personally identifiable information collected at this site.</p>
+	<p>Here is a list of the information we collect from you, either through our web app, mobile app or any device you access our platform with or because you give it to us in some other way, and why it is necessary to collect it:</p>
+	<h4><b>1. Business and personal information</b></h4>
+	<p>This includes basic identification and contact information, such as your name and contact details and also includes all information given to us in the course of your business and ours, such as information you give us in your capacity as our client. We undertake to preserve the confidentiality of the information and of the terms of our relationship. It is not used for any other purpose. We expect you to reciprocate this policy.</p>
+	<dl>
+	  <dt>This information is used:</dt>
+	  <dd>1.1.       to enhance your experience and provide you with the services which you request;</dd>
+	  <dd>1.2. for verifying your identity for security purposes;</dd>
+	  <dd>1.3.       for marketing our services and products;</dd>
+	  <dd>1.4.       information which does not identify any individual may be used in a general way by us or third parties, to provide className information, for example relating to demographics or usage of a particular page or service.</dd>
+	</dl>
+	<p>We keep and collect  information about you and your business, that is because we may need it in some way to support a claim or defence in court. That is also the period within which our tax collecting authorities may demand to know it.</p>
+	<h4><b>2.           Marketplace information</b></h4>
+	<p>When we obtain information from you specifically to enable you to use our services offered on our platform or by third party partners, we assume that in giving us your information, you are also giving us permission to pass it to the relevant parties.</p>
+	<h4><b>3.           Your domain name and email address</b></h4>
+	<p>This information is recognised by our servers and the pages that you visit are recorded. We shall not under any circumstances, divulge your email address to any person who is not an employee or contractor of ours and who does not need to know, either generally or specifically.</p>
 
-      <p align="center">Privacy policy content here</p>
-
+	<dl>
+	  <dt>This information is used:</dt>
+	  <dd>3.1.       to correspond with you or deal with you as you expect;</dd>
+	  <dd>3.2.       in a collective way not referable to any particular individual, for the purpose of quality control and improvement of our website;</dd>
+	  <dd>3.3.       to send you news about the services to which you have signed up;</dd>
+	  <dd>3.4.       to tell you about other of our services or services of our subsidiaries.</dd>,
+	</dl>
+	<h4><b>4.           Information you post on our website</b></h4>
+	<p>Information you send to us by posting to a forum or blog or in your advertisement, is stored on our servers. We do not specifically use that information except to allow it to be read, but based on our terms and conditions we reserve the right to use it in any way we decide.</p>
+	<h4><b>5.           Website usage information</b></h4>
+	<p>We may use third party software embedded in our website (Ex: javascript) to collect information about the pages you view and how you have reached them, what you do when you visit a page, the length of time you remain on the page, and how we perform in providing content to you, this is solely for the purpose of providing for you the right support and enhance your user experience and interaction with our platform.</p>
+	<h4><b>6.           Financial data security</b></h4>
+	<p>We never store any financial data related to your payment methods on our servers, we are using third party payment service provider, which is a certified PCI lvl3 company. We may keep your financial information to provide you with a better shopping experience next time you visit us and to prevent fraud.</p>
+	<p>We use bank grade encryption, using Secure Sockets Layer (SSL) certificates to verify your identity, your browser and to encrypt any data you give us when you buy. This includes financial information such as credit or debit card numbers. Our SSL certificate encryption level is 256-bit. On top of that we are using blockchain cryptography to secure your whole business data from theft and increase immutability of your financial data. Whenever we ask for financial information, you can rest assured that SSL is being used by looking for a closed padlock symbol or other trust mark in your browser URL bar or toolbar.</p>
+	<dl>
+	  <dt>We take the following measures to protect your financial information:</dt>
+	  <dd>6.1.       We keep your transaction information tokenized and encrypted on our servers.</dd>
+	  <dd>6.2.       We do not keep all your data, so as to prevent the possibility of our duplicating a transaction without a new instruction from you.</dd>
+	  <dd>6.3.       Access to your information is restricted to authorised staff only.</dd>/
+	  <dd>6.4.       We automatically delete your information when requested.</dd>
+	</dl>
+	<h4><b>7.       Third party advertising</b></h4>
+	<p>Third parties may advertise on our website. In doing so, those parties, their agents or other companies working for them may use technology that automatically collects your IP address when they send an advertisement that appears on our website to your browser. They may also use other technology such as cookies or JavaScript to personalise your content, and to measure the performance of their ads. We take all security measures to control the data obtained by a third party advertiser.</p>
+	<h4><b>8.       Third party content</b></h4>
+	<p>Our website is a publishing medium in that anyone may register and then publish information about himself, business or some other person. We do not moderate or control what is posted. If you complain about any of the content on our website, we shall investigate your complaint. If we feel it may be justified, we shall remove it while we investigate. Free speech is a fundamental right, so we have to make a judgment as to whose right will be obstructed: yours, or that of the person who posted the content which offends you. If we think your complaint is vexatious or without any basis, we shall not correspond with you about it.</p>
+	<h4><b>9.       Information we obtain from third parties</b></h4>
+	<p>Although we do not disclose your personal information to any third party (except as set out in this notice), we do receive data which is indirectly made up from your personal information, from software services such as Google Analytics and others. No such information is identifiable to you.</p>
+	<h4><b>10.       Content you provide to us</b></h4>
+	<p>If you provide information to us with a view to it being read, copied, downloaded, or used by other people, we accept no responsibility for what that third party may do with it. It is up to you to satisfy yourself about the privacy level of every person who might see your information. If it is available to the World, neither we nor you have no control whatever as to how it is used.</p>
+	<h4><b>11.      Use of site by children</b></h4>
+	<p>We do not market to children, nor do we sell products or services for purchase by children. We do sell products and services for end use by children, but for purchase by adults. If you are under 18, you may use our website only with consent from a parent or guardian.</p>
+	<h4><b>12.       Disclosure to Government and their agencies</b></h4>
+	<p>We are subject to the law like everyone else. We may be required to give information to legal authorities if they so request or if they have the proper authorisation such as a search warrant or court order.</p>
+	<h4><b>13.       Compliance with the law</b></h4>
+	<p>This privacy policy has been compiled so as to comply with the law of every jurisdiction in which we aim to do business. If you think it fails to satisfy the law of your country, we would like to hear from you, but ultimately it is your choice as to whether you wish to use our website.</p>
+	<h4><b>14.       Update personally identifiable information</b></h4>
+	<p>At any time you may review or update the personally identifiable information that we hold about you, by contacting us through official contact channels. To better safeguard your information, we will also take reasonable steps to verify your identity before granting access or making corrections to your information.</p>
+	<h4><b>15.      Change In Privacy Policy</b></h4>
+	<p>As we plan to ensure our privacy policy remains current, this policy is subject to change. Please return periodically to review our privacy policy.</p>
+      </div>
     </div>
   </div>
 </div>
