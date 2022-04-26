@@ -42,7 +42,7 @@
 <% true -> %>
 <div class="side-menu-container">
   <div class="side-menu-profile">                     <img src="/images/personnel.png"/>
-    <p>OPMS</p>
+    <p style="color: #fff;">OPMS</p>
   </div>
   <div class="a"><%= link "Home", to: Routes.page_path(@conn, :index) %></div>
   <div class="a"><%= link "About Us", to: Routes.page_path(@conn, :about_us) %></div>
