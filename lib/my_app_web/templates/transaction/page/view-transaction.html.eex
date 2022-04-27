@@ -8,6 +8,9 @@
 
 	<!-- Buyer Purchase Officer Approval -->
 	<%= cond do %>
+	<% @conn.assigns.current_company != nil -> %>
+	<%= link @transaction.status, to: "#" %>
+	
 	<% @conn.assigns.current_user != nil && @conn.assigns.current_user.company_id == @transaction.buyer_company_id && @conn.assigns.current_user.role == "Purchase" && @transaction.buyer_purchase_officer_approval == false -> %>
 
 	<%= link "Approve", to: Routes.transaction_page_path(@conn, :update_transaction, @transaction.id), method: :post, data: [confirm: "Are you sure?"] %>
@@ -48,7 +51,7 @@
       
 	  <%= for negotiation <- @transaction.negotiation do %>
 	      <div>
-		<%= if negotiation.user.id == @conn.assigns.current_user.id do %>
+		<%= if @conn.assigns.current_user != nil && negotiation.user.id == @conn.assigns.current_user.id do %>
 		<p class="negotiator-name">You:</p>
 		<% else %>
 		<p class="negotiator-name"><%= negotiation.user.fullname %>:</p>
@@ -64,8 +67,13 @@
 	  <%= textarea f, :msg, placeholder: "Write your message.." %>
 	  <%= error_tag f, :msg %>
 	  <div>
-	    <%= submit "Send" %>
+	    <%= submit "Submit" %>
 	    <% end %>
+	    <!-- Company Approvals -->
+	    <% @conn.assigns.current_company != nil && @conn.assigns.current_company.is_admin == false -> %>
+	    <button>Cancel</button>
+	    <% @conn.assigns.current_company != nil && @conn.assigns.current_company.is_admin == true -> %>
+	    <p></p>
 
 	    <% true -> %>
 	    <button>Negotiation Closed</button>

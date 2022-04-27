@@ -6,10 +6,11 @@
     <div class="pc-content">
       <p class="page-titles">About Us</p>
 
-      <br />
+      <div class="page-content">
+	<p>We at OPMS believe that the most powerful solutions are the simple ones. In an increasingly complex world, the simplicity of our products, processes and performance is what helps us stand out. We know that it is the people closest to a problem who can best solve it.</p>
+	<p>That’s why our pioneering Digital Workplace solutions empower organizations by helping them manage all their work on a unified platform from posting, purchasing, budgeting, inventory processes up to a successful transaction of each company or organization.</p>
 
-      <p align="center">About us content here</p>
-
+      </div>
     </div>
   </div>
 </div>

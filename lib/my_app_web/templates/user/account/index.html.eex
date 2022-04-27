@@ -12,7 +12,7 @@
 	  <img src="/images/personnel.png"/>
 	  <p>Purchase Officer</p>
 	  <%= if @purchase != nil do %>
-	  <p><%= @purchase.fullname %></p>
+	  <p><%= link @purchase.fullname, to: Routes.user_account_path(@conn, :show, @purchase.id) %></p>
 	  <% else %>
 	  <p><%= link "Add Account", to: Routes.user_account_path(@conn, :new_purchaser) %></p>
 	  <% end %>
@@ -22,7 +22,7 @@
 	  <img src="/images/personnel.png"/>
 	  <p>Budget Officer</p>
 	  <%= if @budget != nil do %>
-	  <p><%= @budget.fullname %></p>
+	  <p><%= link @budget.fullname, to: Routes.user_account_path(@conn, :show, @budget.id) %></p>
 	  <% else %>
 	  <p><%= link "Add Account", to: Routes.user_account_path(@conn, :new_budget_officer) %></p>
 	  <% end %>
@@ -32,7 +32,7 @@
 	  <img src="/images/personnel.png"/>
 	  <p>Inventory Officer</p>
 	  <%= if @inventory != nil do %>
-	  <p><%= @inventory.fullname %></p>
+	  <p><%= link @inventory.fullname, to: Routes.user_account_path(@conn, :show, @inventory.id) %></p>
 	  <% else %>
 	  <p><%= link "Add Account", to: Routes.user_account_path(@conn, :new_inventory_officer) %></p>
 	  <% end %>

@@ -64,6 +64,7 @@ defmodule MyAppWeb.Router do
     post "/personnels/budget-officer/", AccountController, :create_budget_officer
     post "/personnels/inventory-officer/", AccountController, :create_inventory_officer
     get "/personnels/:id", AccountController, :index
+    get "/accounts/:id", AccountController, :show
   end
 
   ## COMPANY ROUTES ##

@@ -25,7 +25,12 @@ defmodule MyApp.Query.User do
   Get user by id
   """
   def get_user(id) do
-    Repo.get(User, id)
+    query =
+      from u in User,
+        where: u.id == ^id,
+	preload: [:company]
+
+    Repo.one(query)
   end
 
   @doc """

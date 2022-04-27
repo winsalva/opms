@@ -38,10 +38,21 @@ defmodule MyAppWeb.Transaction.PageController do
 
   def active_transactions(conn, _params) do
     user = conn.assigns.current_user
+    company = conn.assigns.current_company
+    
     cond do
-      user == nil ->
-        conn
-	|> redirect(to: Routes.page_path(conn, :index))
+      user == nil && company != nil && company.is_admin && company.email == "admin123@gmail.com" ->
+        active_transactions = Transaction.list_active_transactions
+	params = [
+	  active_transactions: active_transactions
+	]
+	render(conn, "active-transactions.html", params)
+      user == nil && company != nil ->
+        active_transactions = Transaction.list_company_active_transactions(company.id)
+	params = [
+	  active_transactions: active_transactions
+	]
+	render(conn, "active-transactions.html", params)
       user.role == "Purchase" ->
         active_transactions = Transaction.list_purchase_officer_active_transactions(user)
 	params = [

@@ -1,0 +1,28 @@
+<%= render(MyAppWeb.SharedView, "top-nav.html", conn: @conn) %>
+
+<div class="sub-container">
+  <div class="pc-content-container">
+    <%= render(MyAppWeb.SharedView, "side-menu.html", conn: @conn) %>
+    <div class="pc-content">
+      <p class="page-titles">Personnel Account</p>
+      <%= render(MyAppWeb.SharedView, "flash-messages.html", conn: @conn) %>
+      <table>
+	<thead>
+	  <tr>
+	    <th>Name</th>
+	    <th>Email</th>
+	    <th>Company</th>
+	  </tr>
+	</thead>
+	<tbody>
+	  <tr>
+	    <td><%= @user.fullname %></td>
+	    <td><%= @user.email %></td>
+	    <td><%= @user.company.name %></td>
+	  </tr>
+	</tbody>
+      </table>
+    </div>
+  </div>
+</div>
+

@@ -75,10 +75,6 @@ defmodule MyApp.Query.Transaction do
   Get transaction by id.
   """
   def get_transaction(id) do
-    user_query =
-      from u in User,
-      select: u
-      
     query =
       from t in Transaction,
         where: t.id == ^id,
@@ -93,7 +89,9 @@ defmodule MyApp.Query.Transaction do
   def list_active_transactions do
     query =
       from t in Transaction,
-        where: t.status == "active"
+        where: t.status == "active",
+	preload: [:item, :buyer_company, :seller_company],
+	order_by: [desc: :inserted_at]
 
     Repo.all(query)
   end
@@ -127,7 +125,8 @@ defmodule MyApp.Query.Transaction do
     query =
       from t in Transaction,
         where: t.status == "active" and (t.buyer_company_id == ^company_id or t.seller_company_id == ^company_id),
-	order_by: [desc: :updated_at]
+	preload: [:item, :buyer_company, :seller_company],
+        order_by: [desc: :inserted_at]
 
     Repo.all(query)
   end

@@ -35,7 +35,7 @@ defmodule MyAppWeb.Company.AccountController do
 
   def approve_company(conn, %{"id" => id}) do
       params = %{approved: true}
-      case Company.edit_company(id, params) do
+      case Company.update_company(id, params) do
       	   {:ok, _company} ->
       	   conn
       	   |> redirect(to: Routes.company_account_path(conn, :unapproved_companies))

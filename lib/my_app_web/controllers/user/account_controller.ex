@@ -3,6 +3,11 @@ defmodule MyAppWeb.User.AccountController do
 
   alias MyApp.Query.User
 
+  def show(conn, %{"id" => id}) do
+    user = User.get_user(id)
+    render(conn, :show, user: user)
+  end
+
   def index(conn, %{"id" => company_id}) do
     purchase = User.get_company_personnel_by_role(company_id, "Purchase")
     budget = User.get_company_personnel_by_role(company_id, "Budget")

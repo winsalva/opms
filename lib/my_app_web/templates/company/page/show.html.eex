@@ -7,7 +7,7 @@
       <p class="page-titles">Transactions</p>
       <%= render(MyAppWeb.SharedView, "flash-messages.html", conn: @conn) %>
       <div class="items-container">
-        <a href="">
+        <a href="<%= Routes.transaction_page_path(@conn, :active_transactions) %>">
           <div class="item">Active - <%= length(@active_transactions) %></div>
         </a>
 	<a href="">
