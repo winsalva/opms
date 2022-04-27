@@ -29,12 +29,64 @@ defmodule MyApp.Query.Transaction do
   end
 
   @doc """
+  Get all active transactions for budget officers.
+  """
+  def list_budget_officer_active_transactions(user) do
+    query =
+      from t in Transaction,
+        where: t.status == "active" and (t.buyer_company_id == ^user.company_id or t.seller_company_id == ^user.company_id) and (t.seller_purchase_officer_approval == true and t.buyer_purchase_officer_approval == true) and (t.seller_budget_officer_approval == false or t.buyer_budget_officer_approval == false),
+        preload: [:item, :buyer_company, :seller_company],
+        order_by: [desc: :inserted_at]
+
+    Repo.all(query)
+  end
+
+  @doc """
+  Get all active transactions for inventory officers.
+  """
+  def list_inventory_officer_active_transactions(user) do
+    query =
+      from t in Transaction,
+        where: t.status == "active" and (t.buyer_company_id == ^user.company_id or t.seller_company_id == ^user.company_id) and (t.seller_purchase_officer_approval == true and t.buyer_purchase_officer_approval == true) and (t.seller_budget_officer_approval == true and t.buyer_budget_officer_approval == true) and (t.seller_inventory_officer_approval == false or t.buyer_inventory_officer_approval == false),
+        preload: [:item, :buyer_company, :seller_company],
+        order_by: [desc: :inserted_at]
+
+    Repo.all(query)
+  end
+
+  @doc """
   List all canceled transactions for purchase officers.
   """
   def list_purchase_officer_canceled_transactions(user) do
     query =
       from t in Transaction,
-        where: t.status == "canceled" and (t.buyer_company_id == ^user.company_id or t.seller_company_id == ^user.company_id) and (t.seller_purchase_officer_approval == true or t.buyer_purchase_officer_approval == true),
+        where: t.status == "canceled" and (t.buyer_company_id == ^user.company_id or t.seller_company_id == ^user.company_id) and (t.seller_purchase_officer_approval == false or t.buyer_purchase_officer_approval == false),
+        order_by: [desc: :inserted_at]
+
+    Repo.all(query)
+  end
+
+  @doc """
+  Get all canceled transactions for budget officers.
+  """
+  def list_budget_officer_canceled_transactions(user) do
+    query =
+      from t in Transaction,
+        where: t.status == "canceled" and (t.buyer_company_id == ^user.company_id or t.seller_company_id == ^user.company_id) and (t.seller_purchase_officer_approval == true and t.buyer_purchase_officer_approval == true) and (t.seller_budget_officer_approval == false or t.buyer_budget_officer_approval == false),
+        preload: [:item, :buyer_company, :seller_company],
+        order_by: [desc: :inserted_at]
+
+    Repo.all(query)
+  end
+
+  @doc """
+  Get all canceled transactions for inventory officers.
+  """
+  def list_inventory_officer_canceled_transactions(user) do
+    query =
+      from t in Transaction,
+        where: t.status == "canceled" and (t.buyer_company_id == ^user.company_id or t.seller_company_id == ^user.company_id) and (t.seller_purchase_officer_approval == true and t.buyer_purchase_officer_approval == true) and (t.seller_budget_officer_approval == true and t.buyer_budget_officer_approval == true) and (t.seller_inventory_officer_approval == false or t.buyer_inventory_officer_approval == false),
+        preload: [:item, :buyer_company, :seller_company],
         order_by: [desc: :inserted_at]
 
     Repo.all(query)
@@ -47,6 +99,32 @@ defmodule MyApp.Query.Transaction do
     query =
       from t in Transaction,
         where: t.status == "success" and (t.buyer_company_id == ^user.company_id or t.seller_company_id == ^user.company_id) and (t.seller_purchase_officer_approval == true or t.buyer_purchase_officer_approval == true),
+        order_by: [desc: :inserted_at]
+
+    Repo.all(query)
+  end
+
+  @doc """
+  Get all sucess transactions for budget officers.
+  """
+  def list_budget_officer_success_transactions(user) do
+    query =
+      from t in Transaction,
+        where: t.status == "success" and (t.buyer_company_id == ^user.company_id or t.seller_company_id == ^user.company_id) and (t.seller_purchase_officer_approval == true and t.buyer_purchase_officer_approval == true) and (t.seller_budget_officer_approval == true or t.buyer_budget_officer_approval == true),
+        preload: [:item, :buyer_company, :seller_company],
+        order_by: [desc: :inserted_at]
+
+    Repo.all(query)
+  end
+
+  @doc """
+  Get all success transactions for inventory officers.
+  """
+  def list_inventory_officer_success_transactions(user) do
+    query =
+      from t in Transaction,
+        where: t.status == "success" and (t.buyer_company_id == ^user.company_id or t.seller_company_id == ^user.company_id) and (t.seller_purchase_officer_approval == true and t.buyer_purchase_officer_approval == true) and (t.seller_budget_officer_approval == true and t.buyer_budget_officer_approval == true) and (t.seller_inventory_officer_approval == true or t.buyer_inventory_officer_approval == true),
+        preload: [:item, :buyer_company, :seller_company],
         order_by: [desc: :inserted_at]
 
     Repo.all(query)

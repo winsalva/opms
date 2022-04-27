@@ -20,6 +20,24 @@ defmodule MyAppWeb.Transaction.PageController do
         Transaction.update_transaction(id, %{seller_purchase_officer_approval: true})
 	conn
 	|> redirect(to: Routes.transaction_page_path(conn, :view_transaction, id))
+	
+      user != nil && user.role == "Budget" && user.company_id == transaction.buyer_company_id ->
+        Transaction.update_transaction(id, %{buyer_budget_officer_approval: true})
+        conn
+        |> redirect(to: Routes.transaction_page_path(conn, :view_transaction, id))
+      user != nil && user.role == "Budget" && user.company_id == transaction.seller_company_id ->
+        Transaction.update_transaction(id, %{seller_budget_officer_approval: true})
+        conn
+        |> redirect(to: Routes.transaction_page_path(conn, :view_transaction, id))
+
+      user != nil && user.role == "Inventory" && user.company_id == transaction.buyer_company_id ->
+        Transaction.update_transaction(id, %{buyer_inventory_officer_approval: true})
+        conn
+        |> redirect(to: Routes.transaction_page_path(conn, :view_transaction, id))
+      user != nil && user.role == "Inventory" && user.company_id == transaction.seller_company_id ->
+        Transaction.update_transaction(id, %{seller_inventory_officer_approval: true})
+        conn
+        |> redirect(to: Routes.transaction_page_path(conn, :view_transaction, id))
       true ->
         conn
 	|> redirect(to: Routes.transaction_page_path(conn, :view_transaction, id))
@@ -59,6 +77,18 @@ defmodule MyAppWeb.Transaction.PageController do
 	  active_transactions: active_transactions
 	]
 	render(conn, "active-transactions.html", params)
+      user.role == "Budget" ->
+        active_transactions = Transaction.list_budget_officer_active_transactions(user)
+        params = [
+          active_transactions: active_transactions
+        ]
+        render(conn, "active-transactions.html", params)
+      user.role == "Inventory" ->
+        active_transactions = Transaction.list_inventory_officer_active_transactions(user)
+        params = [
+          active_transactions: active_transactions
+        ]
+        render(conn, "active-transactions.html", params)
       true ->
         conn
 	|> redirect(to: Routes.page_path(conn, :index))

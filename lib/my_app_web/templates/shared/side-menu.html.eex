@@ -27,13 +27,24 @@
   <div class="a"><%= link "Terms Of Use", to: Routes.page_path(@conn, :term_of_use) %></div>
   <div class="a"><%= link "Privacy Policy", to: Routes.page_path(@conn, :privacy_policy) %></div>
 </div>
-<% @conn.assigns.current_user != nil -> %>
+<% @conn.assigns.current_user != nil && @conn.assigns.current_user.role == "Purchase" -> %>
 <div class="side-menu-container">
   <div class="side-menu-profile">
     <img src="/images/personnel.png"/>
     <p><%= link @conn.assigns.current_user.fullname, to: "#" %></p>
   </div>
   <div class="a"><%= link "Products/Services", to: Routes.item_page_path(@conn, :index) %></div>
+  <div class="a"><%= link "Transactions", to: Routes.user_page_path(@conn, :show, @conn.assigns.current_user.id) %></div>
+  <div class="a"><%= link "Contact Us", to: Routes.page_path(@conn, :contact_us) %></div>
+  <div class="a"><%= link "Terms Of Use", to: Routes.page_path(@conn, :term_of_use) %></div>
+  <div class="a"><%= link "Privacy Policy", to: Routes.page_path(@conn, :privacy_policy) %></div>
+</div>
+<% @conn.assigns.current_user != nil -> %>
+<div class="side-menu-container">
+  <div class="side-menu-profile">
+    <img src="/images/personnel.png"/>
+    <p><%= link @conn.assigns.current_user.fullname, to: "#" %></p>
+  </div>
   <div class="a"><%= link "Transactions", to: Routes.user_page_path(@conn, :show, @conn.assigns.current_user.id) %></div>
   <div class="a"><%= link "Contact Us", to: Routes.page_path(@conn, :contact_us) %></div>
   <div class="a"><%= link "Terms Of Use", to: Routes.page_path(@conn, :term_of_use) %></div>

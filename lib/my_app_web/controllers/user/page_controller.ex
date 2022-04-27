@@ -72,6 +72,26 @@ defmodule MyAppWeb.User.PageController do
 	  success_transactions: success_transactions
 	]
         render(conn, :show, params)
+      user.role == "Budget" ->
+        active_transactions = Transaction.list_budget_officer_active_transactions(user)
+        canceled_transactions = Transaction.list_budget_officer_canceled_transactions(user)
+        success_transactions = Transaction.list_budget_officer_success_transactions(user)
+        params = [
+          active_transactions: active_transactions,
+          canceled_transactions: canceled_transactions,
+          success_transactions: success_transactions
+        ]
+        render(conn, :show, params)
+      user.role == "Inventory" ->
+        active_transactions = Transaction.list_inventory_officer_active_transactions(user)
+        canceled_transactions = Transaction.list_inventory_officer_canceled_transactions(user)
+        success_transactions = Transaction.list_inventory_officer_success_transactions(user)
+        params = [
+          active_transactions: active_transactions,
+          canceled_transactions: canceled_transactions,
+          success_transactions: success_transactions
+        ]
+        render(conn, :show, params)
       true ->
         conn
 	|> redirect(to: Routes.page_path(conn, :index))
