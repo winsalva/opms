@@ -1,0 +1,36 @@
+<%= render(MyAppWeb.SharedView, "top-nav.html", conn: @conn) %>
+
+<div class="sub-container">
+  <div class="pc-content-container">
+    <%= render(MyAppWeb.SharedView, "side-menu.html", conn: @conn) %>
+    <div class="pc-content">
+      <p class="page-titles">Successful Transactions</p>
+      <%= if @success_transactions == [] do %>
+      <br />
+      <p align="center">No records available yet.</p>
+      <% else %>
+      <table>
+        <thead>
+          <tr>
+            <th>Item Title</th>
+            <th>Seller Company</th>
+            <th>Buyer Company</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= for transaction <- @success_transactions do %>
+              <tr>
+                <td><%= transaction.item.title %></td>
+                <td><%= transaction.seller_company.name %></td>
+                <td><%= transaction.buyer_company.name %></td>
+                <td><%= link "View", to: Routes.transaction_page_path(@conn, :view_transaction, transaction.id) %></td>
+              </tr>
+              <% end %>
+        </tbody>
+      </table>
+      <% end %>
+    </div>
+  </div>
+</div>
+

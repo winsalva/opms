@@ -61,6 +61,7 @@ defmodule MyApp.Query.Transaction do
     query =
       from t in Transaction,
         where: t.status == "canceled" and (t.buyer_company_id == ^user.company_id or t.seller_company_id == ^user.company_id) and (t.seller_purchase_officer_approval == false or t.buyer_purchase_officer_approval == false),
+	preload: [:item, :buyer_company, :seller_company],
         order_by: [desc: :inserted_at]
 
     Repo.all(query)
@@ -99,6 +100,7 @@ defmodule MyApp.Query.Transaction do
     query =
       from t in Transaction,
         where: t.status == "success" and (t.buyer_company_id == ^user.company_id or t.seller_company_id == ^user.company_id) and (t.seller_purchase_officer_approval == true or t.buyer_purchase_officer_approval == true),
+	preload: [:item, :buyer_company, :seller_company],
         order_by: [desc: :inserted_at]
 
     Repo.all(query)
@@ -180,7 +182,8 @@ defmodule MyApp.Query.Transaction do
   def list_canceled_transactions do
     query =
       from t in Transaction,
-        where: t.status == "canceled"
+        where: t.status == "canceled",
+	preload: [:item, :buyer_company, :seller_company]
 
     Repo.all(query)
   end
@@ -191,7 +194,8 @@ defmodule MyApp.Query.Transaction do
   def list_success_transactions do
     query =
       from t in Transaction,
-        where: t.status == "success"
+        where: t.status == "success",
+	preload: [:item, :buyer_company, :seller_company]
 
     Repo.all(query)
   end
@@ -216,6 +220,7 @@ defmodule MyApp.Query.Transaction do
     query =
       from t in Transaction,
         where: t.status == "canceled" and (t.buyer_company_id == ^company_id or t.seller_company_id == ^company_id),
+	preload: [:item, :buyer_company, :seller_company],
         order_by: [desc: :updated_at]
 
     Repo.all(query)
@@ -228,6 +233,7 @@ defmodule MyApp.Query.Transaction do
     query =
       from t in Transaction,
         where: t.status == "success" and (t.buyer_company_id == ^company_id or t.seller_company_id == ^company_id),
+	preload: [:item, :buyer_company, :seller_company],
         order_by: [desc: :updated_at]
 
     Repo.all(query)

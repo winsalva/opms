@@ -37,6 +37,8 @@ defmodule MyAppWeb.Router do
 
     get "/new/:item_id", PageController, :new_transaction
     get "/active", PageController, :active_transactions
+    get "/success", PageController, :success_transactions
+    get "/canceled", PageController, :canceled_transactions
     get "/view-transactions/:id", PageController, :view_transaction
     post "/negotiations", PageController, :create_negotiation
     post "/", PageController, :create_transaction

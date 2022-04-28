@@ -10,10 +10,10 @@
         <a href="<%= Routes.transaction_page_path(@conn, :active_transactions) %>">
           <div class="item">Active - <%= length(@active_transactions) %></div>
         </a>
-	<a href="">
+	<a href="<%= Routes.transaction_page_path(@conn, :canceled_transactions) %>">
           <div class="item">Canceled - <%= length(@canceled_transactions) %></div>
         </a>
-	<a href="">
+	<a href="<%= Routes.transaction_page_path(@conn, :success_transactions) %>">
           <div class="item">Success - <%= length(@success_transactions) %></div>
         </a>
       </div>

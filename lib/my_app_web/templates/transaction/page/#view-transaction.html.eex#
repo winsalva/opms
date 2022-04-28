@@ -61,7 +61,7 @@
 	      <% end %>
 
 	      <%= cond do %>
-              <% (@transaction.status == "active" && @conn.assigns.current_user != nil && @conn.assigns.current_user.company_id == @transaction.buyer_company_id && @conn.assigns.current_user.role == "Purchase" && @transaction.buyer_purchase_officer_approval == false) || (@transaction.status == "active" && @conn.assigns.current_user != nil && @conn.assigns.current_user.company_id == @transaction.seller_company_id && @conn.assigns.current_user.role == "Purchase" && @transaction.seller_purchase_officer_approval == false) || (@transaction.status == "active" && @conn.assigns.current_user != nil && @conn.assigns.current_user.company_id == @transaction.buyer_company_id && @conn.assigns.current_user.role == "Budget" && @transaction.buyer_budget_officer_approval == false) || (@transaction.status == "active" && @conn.assigns.current_user != nil && @conn.assigns.current_user.company_id == @transaction.seller_company_id && @conn.assigns.current_user.role == "Budget" && @transaction.seller_budget_officer_approval == false) || (@transaction.status == "active" && @conn.assigns.current_user != nil && @conn.assigns.current_user.company_id == @transaction.buyer_company_id && @conn.assigns.current_user.role == "Inventory" && @transaction.buyer_inventory_officer_approval == false) || (@transaction.status == "active" && @conn.assigns.current_user != nil && @conn.assigns.current_user.company_id == @transaction.seller_company_id && @conn.assigns.current_user.role == "Inventory" && @transaction.seller_inventory_officer_approval == false) -> %>
+              <% (@conn.assigns.current_user != nil && @conn.assigns.current_user.company_id == @transaction.buyer_company_id && @conn.assigns.current_user.role == "Purchase" && @transaction.buyer_purchase_officer_approval == false) || (@conn.assigns.current_user != nil && @conn.assigns.current_user.company_id == @transaction.seller_company_id && @conn.assigns.current_user.role == "Purchase" && @transaction.seller_purchase_officer_approval == false) || (@conn.assigns.current_user != nil && @conn.assigns.current_user.company_id == @transaction.buyer_company_id && @conn.assigns.current_user.role == "Budget" && @transaction.buyer_budget_officer_approval == false) || (@conn.assigns.current_user != nil && @conn.assigns.current_user.company_id == @transaction.seller_company_id && @conn.assigns.current_user.role == "Budget" && @transaction.seller_budget_officer_approval == false) || (@conn.assigns.current_user != nil && @conn.assigns.current_user.company_id == @transaction.buyer_company_id && @conn.assigns.current_user.role == "Inventory" && @transaction.buyer_inventory_officer_approval == false) || (@conn.assigns.current_user != nil && @conn.assigns.current_user.company_id == @transaction.seller_company_id && @conn.assigns.current_user.role == "Inventory" && @transaction.seller_inventory_officer_approval == false) -> %>
 	      <%= form_for @negotiation, Routes.transaction_page_path(@conn, :create_negotiation, %{user_id: @conn.assigns.current_user.id, transaction_id: @transaction.id}), fn f -> %>
 	  <label>Message:</label>
 	  <%= textarea f, :msg, placeholder: "Write your message.." %>
@@ -70,10 +70,8 @@
 	    <%= submit "Submit" %>
 	    <% end %>
 	    <!-- Company Approvals -->
-	    <% @conn.assigns.current_company != nil && @conn.assigns.current_company.is_admin == false && @transaction.status == "active" && (@transaction.buyer_purchase_officer_approval == false || @transaction.seller_purchase_officer_approval == false || @transaction.buyer_budget_officer_approval == false || @transaction.seller_budget_officer_approval == false || @transaction.buyer_inventory_officer_approval == false || @transaction.seller_inventory_officer_approval == false) -> %>
-	    <%= button "Cancel Transaction", to: Routes.transaction_page_path(@conn, :update_transaction, @transaction.id), method: :post, data: [confirm: "Are you sure?"] %>
-	    <% @conn.assigns.current_company != nil -> %>
-	    <p></p>
+	    <% @conn.assigns.current_company != nil && @conn.assigns.current_company.is_admin == false -> %>
+	    <button>Cancel</button>
 	    <% @conn.assigns.current_company != nil && @conn.assigns.current_company.is_admin == true -> %>
 	    <p></p>
 
