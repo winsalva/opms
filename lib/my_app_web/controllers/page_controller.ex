@@ -20,4 +20,8 @@ defmodule MyAppWeb.PageController do
   def term_of_use(conn, _) do
     render(conn, "term-of-use.html")
   end
+
+  def under_maintenance(conn, _params) do
+    render(conn, "under-maintenance.html")
+  end
 end
