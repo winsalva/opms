@@ -1,6 +1,10 @@
 defmodule MyAppWeb.PageController do
   use MyAppWeb, :controller
 
+  def test(conn, _params) do
+    render(conn, "test.html")
+  end
+
   def index(conn, _) do
     render(conn, :index)
   end

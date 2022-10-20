@@ -20,8 +20,8 @@ nav {
     align-items: center;
     justify-content: space-between;
     padding: 10px 15px 5px 15px;
-    border: 1px solid #000;
-    background-color: #000;
+    border: 1px solid #1769ff;
+    background-color: #1769ff;
 }
 #schoolname {
     font-size: 22px;
@@ -100,7 +100,7 @@ nav .menus li a:hover {
     padding: 1rem 0 .5rem 0;
 }
 footer {
-    background-color: #000;
+    background-color: #1769ff;
     color: var(--white);
     margin-top: .2rem;
     margin-bottom: -2.5rem;
@@ -189,11 +189,17 @@ footer {
 .close-btn:hover {
     color: #0069d9;
 }
-.sub-container {
-    background-image: url("/images/opms-bg.jpeg");
+
+.main-container {
+    width: 100vw;
+    height: 100vh;
+    background-image: url("/images/opms-bg.jpg");
     background-repeat: no-repeat;
-    background-size: 100% 100%;
- 
+    background-size: 100% 100vh;
+}
+
+.sub-container {
+    background-color: #eef;
 }
 .page-content {
     padding: 0 1.5rem;
@@ -211,8 +217,9 @@ footer {
     display: flex;
 }
 .side-menu-container {
-    background-color: #000;
+    background-color: #1769ff;
     width: 25%;
+    height: 100vh;
     padding: 1rem 0 3rem 0;
 }
 .side-menu-container a {
