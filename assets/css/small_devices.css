@@ -1,0 +1,110 @@
+@media only screen and (max-width: 768px) {
+    .session-form {
+	margin: 0;
+	width: 100vw;
+	height: 100vh;
+    }
+    #sm-home-container {
+	position: top;
+	display: block;
+    }
+    #sm-name-tag {
+	margin-top: -12rem;
+	text-align: center;
+    }
+    #sm-name-tag > h1 {
+	font-size: 5rem;
+	font-weight: bold;
+	margin-bottom: 0;
+	color: #1769ff;
+    }
+    #sm-name-tag > p {
+	margin-top: -1rem;
+	font-weight: bold;
+	color: #fff;
+    }
+
+    /* menu toggle container */
+    #sm-menu-container {
+	padding-top: 1.5rem;
+	text-align: center;
+	background-color: #1769ff;
+    }
+    #open, #close {
+	font-size: 4rem;
+	font-weight: 500px;
+	color: #fff;
+	border-radius: 50%;
+	max-width: 8rem;
+	margin: 0 auto;
+    }
+    #close {
+	font-weight: bold;
+	display: none;
+    }
+
+    /* menu options */
+    #sm-menu-options-container {
+	background-color: #1769ff;
+	text-align: center;
+	padding-bottom: 2rem;
+	display: none;
+    }
+    #sm-menu-options-container > div {
+	padding: 1rem 0;
+    }
+    #sm-menu-options-container > div > a {
+	font-weight: 450;
+	font-size: 1.8rem;
+	color: #fff;
+    }
+    #sm-menu-options-container > div > a:hover {
+	color: #c0c0c0;
+    }
+    .sub-container {
+	background: #eef;
+    }
+    .home-page-content-container {
+	border: 1px solid #eee;
+	padding: 3rem 1rem 1rem 1rem;
+	margin: 0.5rem 0 1rem 0;
+    }
+    .home-page-content {
+	text-align: center;
+	margin: 2rem 0 5rem 0;
+    }
+    .home-page-content > img {
+	width: 200px;
+	height: 200px;
+	object-fit: cover;
+	border-radius: 50%;
+    }
+    footer {
+	margin: 0;
+	padding: 0;
+    }
+    #opms-logo {
+	text-align: center;
+	padding-top: 4rem;
+    }
+    #opms-logo > img {
+	max-width: 120px;
+	max-height: 120px;
+    }
+    .footer-company-name {
+	color: #fff;
+	font-weight: 500;
+	font-size: 2rem;
+	margin: 0 0 3rem 0;
+	padding: 0;
+    }
+    .footer-options {
+	margin: 0 0 5rem 0;
+    }
+    .footer-options > div {
+	text-align: left;
+    }
+    .copyright {
+	padding-bottom: 3rem;
+    }
+}

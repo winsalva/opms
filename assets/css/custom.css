@@ -190,12 +190,9 @@ footer {
     color: #0069d9;
 }
 
-.main-container {
+.container {
     width: 100vw;
     height: 100vh;
-    background-image: url("/images/opms-bg.jpg");
-    background-repeat: no-repeat;
-    background-size: 100% 100vh;
 }
 
 .sub-container {

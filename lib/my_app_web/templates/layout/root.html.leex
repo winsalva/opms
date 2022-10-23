@@ -11,12 +11,26 @@
     <script defer phx-track-static type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </head>
   <body>
-
-    <!--<i class="fas fa-search"></i>-->
     
     <%= @inner_content %>
 
     <script>
+      // open and close toggles
+      let open = document.getElementById("open");
+      let close = document.getElementById("close");
+      let menus = document.getElementById("sm-menu-options-container");
+      
+      open.addEventListener('click', () => {
+	  close.style.display = "block";
+	  menus.style.display = "block";
+	  open.style.display = "none";
+      });
+      
+      close.addEventListener('click', () => {
+          open.style.display = "block";
+	  menus.style.display = "none";
+          close.style.display = "none";
+      });
       function back() {
           window.history.back();
       }

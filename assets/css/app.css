@@ -2,8 +2,10 @@
 /*@import "./bootstrap_styling.css";*/
 @import "./custom.css";
 @import "./phoenix.css";
+@import "./small_devices.css";
 @import "../node_modules/nprogress/nprogress.css";
-@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+/* removing bootstrap for now */
+/*@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';*/
 
 /* LiveView specific classes for your customizations */
 .phx-no-feedback.invalid-feedback,

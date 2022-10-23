@@ -9,6 +9,6 @@ defmodule MyAppWeb.GlobalHelpers do
   end
 
   def app_name do
-    "Online Procurement Monitoring System"
+    "SLSU"
   end
 end
