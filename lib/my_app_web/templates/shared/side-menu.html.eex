@@ -1,3 +1,4 @@
+<div id="side-bar-menu">
 <%= cond do %>
 <% @conn.assigns.current_company != nil and @conn.assigns.current_company.email == "admin123@gmail.com" -> %>
 <div class="side-menu-container">
@@ -63,3 +64,4 @@
   <div class="a"><i class="fa fa-lock"></i><%= link "Privacy Policy", to: Routes.page_path(@conn, :privacy_policy) %></div>
 </div>
 <% end %>
+</div>

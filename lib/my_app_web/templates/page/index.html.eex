@@ -1,68 +1,72 @@
 
-<div id="sm-home-container">
-  <div id="sm-image-top">
-    <img src="/images/opms3.jpg"/>
-  </div>
-  <div id="sm-name-tag">
-    <h1><%= app_name() %></h1>
-    <p>Online Procurement Management System</p>
-  </div>
-  
-  <div id="sm-menu-container">
-    <div id="open-close-toggle-container">
-      <div id="open">&#8801;</div>
-      <div id="close">&times;</div>
-    </div>
-  </div>
 
-  <!-- available menu options for small devices -->
-  <div id="sm-menu-options-container">
-    <div><%= link "Log in", to: Routes.session_path(@conn, :new) %></div>
-    <div><%= link "Register", to: Routes.company_page_path(@conn, :new) %></div>
-  </div>
-</div>
-
-
-<!--
 <%= render(MyAppWeb.SharedView, "top-nav.html", conn: @conn) %>
--->
 
-<div class="sub-container">
-  <div class="home-page-content-container">
-    <div class="home-page-content">
-      <img src="/images/opms3.jpg" alt="Image"/>
-      <p>Electronic procurement, also known as e-procurement or supplier exchange, is the process of requisitioning, ordering and purchasing goods and services online. It is a business-to-business process.</p>
+<div id="page-content-container">
+
+  <%= render(MyAppWeb.SharedView, "side-menu.html", conn: @conn) %>
+
+  <div id="sm-home-container">
+    <div id="sm-image-top">
+      <img src="/images/opms3.jpg"/>
+      <div id="sm-name-tag">
+	<h1><%= app_name() %></h1>
+	<p><span>O</span>nline <span>P</span>rocurement <span>M</span>onitoring <span>S</span>ystem</p>
+      </div>
+    </div>
+  
+    <div id="sm-menu-container">
+      <div id="open-close-toggle-container">
+	<div id="open">&#8801;</div>
+	<div id="close">&times;</div>
+      </div>
     </div>
 
-    <div class="home-page-content">
-      <img src="/images/opms2.jpg" alt="Image"/>
-      <p>Electronic procurement, also known as e-procurement or supplier exchange, is the process of requisitioning, ordering and purchasing goods and services online. It is a business-to-business process.</p>
+    <!-- available menu options for small devices -->
+    <div id="sm-menu-options-container">
+      <div><%= link "LOG IN", to: Routes.session_path(@conn, :new) %></div>
+      <div><%= link "REGISTER ACCOUNT", to: Routes.company_page_path(@conn, :new) %></div>
+    </div>
+  </div>
+
+
+  <div class="sub-container">
+    <div class="home-page-content-container">
+      <div class="home-page-content">
+	<img src="/images/opms3.jpg" alt="Image"/>
+	<p>Electronic procurement, also known as e-procurement or supplier exchange, is the process of requisitioning, ordering and purchasing goods and services online. It is a business-to-business process.</p>
+      </div>
+
+      <div class="home-page-content">
+	<img src="/images/opms2.jpg" alt="Image"/>
+	<p>Electronic procurement, also known as e-procurement or supplier exchange, is the process of requisitioning, ordering and purchasing goods and services online. It is a business-to-business process.</p>
+      </div>
+
+      <div class="home-page-content">
+	<img src="/images/opms1.jpg" alt="Image"/>
+	<p>Electronic procurement, also known as e-procurement or supplier exchange, is the process of requisitioning, ordering and purchasing goods and services online. It is a business-to-business process.</p>
+      </div>
     </div>
 
-    <div class="home-page-content">
-      <img src="/images/opms1.jpg" alt="Image"/>
-      <p>Electronic procurement, also known as e-procurement or supplier exchange, is the process of requisitioning, ordering and purchasing goods and services online. It is a business-to-business process.</p>
+    <!-- footer -->
+    <div class="footer">
+      <div id="opms-logo">
+	<img src="/images/opms-logo.png" alt="Logo"/>
+      </div>
+      
+      <p class="footer-company-name">Southern Leyte State University</p>
+
+      <div class="footer-options">
+	<div><%= link "Contact Us", to: Routes.page_path(@conn, :contact_us) %></div>
+	<div><%= link "Terms Of Use", to: Routes.page_path(@conn, :term_of_use) %></div>
+	<div><%= link "Privacy Policy", to: Routes.page_path(@conn, :privacy_policy) %></div>
+	<div><%= link "About Us", to: Routes.page_path(@conn, :about_us) %></div>
+      </div>
+
+      <div class="copyright">
+	<p>Copyright &copy; <%= current_year() %> <%= app_name() %><p>
+	<p>All rights reserved.</p>
+      </div>
     </div>
   </div>
 </div>
-
-<!-- footer -->
-<footer>
-  <div id="opms-logo">
-    <img src="/images/opms-logo.png" alt="Logo"/>
-  </div>
-  
-  <p class="footer-company-name">Procurement Management System</p>
-
-  <div class="footer-options">
-    <div><%= link "Contact Us", to: Routes.page_path(@conn, :contact_us) %></div>
-    <div><%= link "Terms Of Use", to: Routes.page_path(@conn, :term_of_use) %></div>
-    <div><%= link "Privacy Policy", to: Routes.page_path(@conn, :privacy_policy) %></div>
-    <div><%= link "About Us", to: Routes.page_path(@conn, :about_us) %></div>
-  </div>
-
-  <div class="copyright">
-    <p>Copyright &copy; <%= current_year() %> <%= app_name() %><p>
-      <p>All rights reserved.</p>
-  </div>
-</footer>

@@ -25,8 +25,9 @@
   <%= password_input f, :password_confirmation, placeholder: "Retype your password.." %>
   <%= error_tag f, :password_confirmation %>
 
+  <br/><br/>
+
   <div align="center">
-    <br /><br />
     <%= submit "Create Account" %>
   </div>
   <% end %>

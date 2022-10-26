@@ -1,7 +1,7 @@
-<div class="session-form">
+<div class="session-form-login">
   <div><p class="close-btn" onclick="back();">&times</div>
   <%= form_for @conn, "#", fn f -> %>
-  <h2 align="center"><strong>Log in</strong></h2>
+  <h2 align="center"><strong>LOG IN</strong></h2>
 
   <%= render(MyAppWeb.SharedView, "flash-messages.html", conn: @conn) %>
   

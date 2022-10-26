@@ -1,0 +1,185 @@
+@media only screen and (min-width: 769px) and (max-width: 1200px) {
+    body {
+	background-image: url("/images/opms-bg.jpg");
+	background-repeat: no-repeat;
+	height: 100%;
+	background-size: cover;
+    }
+    .container {
+	background-color: transparent;
+    }
+    .side-menu-container {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+    }
+    .side-menu-container > div {
+	text-align: left;
+	padding-left: 2.5rem;
+    }
+    .side-menu-container > .side-menu-profile {
+	text-align: center;
+    }
+    #side-bar-menu {
+	border-right: 3px solid #fff;
+    }
+    #nav {
+	display: flex;
+    }
+    #pcu-logo {
+	padding-left: 1rem;
+    }
+    #pcu-logo > img {
+	width: 100px;
+	height: 50px;
+    }
+    #schoolname {
+	padding-left: 1rem;
+    }
+    #tagname {
+	padding-left: 1rem;
+	color: #000;
+    }
+    #page-content-container {
+	display: grid;
+	grid-template-columns: 1fr 4fr;
+    }
+    .session-form {
+	margin: 25% auto;
+    }
+    #sm-home-container {
+	position: top;
+	display: none;
+    }
+    nav {
+	display: block;
+    }
+    #sm-name-tag {
+	margin-top: -15rem;
+	text-align: center;
+    }
+    #sm-name-tag > h1 {
+	font-size: 5rem;
+	font-weight: bold;
+	margin-bottom: 0;
+	color: #1769ff;
+    }
+    #sm-name-tag > p {
+	margin-top: -1rem;
+	font-weight: bold;
+	color: #fff;
+    }
+
+    /* menu toggle container */
+    #sm-menu-container {
+	padding-top: 1.5rem;
+	text-align: center;
+	background-color: #1769ff;
+    }
+    #open, #close {
+	font-size: 4rem;
+	font-weight: 500px;
+	color: #fff;
+	margin: 0 auto;
+    }
+    #close {
+	font-weight: bold;
+	display: none;
+    }
+
+    /* menu options */
+    #sm-menu-options-container {
+	background-color: #1769ff;
+	text-align: center;
+	padding-bottom: 2rem;
+	display: none;
+    }
+    #sm-menu-options-container > div {
+	padding: 0.5rem 0;
+    }
+    #sm-menu-options-container > div > a {
+	font-weight: 400;
+	font-size: 1.2rem;
+	color: #fff;
+    }
+    #sm-menu-options-container > div > a:hover {
+	color: #c0c0c0;
+    }
+    .sub-container {
+	margin: 0;
+	padding: 0;
+	background: #eef;
+    }
+    .home-page-content-container {
+	display: flex;
+    }
+    .home-page-content {
+	text-align: center;
+	margin: 5rem 2rem 5rem 1.5rem;
+    }
+    .home-page-content > img {
+	width: 450px;
+	height: 150px;
+	object-fit: cover;
+    }
+    .home-page-content > p {
+	font-size: 1rem;
+    }
+    .footer {
+	margin: 0;
+	padding: 0;
+	background-color: #1769ff;
+    }
+    #opms-logo {
+	text-align: center;
+	padding-top: 4rem;
+    }
+    #opms-logo > img {
+	max-width: 100px;
+	max-height: 100px;
+    }
+    .footer-company-name {
+	color: #fff;
+	font-weight: 400;
+	font-size: 1.5rem;
+	margin: 0 0 3rem 0;
+	padding: 0;
+    }
+    .footer-options {
+	margin: 0 auto;
+    }
+    .footer-options > div {
+	text-align: center;
+	font-weight: 500;
+    }
+    .footer-options > div > a {
+	font-size: 1.5rem;
+    }
+    .copyright {
+	padding-bottom: 3rem;
+    }
+    .copyright > p {
+	font-size: 0.8rem;
+    }
+
+    /* session form */
+    .session-form-login {
+        background-color: #eef;
+        border: 1px solid #eef;
+        border-radius: 5px;
+        width: 35%;
+        height: 100%;
+        margin: 20% auto;
+        padding: 2.5rem;
+    }
+
+    .session-form {
+        background-color: #eef;
+        border: 1px solid #eef;
+        border-radius: 5px;
+        width: 100%;
+        height: 100%;
+        margin: 15% auto;
+        padding: 2.5rem;
+    }
+}

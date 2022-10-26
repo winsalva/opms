@@ -1,4 +1,4 @@
-@media only screen and (max-width: 640px) {
+@media only screen and (min-width: 641px) and (max-width: 768px) {
     #side-bar-menu {
 	display: none;
     }
@@ -6,19 +6,19 @@
 	display: none;
     }
     body {
-	background-color: #eef;
+	background-color: #1769ff;
     }
     .session-form {
 	margin: 0;
-	max-width: 100%;
-	height: 100%;
+	width: 100vw;
+	height: 100vh;
     }
     #sm-home-container {
 	position: top;
 	display: block;
     }
     #sm-name-tag {
-	margin-top: -11rem;
+	margin-top: -15rem;
 	text-align: center;
     }
     #sm-name-tag > h1 {
@@ -28,26 +28,20 @@
 	color: #1769ff;
     }
     #sm-name-tag > p {
-	font-size: 1.8rem;
-	margin-top: 0rem;
+	margin-top: -1rem;
 	font-weight: bold;
 	color: #fff;
     }
 
-    #sm-name-tag > p > span {
-	color: #1769ff;
-    }
-
     /* menu toggle container */
     #sm-menu-container {
-	margin-top: -1rem;
-	padding-top: 0;
+	padding-top: 1.5rem;
 	text-align: center;
 	background-color: #1769ff;
     }
     #open, #close {
-	font-size: 4rem;
-	font-weight: 500px;
+	font-size: 4.5rem;
+	font-weight: 450px;
 	color: #fff;
 	margin: 0 auto;
     }
@@ -64,11 +58,11 @@
 	display: none;
     }
     #sm-menu-options-container > div {
-	padding: 1rem 0;
+	padding: 0.5rem 0;
     }
     #sm-menu-options-container > div > a {
-	font-weight: 550;
-	font-size: 1.6rem;
+	font-weight: 400;
+	font-size: 1.2rem;
 	color: #fff;
     }
     #sm-menu-options-container > div > a:hover {
@@ -79,17 +73,19 @@
     }
     .home-page-content-container {
 	padding: 3rem 1rem 1rem 1rem;
-	margin: 0 0 1rem 0;
+	margin: 0.5rem 0 1rem 0;
     }
     .home-page-content {
 	text-align: center;
-	margin: 2rem 1rem 5rem 1rem;
+	margin: 3rem 4rem 5rem 4rem;
     }
     .home-page-content > img {
-	width: 250px;
-	height: 150px;
+	width: 450px;
+	height: 280px;
 	object-fit: cover;
-	margin-bottom: .5rem;
+    }
+    .home-page-content > p {
+	font-size: 1rem;
     }
     .footer {
 	margin: 0;
@@ -98,7 +94,7 @@
     }
     #opms-logo {
 	text-align: center;
-	padding-top: 3.5rem;
+	padding-top: 4rem;
     }
     #opms-logo > img {
 	max-width: 120px;
@@ -106,37 +102,45 @@
     }
     .footer-company-name {
 	color: #fff;
-	font-weight: 500;
-	font-size: 1.8rem;
+	font-weight: 400;
+	font-size: 1.5rem;
 	margin: 0 0 3rem 0;
-	padding-top: 1rem;
+	padding: 0;
     }
     .footer-options {
-	margin: 0 0 5rem 0;
+	margin: 0 auto;
     }
     .footer-options > div {
-	text-align: left;
+	text-align: center;
+	font-weight: 500;
     }
     .footer-options > div > a {
-	font-weight: 450;
 	font-size: 1.5rem;
     }
     .copyright {
 	padding-bottom: 3rem;
     }
-
+    .copyright > p {
+	font-size: 0.8rem;
+    }
     /* session form */
     .session-form-login {
-	background-color: #eef;
-	width: 100vw;
-	height: 100vh;
-	padding: 1.5rem;
+        background-color: #eef;
+	border: 1px solid #1769ff;
+	border-radius: 5px;
+        width: 50%;
+	height: 100%;
+        margin: 20% auto;
+        padding: 2.5rem;
     }
 
     .session-form {
-	background-color: #eef;
-	width: 100%;
-	height: 100%;
-	padding: 1.5rem;
+        background-color: #eef;
+	border: 1px solid #1769ff;
+	border-radius: 5px;
+        width: 100%;
+        height: 100%;
+	margin: 20% auto;
+        padding: 2.5rem;
     }
 }
