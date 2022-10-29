@@ -1,16 +1,21 @@
+
 <%= render(MyAppWeb.SharedView, "top-nav.html", conn: @conn) %>
 
-<div class="sub-container">
-  <div class="pc-content-container">
-    <%= render(MyAppWeb.SharedView, "side-menu.html", conn: @conn) %>
-    <div class="pc-content">
-      <p class="page-titles">About Us</p>
+<div id="page-content-container">
 
-      <div class="page-content">
-	<p>We at OPMS believe that the most powerful solutions are the simple ones. In an increasingly complex world, the simplicity of our products, processes and performance is what helps us stand out. We know that it is the people closest to a problem who can best solve it.</p>
-	<p>That’s why our pioneering Digital Workplace solutions empower organizations by helping them manage all their work on a unified platform from posting, purchasing, budgeting, inventory processes up to a successful transaction of each company or organization.</p>
+  <!-- side menu for large devices -->
+  <%= render(MyAppWeb.SharedView, "side-menu.html", conn: @conn) %>
 
-      </div>
+  <div class="sub-container">
+    <div class="page-content">
+      <div class="page-titles"><i onclick="back();" class="fa fa-arrow-left"></i>&nbsp;&nbsp;&nbsp;About Us</div>
+      <p>We at OPMS believe that the most powerful solutions are the simple ones. In an increasingly complex world, the simplicity of our products, processes and performance is what helps us stand out. We know that it is the people closest to a problem who can best solve it.</p>
+
+      <p>That’s why our pioneering Digital Workplace solutions empower organizations by helping them manage all their work on a unified platform from posting, purchasing, budgeting, inventory processes up to a successful transaction of each company or organization.</p>
     </div>
+
+    <!-- footer -->
+    <%= render(MyAppWeb.SharedView, "footer.html", conn: @conn) %>
+    
   </div>
 </div>

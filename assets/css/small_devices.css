@@ -1,4 +1,11 @@
 @media only screen and (max-width: 640px) {
+    .page-content {
+	margin: 1.5rem 1.5rem 3rem 1.5rem;
+    }
+    .page-titles {
+	font-size: 2rem;
+	padding: 0 0 1rem 0;
+    }
     #side-bar-menu {
 	display: none;
     }

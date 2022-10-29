@@ -53,10 +53,6 @@
 </div>
 <% true -> %>
 <div class="side-menu-container">
-  <div class="side-menu-profile">                     <!--<img src="/images/personnel.png"/>-->
-    <i class="fa fa-user"></i>
-    <p style="color: #fff;">OPMS</p>
-  </div>
   <div class="a"><i class="fa fa-home"></i><%= link "Home", to: Routes.page_path(@conn, :index) %></div>
   <div class="a"><i class="fa fa-info-circle"></i><%= link "About Us", to: Routes.page_path(@conn, :about_us) %></div>
   <div class="a"><i class="fa fa-address-book"></i><%= link "Contact Us", to: Routes.page_path(@conn, :contact_us) %></div>

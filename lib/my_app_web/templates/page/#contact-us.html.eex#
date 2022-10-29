@@ -32,6 +32,6 @@
 
     <!-- footer -->
     <%= render(MyAppWeb.SharedView, "footer.html", conn: @conn) %>
-    
+    wr
   </div>
 </div>

@@ -1,65 +1,118 @@
 <%= render(MyAppWeb.SharedView, "top-nav.html", conn: @conn) %>
 
-<div class="sub-container">
-  <div class="pc-content-container">
-    <%= render(MyAppWeb.SharedView, "side-menu.html", conn: @conn) %>
-    <div class="pc-content">
-      <p class="page-titles">Terms Of Use</p>
-      <div class="page-content">
-	<h4><b>The website</b></h4>
-	<p>The "website" refers to the website managed by the ONLINE PROCUREMENT MONITORING SYSTEM (hereinafter OPMS) with its additional components e-Notification, e-Tendering, e-Auction, e-Awarding and e-Catalogue including the practice websites. The "website" also refers to all content and services offered by the OPMS via the website.</p>
-	<h4><b>Account</b></h4>
-	<p>An account represents the authorisation of an individual user to log in to and use the services of this website and its related components and serves as the user's identity on this website.</p>
-	<h4><b>The user</b></h4>
-	<p>'The user', 'you' and 'your' refer to the individual person, the company or the organisation that visits or uses the website and its related components and/or services, has access to or uses any part of the account, or instructs the use of the account in the performance of their duties.</p>
-	<h4><b>Services</b></h4>
-	<p>The 'services' refer to the application offered on this website by the OPMS, including, without limitation, e-mail services, download and upload services, signature services, auctions, forums, publication modules, search engines and/or other means of exchange and communication designed to enable you to deal with public contracts.</p>
-	<h4><b>Content</b></h4>
-	<p>'Content' includes, without limitation, text, data, articles, images, photographs, graphs, designs and other materials that are available on the website; 'user content' refers to content written, created or uploaded by our users; 'your content' refers to all content you create on and/or via the website.</p>
-	<h4><b>Confidential content</b></h4>
-	<p>Confidential content is all non-public information disclosed by a user to other users that is marked as confidential or of which the receiving party knows or should reasonably know, in light of the circumstances of disclosure and the nature of the information, that it is confidential to the disclosing party.</p>
-	<h4><b>Applications</b></h4>
-	<p>The services consist of applications, such as the public website, and an electronic system for communication and information exchange between contracting authorities and businesses. Under these conditions, the applications can be used freely, although some require prior registration.</p>
-	<h4><b>Public Website</b></h4>
-	<p>Via the website, everyone has free access to publications of market consultations, prior information notices, contract notices and award notices, as well as to information about the award of public contracts in general, including manuals, such as for the use of e-Notification and e-Tendering.</p>
-	<p>Electronic system for communication and information exchange between contracting authorities and businesses
+<div id="page-content-container">
+
+  <!-- side menu for large devices -->
+  <%= render(MyAppWeb.SharedView, "side-menu.html", conn: @conn) %>
+
+  <div class="sub-container">
+    <div class="page-content">
+      <div class="page-titles"><i onclick="back();" class="fa fa-arrow-left"></i>&nbsp;&nbsp;&nbsp;Terms of Use</div>
+  
+
+      <h4><b>The website</b></h4>
+
+      <p>The "website" refers to the website managed by the ONLINE PROCUREMENT MONITORING SYSTEM (hereinafter OPMS) with its additional components e-Notification, e-Tendering, e-Auction, e-Awarding and e-Catalogue including the practice websites. The "website" also refers to all content and services offered by the OPMS via the website.</p>
+
+      <h4><b>Account</b></h4>
+
+      <p>An account represents the authorisation of an individual user to log in to and use the services of this website and its related components and serves as the user's identity on this website.</p>
+
+      <h4><b>The user</b></h4>
+
+      <p>'The user', 'you' and 'your' refer to the individual person, the company or the organisation that visits or uses the website and its related components and/or services, has access to or uses any part of the account, or instructs the use of the account in the performance of their duties.</p>
+
+      <h4><b>Services</b></h4>
+
+      <p>The 'services' refer to the application offered on this website by the OPMS, including, without limitation, e-mail services, download and upload services, signature services, auctions, forums, publication modules, search engines and/or other means of exchange and communication designed to enable you to deal with public contracts.</p>
+
+      <h4><b>Content</b></h4>
+
+      <p>'Content' includes, without limitation, text, data, articles, images, photographs, graphs, designs and other materials that are available on the website; 'user content' refers to content written, created or uploaded by our users; 'your content' refers to all content you create on and/or via the website.</p>
+
+      <h4><b>Confidential content</b></h4>
+
+      <p>Confidential content is all non-public information disclosed by a user to other users that is marked as confidential or of which the receiving party knows or should reasonably know, in light of the circumstances of disclosure and the nature of the information, that it is confidential to the disclosing party.</p>
+
+      <h4><b>Applications</b></h4>
+
+      <p>The services consist of applications, such as the public website, and an electronic system for communication and information exchange between contracting authorities and businesses. Under these conditions, the applications can be used freely, although some require prior registration.</p>
+
+      <h4><b>Public Website</b></h4>
+
+      <p>Via the website, everyone has free access to publications of market consultations, prior information notices, contract notices and award notices, as well as to information about the award of public contracts in general, including manuals, such as for the use of e-Notification and e-Tendering.</p>
+
+      <p>Electronic system for communication and information exchange between contracting authorities and businesses
 	  This system allows contracting authorities to publish and award contracts in a fully electronic manner. Only contracting authorities / entities are authorised to publish public contracts via these modules.</p>
-	<h4><b>Acceptance and application of conditions of use</b></h4>
-	<p>By registering, the user accepts these conditions. If you do not agree to the conditions, you will not be entitled to access or use the services which require prior registration. In order to use the applications offered by this website, you must acknowledge that you have the required knowledge in this respect.</p>
-	<h4><b>Authorisation</b></h4>
-	<p>Contracting authorities / entities shall ensure that the electronic system for the award of public contracts is only used by persons competent or authorised to carry out one or more tasks. The OPMS does not check whether registered users are actually competent or authorised and have user rights.</p>
-	<h4><b>Proper use</b></h4>
-	<p>Any use of the services must be made within the framework of the legislation on public procurement, and comply with this legislation, even if the application gives you the freedom to act otherwise. Examples:</p>
-	<h4><b>Improper use of a publication form.</b></h4>
-	<p>Setting a submission deadline that is too short.
+
+      <h4><b>Acceptance and application of conditions of use</b></h4>
+
+      <p>By registering, the user accepts these conditions. If you do not agree to the conditions, you will not be entitled to access or use the services which require prior registration. In order to use the applications offered by this website, you must acknowledge that you have the required knowledge in this respect.</p>
+
+      <h4><b>Authorisation</b></h4>
+
+      <p>Contracting authorities / entities shall ensure that the electronic system for the award of public contracts is only used by persons competent or authorised to carry out one or more tasks. The OPMS does not check whether registered users are actually competent or authorised and have user rights.</p>
+
+      <h4><b>Proper use</b></h4>
+
+      <p>Any use of the services must be made within the framework of the legislation on public procurement, and comply with this legislation, even if the application gives you the freedom to act otherwise. Examples:</p>
+
+      <h4><b>Improper use of a publication form.</b></h4>
+
+      <p>Setting a submission deadline that is too short.
 Disabling the signature module on e-Tendering where legislation requires a signature.
 	  Any improper use is prohibited. Examples of improper use:</p>
-	<p>To damage, render unusable, overload, infect with a virus or impede the operation of a server run by the OPMS or its partners or of a network connected to it.
+
+      <p>To damage, render unusable, overload, infect with a virus or impede the operation of a server run by the OPMS or its partners or of a network connected to it.
 	  Restricting or preventing the use of the services by other users that are not part of your organisation.</p>
-	<p>Under no circumstances may confidential content be disclosed to third parties. Only messages with an appropriate content may be posted on the website. Only legal content may be sent through the website. The user shall be responsible for the content they upload and any intellectual property rights associated with it.</p>
-	<h4><b>Account management</b></h4>
-	<p>The applications operate using a personal account and not a business account. You are responsible for the company data indicated in your personal account and for updating it. You are also responsible for protecting your username and password for our applications. You must do your utmost to ensure that this data is secure, and to prevent its circulation. If you do communicate this data, this is under your sole responsibility.
+
+      <p>Under no circumstances may confidential content be disclosed to third parties. Only messages with an appropriate content may be posted on the website. Only legal content may be sent through the website. The user shall be responsible for the content they upload and any intellectual property rights associated with it.</p>
+
+      <h4><b>Account management</b></h4>
+
+      <p>The applications operate using a personal account and not a business account. You are responsible for the company data indicated in your personal account and for updating it. You are also responsible for protecting your username and password for our applications. You must do your utmost to ensure that this data is secure, and to prevent its circulation. If you do communicate this data, this is under your sole responsibility.
 	  You are obliged to immediately change the password you have been given by the helpdesk or by our application (the only exception is the password you have been given with the invitation to take part in a restricted dossier. You cannot change this password).</p>
-	<p>You can only be logged into a specific account on one device at a time. On this device, you can only be logged into your account in one browser at a time. Before changing browsers, you must close the browser using the browser menu bar, not the cross.</p>
-	<h4><b>Messaging</b></h4>
-	<p>You are responsible for monitoring public contracts on the e-Notification platform, even if you are using messaging. Failure to receive a message or lack of information in the messaging cannot under any circumstances give rise to any compensation.</p>
-	<h4><b>Electronic tender form</b></h4>
-	<p>If the electronic tender form has been activated by the contracting authority / entity, as a business, you must fill in the correct data.
+
+      <p>You can only be logged into a specific account on one device at a time. On this device, you can only be logged into your account in one browser at a time. Before changing browsers, you must close the browser using the browser menu bar, not the cross.</p>
+
+      <h4><b>Messaging</b></h4>
+
+      <p>You are responsible for monitoring public contracts on the e-Notification platform, even if you are using messaging. Failure to receive a message or lack of information in the messaging cannot under any circumstances give rise to any compensation.</p>
+
+      <h4><b>Electronic tender form</b></h4>
+
+      <p>If the electronic tender form has been activated by the contracting authority / entity, as a business, you must fill in the correct data.
 	  o Irrevocable registration of each action Although e-Tendering allows the deletion of documents, please note that each submission is considered a formal action. The submission area must NOT be regarded as a workspace where documents can be withdrawn or replaced without consequences; on the contrary. Every action is registered and the deletion of documents must be confirmed by means of a deletion report and digital signature (*). Furthermore, documents will still be handed over to the contracting authority if the deletion report has not been signed on e-Tendering. However, the signed deletion report indicates that these documents should not be taken into account. (*) Only if the contracting authority / entity has made the signature mandatory in e-Tendering.</p>
-	<h4><b>Disclaimer regarding the content</b></h4>
-	<p>The OPMS provides no guarantee as to the accuracy or updating of the content offered and uploaded by users on the website. Even if a certain text that is automatically generated and pre-programmed by the website is inaccurate, it is the responsibility of the user to ensure that the pre-programmed information is accurate, and to provide additional information in the text fields where necessary to correct the pre-programmed text. The same applies to possible erroneous information provided via the web services made available by the OPMS as this information is taken directly from the data available in the system, which is supervised by the different users themselves. </p>
-	<h4><b>Protection of personal data</b></h4>
-	<p>The OPMS respects users' privacy. Although most of the information on this site is available without needing to supply any personal data, the user may be asked to provide personal information. In this case, the data will be processed as stipulated in Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 on the protection of natural persons with regard to the processing of personal data and on the free movement of such data, and repealing Directive 95/46/EC (General Data Protection Regulation) and the Act of 30 July 2018 on the processing of personal data. More specifically, this means that:</p>
-	<ul>
-	  <li>Personal data is collected and processed in order to ensure that the e-Procurement applications operate in a satisfactory way (for example so that the information you require can be supplied and so that you can be kept informed about any information relating to the operation of the e-Procurement applications. Concrete examples: receiving messages based on your search profile, receiving an acknowledgement of receipt after submitting a bid, etc.).</li>
-	  <li>You have access to your data at all times and you can check their accuracy and have mistakes in your personal data corrected at no expense.</li>
-	</ul>
-	<p>The OPMS undertakes not to use the data processed for marketing purposes and to apply the best possible safety measures in order to prevent any misuse by third parties of the personal data you have supplied.</p>
-	<h4><b>Intellectual property rights</b></h4>
-	<p>The intellectual property rights to the website  and its related components, including text, images, designs, data files, photographs and other visual materials, sound materials, formats, software, marks and other materials, belong to the OPMS. The use of the logo or other rights is only permitted with prior permission from the OPMS.</p>
-	<h4><b>Applicable law and jurisdiction</b></h4>
-	<p>These conditions of use shall be governed by Philippine law. Any disputes shall exclusively be submitted to the competent court in Philippines</p>
-	</div>
+
+      <h4><b>Disclaimer regarding the content</b></h4>
+
+      <p>The OPMS provides no guarantee as to the accuracy or updating of the content offered and uploaded by users on the website. Even if a certain text that is automatically generated and pre-programmed by the website is inaccurate, it is the responsibility of the user to ensure that the pre-programmed information is accurate, and to provide additional information in the text fields where necessary to correct the pre-programmed text. The same applies to possible erroneous information provided via the web services made available by the OPMS as this information is taken directly from the data available in the system, which is supervised by the different users themselves. </p>
+
+      <h4><b>Protection of personal data</b></h4>
+
+      <p>The OPMS respects users' privacy. Although most of the information on this site is available without needing to supply any personal data, the user may be asked to provide personal information. In this case, the data will be processed as stipulated in Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 on the protection of natural persons with regard to the processing of personal data and on the free movement of such data, and repealing Directive 95/46/EC (General Data Protection Regulation) and the Act of 30 July 2018 on the processing of personal data. More specifically, this means that:</p>
+
+      <ul>
+
+	<li>Personal data is collected and processed in order to ensure that the e-Procurement applications operate in a satisfactory way (for example so that the information you require can be supplied and so that you can be kept informed about any information relating to the operation of the e-Procurement applications. Concrete examples: receiving messages based on your search profile, receiving an acknowledgement of receipt after submitting a bid, etc.).</li>
+
+	<li>You have access to your data at all times and you can check their accuracy and have mistakes in your personal data corrected at no expense.</li>
+
+      </ul>
+
+      <p>The OPMS undertakes not to use the data processed for marketing purposes and to apply the best possible safety measures in order to prevent any misuse by third parties of the personal data you have supplied.</p>
+
+      <h4><b>Intellectual property rights</b></h4>
+
+      <p>The intellectual property rights to the website  and its related components, including text, images, designs, data files, photographs and other visual materials, sound materials, formats, software, marks and other materials, belong to the OPMS. The use of the logo or other rights is only permitted with prior permission from the OPMS.</p>
+
+      <h4><b>Applicable law and jurisdiction</b></h4>
+
+      <p>These conditions of use shall be governed by Philippine law. Any disputes shall exclusively be submitted to the competent court in Philippines</p>
     </div>
+
+    <!-- footer -->
+    <%= render(MyAppWeb.SharedView, "footer.html", conn: @conn) %>
+
   </div>
 </div>

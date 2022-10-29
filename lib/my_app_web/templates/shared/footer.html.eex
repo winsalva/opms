@@ -1,0 +1,20 @@
+<!-- footer -->
+<div class="footer">
+  <div id="opms-logo">
+    <img src="/images/opms-logo.png" alt="Logo"/>
+  </div>
+
+  <p class="footer-company-name">Southern Leyte State University</p>
+
+  <div class="footer-options">
+    <div><%= link "Contact Us", to: Routes.page_path(@conn, :contact_us) %></div>
+    <div><%= link "Terms Of Use", to: Routes.page_path(@conn, :term_of_use) %></div>
+    <div><%= link "Privacy Policy", to: Routes.page_path(@conn, :privacy_policy) %></div>
+    <div><%= link "About Us", to: Routes.page_path(@conn, :about_us) %></div>
+  </div>
+
+  <div class="copyright">
+    <p>Copyright &copy; <%= current_year() %> <%= app_name() %><p>
+    <p>All rights reserved.</p>
+  </div>
+</div>
