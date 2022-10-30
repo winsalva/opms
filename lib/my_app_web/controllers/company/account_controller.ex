@@ -35,25 +35,27 @@ defmodule MyAppWeb.Company.AccountController do
 
   def approve_company(conn, %{"id" => id}) do
       params = %{approved: true}
+      
       case Company.update_company(id, params) do
       	   {:ok, _company} ->
       	   conn
-      	   |> redirect(to: Routes.company_account_path(conn, :unapproved_companies))
+      	   |> redirect(to: Routes.company_page_path(conn, :index))
     	    _ ->
       	    conn
-      	    |> redirect(to: Routes.company_account_path(conn, :unapproved_companies))
+      	    |> redirect(to: Routes.company_page_path(conn, :index))
       end
   end
 
   def disapprove_company(conn, %{"id" => id}) do
       params = %{approved: false}
-      case Company.edit_company(id, params) do
+      
+      case Company.update_company(id, params) do
            {:ok, _company} ->
            conn
-           |> redirect(to: Routes.company_account_path(conn, :approved_companies))
+           |> redirect(to: Routes.company_page_path(conn, :index))
             _ ->
             conn
-            |> redirect(to: Routes.company_account_path(conn, :approved_companies))
+            |> redirect(to: Routes.company_page_path(conn, :index))
       end
   end
 

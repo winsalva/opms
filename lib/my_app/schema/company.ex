@@ -5,8 +5,10 @@ defmodule MyApp.Schema.Company do
   schema "companies" do
     has_many :users, MyApp.Schema.User
     has_many :items, MyApp.Schema.Company
+    field :department, :string
+    field :mobile, :string
     field :name, :string
-    field :description, :string
+    field :description, :string, default: "Department"
     field :email, :string
     field :password, :string, virtual: true
     field :hashed_password, :string
@@ -18,6 +20,8 @@ defmodule MyApp.Schema.Company do
   @allowed_fields [
     :is_admin,
     :name,
+    :department,
+    :mobile,
     :description,
     :email,
     :hashed_password,

@@ -4,6 +4,7 @@
   <h2 align="center"><strong>LOG IN</strong></h2>
 
   <%= render(MyAppWeb.SharedView, "flash-messages.html", conn: @conn) %>
+  <br/>
   
   <label>Email</label>
   <%= text_input f, :email, placeholder: "Enter your email.."  %>

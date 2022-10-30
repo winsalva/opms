@@ -1,25 +1,52 @@
 <%= render(MyAppWeb.SharedView, "top-nav.html", conn: @conn) %>
 
-<div class="sub-container">
-  <div class="pc-content-container">
-    <%= render(MyAppWeb.SharedView, "side-menu.html", conn: @conn) %>
-    <div class="pc-content">
-      <p class="page-titles">Companies</p>
-      
-      <div class="company-logos-container">
-	<a href="<%= Routes.company_account_path(@conn, :approved_companies) %>">
-	  <div class="company-logo-container">
-	    <img src="/images/opms-company.png"/>
-	    <p>Approved Companies: <%= length(@approved) %></p>
-	  </div>
-	</a>
-	<a href="<%= Routes.company_account_path(@conn, :unapproved_companies) %>">
-          <div class="company-logo-container">
-            <img src="/images/opms-company.png"/>
-            <p>Unapproved Companies: <%= length(@unapproved) %></p>
-          </div>
-        </a>
+<div id="page-content-container">
+
+  <!-- side menu for large devices -->
+  <%= render(MyAppWeb.SharedView, "side-menu.html", conn: @conn) %>
+
+  <div class="sub-container">
+    <div class="pc-content-container">
+      <div class="page-content">
+	<div class="page-titles"><i onclick="back();" class="fa fa-arrow-left"></i>&nbsp;&nbsp;&nbsp;Users</div>
+	<div class="users-container">
+	  <%= if @users == [] do %>
+	  <p align="center">No Available Records Yet.</p>
+	  <% else %>
+	  <table>
+	    <thead>
+	      <tr>
+		<th>Name</th>
+		<th>Department</th>
+		<th>Mobile</th>
+		<th>Email</th>
+		<th>Action</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	      <%= for user <- @users do %>
+		  <tr>
+		    <td><%= user.name %></td>
+		    <td><%= user.department %></td>
+		    <td><%= user.mobile %></td>
+		    <td><%= user.email %></td>
+		    <%= cond do %>
+		    <%= user.is_admin -> %>
+	            <td><b>Admin</b></td>
+		    <%= user.approved -> %>
+	            <td><%= link "Cancel?", to: Routes.company_account_path(@conn, :disapprove_company, user.id), method: :post, data: [confirm: "Are you sure?"] %></td>
+		    <% true -> %>
+		    <td><%= link "Approve?", to: Routes.company_account_path(@conn, :approve_company, user.id), method: :post, data: [confirm: "Are you sure?"] %></td>
+		    <% end %>
+		  </tr>
+		  <% end %>
+	    </tbody>
+	  </table>
+	  <% end %>
+	</div>
       </div>
     </div>
+    <!-- footer -->
+    <%= render(MyAppWeb.SharedView, "footer.html", conn: @conn) %>
   </div>
 </div>

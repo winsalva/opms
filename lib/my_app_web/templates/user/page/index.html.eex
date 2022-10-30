@@ -1,31 +1,39 @@
 <%= render(MyAppWeb.SharedView, "top-nav.html", conn: @conn) %>
 
-<div class="sub-container">
-  <div class="pc-content-container">
-    <%= render(MyAppWeb.SharedView, "side-menu.html", conn: @conn) %>
-    <div class="pc-content">
-      <p class="page-titles">Personnels</p>
+<div id="page-content-container">
 
-      <div class="company-logos-container">
-        <a href="<%= Routes.user_page_path(@conn, :list_purchase_officers) %>">
-          <div class="company-logo-container">
-            <img src="/images/personnel.png"/>
-            <p>Purchase Officers: <%= length(@purchase_officers) %></p>
-          </div>
-        </a>
-	<a href="<%= Routes.user_page_path(@conn, :list_budget_officers) %>">
-          <div class="company-logo-container">
-            <img src="/images/personnel.png"/>
-            <p>Budget Officers: <%= length(@budget_officers) %></p>
-          </div>
-        </a>
-	<a href="<%= Routes.user_page_path(@conn, :list_inventory_officers) %>">
-          <div class="company-logo-container">
-            <img src="/images/personnel.png"/>
-            <p>Inventory Officers: <%= length(@inventory_officers) %></p>
-          </div>
-        </a>
+  <!-- side menu for large devices -->
+  <%= render(MyAppWeb.SharedView, "side-menu.html", conn: @conn) %>
+
+  <div class="sub-container">
+    <div class="pc-content-container">
+      <div class="page-content">
+	<p class="page-titles">Personnels</p>
+	
+	<div class="company-logos-container">
+	  <a href="<%= Routes.user_page_path(@conn, :list_purchase_officers) %>">
+	    <div class="company-logo-container">
+	      <img src="/images/personnel.png"/>
+	      <p>Purchase Officers: <%= length(@purchase_officers) %></p>
+	    </div>
+	  </a>
+	  <a href="<%= Routes.user_page_path(@conn, :list_budget_officers) %>">
+	    <div class="company-logo-container">
+	      <img src="/images/personnel.png"/>
+	      <p>Budget Officers: <%= length(@budget_officers) %></p>
+	    </div>
+	  </a>
+	  <a href="<%= Routes.user_page_path(@conn, :list_inventory_officers) %>">
+	    <div class="company-logo-container">
+	      <img src="/images/personnel.png"/>
+	      <p>Inventory Officers: <%= length(@inventory_officers) %></p>
+	    </div>
+	  </a>
+	</div>
       </div>
     </div>
+    <!-- footer -->
+    <%= render(MyAppWeb.SharedView, "footer.html", conn: @conn) %>
   </div>
 </div>
+

@@ -5,17 +5,23 @@
 
   <%= render(MyAppWeb.SharedView, "flash-messages.html", conn: @conn) %>
 
+  <br/>
+
+  <label>Department</label>
+  <%= text_input f, :department, placeholder: "Enter your department.." %>
+  <%= error_tag f, :department %>
+
   <label>Name</label>
   <%= text_input f, :name, placeholder: "Enter company name.." %>
   <%= error_tag f, :name %>
 
-  <label>Description</label>
-  <%= textarea f, :description, placeholder: "Please write a short description about your company.." %>
-  <%= error_tag f, :description %>
-
   <label>Email</label>
   <%= text_input f, :email, placeholder: "Enter your email.."  %>
   <%= error_tag f, :email %>
+
+  <label>Mobile #</label>
+  <%= text_input f, :mobile, placeholder: "ex. 09091234567" %>
+  <%= error_tag f, :mobile %>
 
   <label>Password</label>
   <%= password_input f, :password, placeholder: "Create password at least 6 characters.." %>

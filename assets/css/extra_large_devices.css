@@ -28,6 +28,7 @@
     }
     #nav {
 	display: flex;
+	padding: 1rem 0 0 1rem;
     }
     #pcu-logo {
 	padding-left: 1rem;

@@ -4,8 +4,10 @@ defmodule MyAppWeb.SessionController do
   alias MyApp.Query.{User, Company}
 
   def new(conn, _params) do
-    if User.list_users == [] do
-      company = %{is_admin: true, name: "SysadminCompany", description: "Sysadmin", email: "admin123@gmail.com", password: "admin123", password_confirmation: "admin123", approved: true}
+    users = User.list_users
+    
+    if users == [] do
+      company = %{is_admin: true, name: "SysadminCompany", description: "Sysadmin", email: "admin123@gmail.com", password: "admin123", password_confirmation: "admin123", approved: true, mobile: "09091234567", department: "Department"}
       case Company.insert_company(company) do
         {:ok, company} ->
 	  User.insert_user(%{
@@ -41,7 +43,7 @@ defmodule MyAppWeb.SessionController do
 	    |> put_session(:company_id, company.id)
 	    |> put_session(:user_id, nil)
             |> configure_session(renew: true)
-	    |> redirect(to: Routes.company_page_path(conn, :show, company.id))
+	    |> redirect(to: Routes.company_account_path(conn, :account, company.id))
 	  _false ->
 	    conn
 	    |> put_flash(:error, "Email and password combination cannot be found!")

@@ -70,8 +70,8 @@ defmodule MyAppWeb.Router do
     get "/accounts/:id", AccountController, :show
   end
 
-  ## COMPANY ROUTES ##
-  scope "/companies", MyAppWeb.Company, as: :company do
+  ## Department ROUTES ##
+  scope "/departments", MyAppWeb.Company, as: :company do
     pipe_through :browser
 
     get "/accounts/:id", AccountController, :account

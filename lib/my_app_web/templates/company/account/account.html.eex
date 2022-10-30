@@ -1,27 +1,38 @@
 <%= render(MyAppWeb.SharedView, "top-nav.html", conn: @conn) %>
 
-<div class="sub-container">
-  <div class="pc-content-container">
-    <%= render(MyAppWeb.SharedView, "side-menu.html", conn: @conn) %>
-    <div class="pc-content">
-      <p class="page-titles">My Account</p>
-      
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-	  <tr>
-	    <td><%= @company.name %></td>
-	    <td><%= @company.email %></td>
-	    <td><%= link "Edit Account", to: Routes.company_account_path(@conn, :edit_account, @company.id) %></td>
-	  </tr>
-        </tbody>
-      </table>
+<div id="page-content-container">
+
+  <!-- side menu for large devices -->
+  <%= render(MyAppWeb.SharedView, "side-menu.html", conn: @conn) %>
+
+  <div class="sub-container">
+    <div class="pc-content-container">
+      <div class="pc-content">
+	<p class="page-titles">My Account</p>
+	<table>
+	  <thead>
+	    <tr>
+	      <th>Name</th>
+	      <th>Department</th>
+	      <th>Mobile</th>
+	      <th>Email</th>
+	      <th>Action</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr>
+	      <td><%= @company.name %></td>
+	      <td><%= @company.department %></td>
+	      <td><%= @company.mobile %></td>
+	      <td><%= @company.email %></td>
+	      <td><%= link "Edit Account", to: Routes.company_account_path(@conn, :edit_account, @company.id) %></td>
+	    </tr>
+	  </tbody>
+	</table>
+      </div>
     </div>
+    <!-- footer -->
+    <%= render(MyAppWeb.SharedView, "footer.html", conn: @conn) %>
   </div>
 </div>
+

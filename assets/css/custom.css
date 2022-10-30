@@ -1,3 +1,7 @@
+.alert-msg {
+    padding: 1rem 1rem 0 1rem;
+    margin-bottom: -2rem;
+}
 .sub-menu-profile {
     text-align: center;
     border: 1px solid red;

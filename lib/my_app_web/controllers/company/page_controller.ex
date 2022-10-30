@@ -4,13 +4,8 @@ defmodule MyAppWeb.Company.PageController do
   alias MyApp.Query.{Company, Item, Transaction}
 
   def index(conn, _params) do
-    approved = Company.list_approved_companies()
-    unapproved = Company.list_unapproved_companies()
-    params = [
-      approved: approved,
-      unapproved: unapproved
-    ]
-    render(conn, :index, params)
+    users = Company.list_companies()
+    render(conn, :index, users: users)
   end
 
   def new(conn, _params) do
@@ -22,7 +17,7 @@ defmodule MyAppWeb.Company.PageController do
     case Company.insert_company(company) do
       {:ok, _company} ->
         conn
-	|> put_flash(:info, "Your company account was created successfully!")
+	|> put_flash(:info, "Your account was created successfully. Please wait for admin approval.")
 	|> redirect(to: Routes.page_path(conn, :index))
       {:error, %Ecto.Changeset{} = company} ->
         conn
