@@ -8,6 +8,8 @@
 
     <div class="a"><i class="fa fa-users"></i><%= link "Users", to: Routes.company_page_path(@conn, :index) %>></div>
 
+    <div class="a"><i class="fa fa-file"></i><%= link "Procurements", to: Routes.pr_account_path(@conn, :index) %></div>
+
     <!--
     <div class="a"><i class="fa fa-users"></i>< link "Users", to: Routes.user_page_path(@conn, :index) ></div>
 

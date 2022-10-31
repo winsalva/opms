@@ -32,6 +32,16 @@ defmodule MyAppWeb.Router do
   end
 
 
+  ## PROCUMENT REQUEST ROUTES ##
+  scope "/procurements", MyAppWeb.Procurement, as: :pr do
+    pipe_through [:browser]
+
+    resources "/requests", AccountController, only: [:new, :show, :index, :create, :edit, :update, :delete] do
+      resources "/updates", UpdateController
+    end
+  end
+
+
   ## TRANSACTION ROUTES ##
   scope "/transactions", MyAppWeb.Transaction, as: :transaction do
     pipe_through [:browser]

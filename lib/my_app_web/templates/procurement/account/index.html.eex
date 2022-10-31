@@ -1,0 +1,44 @@
+<%= render(MyAppWeb.SharedView, "top-nav.html", conn: @conn) %>
+
+<div id="page-content-container">
+
+  <!-- side menu for large devices -->
+  <%= render(MyAppWeb.SharedView, "side-menu.html", conn: @conn) %>
+
+
+  <div class="sub-container">
+
+    <div class="pc-content-container">
+      <div class="page-content">
+
+        <div class="page-titles"><i onclick="back();" class="fa fa-arrow-left"></i>&nbsp;&nbsp;&nbsp;Procurements | <a href="<%= Routes.pr_account_path(@conn, :new) %>"><i class="fa fa-file"></i></a></div>
+
+	<%= if @prs == [] do %>
+	<p>No Records Available Yet!</p>
+	<% else %>
+	<table>
+	  <thead>
+	    <tr>
+	      <th>PR #</th>
+	      <th>Status</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <%= for pr <- @prs do %>
+		<tr>
+		  <td><%= pr.pr_number %></td>
+		  <td><%= pr.status %></td>
+		</tr>
+		<% end %>
+	  </tbody>
+	</table>
+	<% end %>
+
+	</div>
+    </div>
+
+    <!-- footer -->
+    <%= render(MyAppWeb.SharedView, "footer.html", conn: @conn) %>
+
+  </div>
+</div>
