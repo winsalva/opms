@@ -15,10 +15,13 @@
     }
     .side-menu-container > div {
 	text-align: left;
-	padding-left: 2.5rem;
+	padding-left: 2.6rem;
     }
     .side-menu-container > div > a {
 	padding-left: 1rem;
+	font-size: 1.5rem;
+	font-weight: 600;
+	color: #000;
     }
     #side-bar-menu {
 	border-right: 3px solid #fff;
@@ -132,12 +135,13 @@
 	margin: 5rem 2rem 5rem 1.5rem;
     }
     .home-page-content > img {
-	width: 450px;
-	height: 150px;
+	width: 500px;
+	height: 160px;
 	object-fit: cover;
+	padding-bottom: 0.5rem;
     }
     .home-page-content > p {
-	font-size: 1rem;
+	font-size: 1.4rem;
     }
     .footer {
 	margin: 0;
@@ -154,8 +158,8 @@
     }
     .footer-company-name {
 	color: #fff;
-	font-weight: 400;
-	font-size: 1.5rem;
+	font-weight: 550;
+	font-size: 1.6rem;
 	margin: 0 0 3rem 0;
 	padding: 0;
     }
@@ -174,7 +178,8 @@
 	padding-bottom: 3rem;
     }
     .copyright > p {
-	font-size: 0.8rem;
+	color: #000;
+	font-size: 1rem;
     }
 
     /* session form */
@@ -182,10 +187,10 @@
         background-color: #eef;
         border: 1px solid #eef;
         border-radius: 5px;
-        width: 35%;
+        width: 30%;
         height: 100%;
         margin: 20% auto;
-        padding: 2.5rem;
+        padding: 3rem;
     }
 
     .session-form {
@@ -195,6 +200,6 @@
         width: 100%;
         height: 100%;
         margin: 15% auto;
-        padding: 2.5rem;
+        padding: 3rem;
     }
 }

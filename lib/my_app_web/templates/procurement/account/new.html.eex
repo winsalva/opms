@@ -1,23 +1,23 @@
 <div class="session-form-login">
   <div><p class="close-btn" onclick="back();">&times</div>
   <%= form_for @new_pr, Routes.pr_account_path(@conn, :create), fn f -> %>
-  <h2 align="center"><strong>NEW PROCUREMENT REQUEST</strong></h2>
+  <h3 align="center"><strong>NEW PROCUREMENT REQUEST</strong></h3>
 
   <%= render(MyAppWeb.SharedView, "flash-messages.html", conn: @conn) %>
   <br/>
 
-  <label>Personnel/Department</label>
+  <label>Department</label>
   <%= select f, :company_id, Enum.reduce(@departments, [], fn x, acc ->
   if !x.is_admin do
-  [{String.to_atom(x.name), x.id}|acc]
+  [{String.to_atom(x.department), x.id}|acc]
   else
   acc
   end
-  end) %>
+  end), prompt: "Select Department" %>
   <%= error_tag f, :company_id %>
 
   <label>PR number</label>
-  <%= text_input f, :pr_number %>
+  <%= text_input f, :pr_number, placeholder: "123xxxx" %>
   <%= error_tag f, :pr_number %>
 
   <label>Status</label>
@@ -30,7 +30,7 @@
   
   <div align="center">
     <br /><br />
-    <%= submit "Upload" %>
+    <%= submit "Create" %>
   </div>
   <% end %>
 </div>
