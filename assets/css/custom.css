@@ -1,3 +1,22 @@
+
+.red {
+    background-color: red;
+    border: 1px solid red;
+    color: #fff;
+}
+.red:hover {
+    background-color: #eef;
+    color: red;
+}
+.blue {
+    background-color: #1769ff;
+    border: 1px solid #1769ff;
+    color: #fff;
+}
+.blue:hover {
+    background-color: #eef;
+    color: #1769ff;
+}
 .alert-msg {
     padding: 1rem 1rem 0 1rem;
     margin-bottom: -2rem;

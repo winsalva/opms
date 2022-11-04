@@ -8,6 +8,11 @@
     .container {
 	background-color: transparent;
     }
+    .statuses {
+        padding: .4rem 1rem;
+	font-weight: 500;
+	margin-right: .5rem;
+    }
     .side-menu-container {
 	width: 100%;
 	height: 100%;

@@ -1,0 +1,36 @@
+<div class="session-form-login">
+  <div><p class="close-btn" onclick="back();">&times</div>
+  <%= form_for @pr, Routes.pr_account_path(@conn, :update, @pr.data), fn f -> %>
+  <h3 align="center"><strong>EDIT PROCUREMENT REQUEST</strong></h3>
+
+  <%= render(MyAppWeb.SharedView, "flash-messages.html", conn: @conn) %>
+  <br/>
+
+  <label>Department</label>
+  <%= select f, :company_id, Enum.reduce(@departments, [], fn x, acc ->
+  if !x.is_admin do
+  [{String.to_atom(x.department), x.id}|acc]
+  else
+  acc
+  end
+  end), prompt: "Select Department" %>
+  <%= error_tag f, :company_id %>
+
+  <label>PR number</label>
+  <%= text_input f, :pr_number, placeholder: "123xxxx" %>
+  <%= error_tag f, :pr_number %>
+
+  <label>Status</label>
+  <%= text_input f, :status %>
+  <%= error_tag f, :status %>
+
+  <label>Remarks</label>
+  <%= text_input f, :remarks %>
+  <%= error_tag f, :remarks %>
+
+  <div align="center">
+    <br /><br />
+    <%= submit "Update" %>
+  </div>
+  <% end %>
+</div>

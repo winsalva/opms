@@ -4,7 +4,7 @@ defmodule MyApp.Schema.ProcurementRequest do
 
   schema "prs" do
     belongs_to :company, MyApp.Schema.Company
-    field :pr_personnel_id, :integer
+    belongs_to :pr_personnel, MyApp.Schema.Company
     field :pr_number, :string
     field :status, :string
     field :remarks, :string

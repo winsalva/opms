@@ -11,7 +11,11 @@
     <div class="pc-content-container">
       <div class="page-content">
 
-        <div class="page-titles"><i onclick="back();" class="fa fa-arrow-left"></i>&nbsp;&nbsp;&nbsp;Procurements | <a href="<%= Routes.pr_account_path(@conn, :new) %>"><i class="fa fa-file"></i></a></div>
+        <div class="page-titles"><i onclick="back();" class="fa fa-arrow-left"></i>&nbsp;&nbsp;&nbsp;Procurements&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	  <%= if @end_users != 0 do %>
+	  <a href="<%= Routes.pr_account_path(@conn, :new) %>"><i class="fa fa-plus-square"></i></a>
+	  <% end %>
+	</div>
 
 	<%= if @prs == [] do %>
 	<p>No Records Available Yet!</p>
@@ -19,15 +23,23 @@
 	<table>
 	  <thead>
 	    <tr>
-	      <th>PR #</th>
+	      <th>PR Number</th>
+	      <th>Department</th>
+	      <th>Date Created</th>
+	      <th>Date Updated</th>
 	      <th>Status</th>
+	      <th>PR Action</th>
 	    </tr>
 	  </thead>
 	  <tbody>
 	    <%= for pr <- @prs do %>
 		<tr>
 		  <td><%= pr.pr_number %></td>
+		  <td><%= pr.company.department %></td>
+		  <td><%= get_date(pr.inserted_at) %></td>
+		  <td><%= get_date(pr.updated_at) %></td>
 		  <td><%= pr.status %></td>
+		  <td><%= link "Update", to: Routes.pr_account_path(@conn, :edit, pr.id), class: "statuses blue" %><%= link "Delete", to: Routes.pr_account_path(@conn, :delete, pr.id), method: :delete, class: "statuses red", data: [confirm: "Are you sure?"] %></td>
 		</tr>
 		<% end %>
 	  </tbody>

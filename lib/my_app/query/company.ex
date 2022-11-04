@@ -62,7 +62,7 @@ defmodule MyApp.Query.Company do
   def list_approved_companies do
     query =
       from c in Company,
-        where: c.approved == true and c.email != "admin123@gmail.com",
+        where: c.approved == true and c.is_admin == false,
 	order_by: [desc: :inserted_at]
 
     Repo.all(query)
