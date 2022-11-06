@@ -17,20 +17,28 @@
   <%= error_tag f, :company_id %>
 
   <label>PR number</label>
-  <%= text_input f, :pr_number, placeholder: "123xxxx" %>
+  <%= text_input f, :pr_number, placeholder: "12345678" %>
   <%= error_tag f, :pr_number %>
 
   <label>Status</label>
-  <%= text_input f, :status %>
+  <%= select f, :status, [
+      "Receive PR": "Receive PR",
+      "Non-Common Use Supplies": "Non-Common Use Supplies",
+      "Prepare RFQ": "Prepare RFQ",
+      "Open RFQ": "Open RFQ",
+      "Prepare AOQ": "Prepare AOQ",
+      "Serve PO": "Serve PO",
+      "Delivery of Items": "Delivery of Items"
+    ], prompt: "Select Status", value: "Receive PR" %>
   <%= error_tag f, :status %>
 
-  <label>Remarks</label>
-  <%= text_input f, :remarks %>
+  <label>Initial Remarks</label>
+  <%= textarea f, :remarks, placeholder: "Add your remarks..." %>
   <%= error_tag f, :remarks %>
-  
+ 
   <div align="center">
     <br /><br />
-    <%= submit "Create" %>
+    <%= submit "Create PR" %>
   </div>
   <% end %>
 </div>

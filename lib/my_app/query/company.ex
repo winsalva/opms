@@ -33,6 +33,18 @@ defmodule MyApp.Query.Company do
   end
 
   @doc """
+  Get company with procurement requests.
+  """
+  def get_company_with_procurement_request(id) do
+    query =
+      from c in Company,
+        where: c.id == ^id,
+	preload: [procurement_request: [prs_remarks: :admin]]
+
+    Repo.one(query)
+  end
+
+  @doc """
   Edit company.
   """
   def edit_company(id) do
@@ -53,7 +65,12 @@ defmodule MyApp.Query.Company do
   List all companies.
   """
   def list_companies do
-    Repo.all(Company)
+    query =
+      from c in Company,
+      where: c.is_admin == false,
+      order_by: [desc: :inserted_at]
+      
+    Repo.all(query)
   end
 
   @doc """

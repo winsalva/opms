@@ -5,6 +5,7 @@ defmodule MyApp.Schema.ProcurementRequest do
   schema "prs" do
     belongs_to :company, MyApp.Schema.Company
     belongs_to :pr_personnel, MyApp.Schema.Company
+    has_many :prs_remarks, MyApp.Schema.PrsRemark
     field :pr_number, :string
     field :status, :string
     field :remarks, :string
@@ -18,12 +19,14 @@ defmodule MyApp.Schema.ProcurementRequest do
     :status,
     :remarks
   ]
+
+  @required_fields @allowed_fields
   
   @doc false
   def changeset(pr, params \\ %{}) do
     pr
     |> cast(params, @allowed_fields)
-    |> validate_required(@allowed_fields)
+    |> validate_required(@required_fields)
     |> assoc_constraint(:company) # must same to belongs_to key
   end
 end

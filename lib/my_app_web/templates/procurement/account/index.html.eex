@@ -23,12 +23,12 @@
 	<table>
 	  <thead>
 	    <tr>
-	      <th>PR Number</th>
+	      <th>PR#</th>
 	      <th>Department</th>
-	      <th>Date Created</th>
-	      <th>Date Updated</th>
-	      <th>Status</th>
-	      <th>PR Action</th>
+	      <th>Created</th>
+	      <th>Updated</th>
+	      <th>Current Status</th>
+	      <th>Action</th>
 	    </tr>
 	  </thead>
 	  <tbody>
@@ -39,7 +39,7 @@
 		  <td><%= get_date(pr.inserted_at) %></td>
 		  <td><%= get_date(pr.updated_at) %></td>
 		  <td><%= pr.status %></td>
-		  <td><%= link "Update", to: Routes.pr_account_path(@conn, :edit, pr.id), class: "statuses blue" %><%= link "Delete", to: Routes.pr_account_path(@conn, :delete, pr.id), method: :delete, class: "statuses red", data: [confirm: "Are you sure?"] %></td>
+		  <td><%= link "View", to: Routes.pr_account_path(@conn, :show, pr.id), class: "statuses blue" %></td>
 		</tr>
 		<% end %>
 	  </tbody>

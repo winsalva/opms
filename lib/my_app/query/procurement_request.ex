@@ -5,6 +5,7 @@ defmodule MyApp.Query.ProcurementRequest do
 
   alias MyApp.Repo
   alias MyApp.Schema.ProcurementRequest, as: PR
+  alias MyApp.Schema.PrsRemark, as: Remark
 
   import Ecto.Query, warn: false
   
@@ -17,6 +18,15 @@ defmodule MyApp.Query.ProcurementRequest do
     %PR{}
     |> PR.changeset(params)
     |> Repo.insert()
+  end
+
+  def get_pr_with_remarks(id) do
+    query =
+      from p in PR,
+        where: p.id == ^id,
+	preload: [:company, prs_remarks: :admin]
+	
+    Repo.one(query)
   end
 
   def list_prs do

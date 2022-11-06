@@ -3,6 +3,7 @@ defmodule MyAppWeb.Procurement.AccountController do
 
   alias MyApp.Query.ProcurementRequest, as: PR
   alias MyApp.Query.Company
+  alias MyApp.Query.PrsRemark, as: Remark
 
   def index(conn, _params) do
     prs = PR.list_prs
@@ -24,12 +25,20 @@ defmodule MyAppWeb.Procurement.AccountController do
     render(conn, :new, params)
   end
 
-  def create(conn, %{"procurement_request" => params}) do
-    params =
-      Map.put(params, "pr_personnel_id", conn.assigns.current_company.id)
+  def create(conn, %{"procurement_request" => %{"company_id" => company_id, "pr_number" => pr_number, "remarks" => remarks, "status" => status}}) do
+    params = %{
+      "company_id": company_id,
+      "pr_number": pr_number,
+      "remarks": remarks,
+      "status": status,
+      "pr_personnel_id": conn.assigns.current_company.id
+    }
     
     case PR.insert_pr(params) do
-      {:ok, _pr} ->
+      {:ok, pr} ->
+
+        Remark.insert_prs_remark(%{"procurement_request_id": pr.id, "admin_id": conn.assigns.current_company.id, "remarks": remarks})
+
         conn
 	|> redirect(to: Routes.pr_account_path(conn, :index))
       {:error, %Ecto.Changeset{} = new_pr} ->
@@ -42,6 +51,11 @@ defmodule MyAppWeb.Procurement.AccountController do
     end
   end
 
+  def show(conn, %{"id" => id}) do
+    pr = PR.get_pr_with_remarks(id)
+    render(conn, :show, pr: pr)
+  end
+
   def edit(conn, %{"id" => id}) do
     pr = PR.edit_pr(id)
     departments = Company.list_companies
@@ -52,11 +66,20 @@ defmodule MyAppWeb.Procurement.AccountController do
     render(conn, :edit, params)
   end
 
-  def update(conn, %{"procurement_request" => params, "id" => id}) do
+  def update(conn, %{"procurement_request" => %{"company_id" => company_id, "pr_number" => pr_number, "remarks" => remarks, "status" => status}, "id" => id}) do
+    params = %{
+      "company_id": company_id,
+      "pr_number": pr_number,
+      "remarks": remarks,
+      "status": status
+    }
+
+    Remark.insert_prs_remark(%{"procurement_request_id": id, "admin_id": conn.assigns.current_company.id, "remarks": remarks})
+    
     case PR.update_pr(id, params) do
-      {:ok, _pr} ->
+      {:ok, pr} ->
         conn
-	|> redirect(to: Routes.pr_account_path(conn, :index))
+	|> redirect(to: Routes.pr_account_path(conn, :show, pr.id))
       {:error, %Ecto.Changeset{} = pr} ->
         departments = Company.list_companies
         params = [

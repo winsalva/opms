@@ -5,6 +5,8 @@ defmodule MyApp.Schema.Company do
   schema "companies" do
     has_many :users, MyApp.Schema.User
     has_many :items, MyApp.Schema.Company
+    has_many :prs_remarks, MyApp.Schema.PrsRemark
+    has_many :procurement_request, MyApp.Schema.ProcurementRequest
     field :department, :string
     field :mobile, :string
     field :name, :string

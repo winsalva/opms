@@ -1,21 +1,11 @@
 <div id="side-bar-menu">
   <%= cond do %>
-  <% @conn.assigns.current_company != nil and @conn.assigns.current_company.email == "admin123@gmail.com" -> %>
+  <% @conn.assigns.current_company != nil and @conn.assigns.current_company.is_admin == true -> %>
   <div class="side-menu-container">
+    <div class="a"><i class="fa fa-home"></i><%= link "Home", to: Routes.page_path(@conn, :index) %></div>
     <div class="a"><i class="fa fa-user"></i><a href="<%= Routes.company_account_path(@conn, :account, @conn.assigns.current_company.id) %>">Admin</a></div>
-
-    <div class="a"><i class="fa fa-home"></i><%= link "Home", to: Routes.page_path(@conn, :index) %></div>
-
     <div class="a"><i class="fa fa-users"></i><%= link "Users", to: Routes.company_page_path(@conn, :index) %></div>
-
     <div class="a"><i class="fa fa-file"></i><%= link "Procurements", to: Routes.pr_account_path(@conn, :index) %></div>
-
-    <!--
-    <div class="a"><i class="fa fa-users"></i>< link "Users", to: Routes.user_page_path(@conn, :index) ></div>
-
-    <div class="a">< link "Transactions", to: Routes.company_page_path(@conn, :show, @conn.assigns.current_company.id) ></div>
-  <div class="a">< link "Products/Services", to: Routes.item_page_path(@conn, :index) ></div>
-  -->
     <div class="a"><i class="fa fa-info-circle"></i><%= link "About us", to: Routes.page_path(@conn, :about_us) %></div>
 
     <div class="a"><i class="fa fa-address-book"></i><%= link "Contact us", to: Routes.page_path(@conn, :contact_us) %></div>
@@ -27,98 +17,29 @@
     <div class="a"><i class="fa fa-sign-out"></i><%= link "Log out", to: Routes.session_path(@conn, :delete), method: :delete, data: [confirm: "Are you sure?"] %></div>
   </div>
 
-  <% @conn.assigns.current_company != nil -> %>
+  <% @conn.assigns.current_company != nil && @conn.assigns.current_company.is_admin == false -> %>
 
   <div class="side-menu-container">
-    <div class="a"><i class="fa fa-user"></i><a href="<%= Routes.company_account_path(@conn, :account, @conn.assigns.current_company.id) %>">My Account</a></div>
-
     <div class="a"><i class="fa fa-home"></i><%= link "Home", to: Routes.page_path(@conn, :index) %></div>
-
+    <div class="a"><i class="fa fa-user"></i><a href="<%= Routes.company_account_path(@conn, :account, @conn.assigns.current_company.id) %>">Account</a></div>
+    <div class="a"><i class="fa fa-file"></i><%= link "Procurements", to: Routes.pr_page_path(@conn, :index, id: @conn.assigns.current_company.id) %></div>
     <div class="a"><i class="fa fa-info-circle"></i><%= link "About us", to: Routes.page_path(@conn, :about_us) %></div>
-
     <div class="a"><i class="fa fa-address-book"></i><%= link "Contact us", to: Routes.page_path(@conn, :contact_us) %></div>
-
     <div class="a"><i class="fa fa-legal"></i><%= link "Terms of use", to: Routes.page_path(@conn, :term_of_use) %></div>
-
     <div class="a"><i class="fa fa-lock"></i><%= link "Privacy policy", to: Routes.page_path(@conn, :privacy_policy) %></div>
-
     <div class="a"><i class="fa fa-sign-out"></i><%= link "Log out", to: Routes.session_path(@conn, :delete), method: :delete, data: [confirm: "Are you sure?"] %></div>
-  </div>
-
-    <!--
-    <div class="side-menu-profile">
-      <img src="/images/personnel.png"/>
-      <p>< link @conn.assigns.current_company.name, to: Routes.company_account_path(@conn, :account, @conn.assigns.current_company.id), class: "company-profile-name" ></p>
-    </div>
-
-    <div class="a">< link "My Posts", to: Routes.item_page_path(@conn, :show, @conn.assigns.current_company.id) ></div>
-
-    <div class="a">< link "Transactions", to: Routes.company_page_path(@conn, :show, @conn.assigns.current_company.id) ></div>
-
-    <div class="a">< link "Personnels", to: Routes.user_account_path(@conn, :index, @conn.assigns.current_company.id) ></div>-->
-
-  <% @conn.assigns.current_user != nil && @conn.assigns.current_user.role == "Purchase" -> %>
-
-  <div class="side-menu-container">
-
-    <div class="side-menu-profile">
-
-      <img src="/images/personnel.png"/>
-
-      <p><%= link @conn.assigns.current_user.fullname, to: "#" %></p>
-
-    </div>
-
-    <div class="a"><%= link "Products/Services", to: Routes.item_page_path(@conn, :index) %></div>
-
-    <div class="a"><%= link "Transactions", to: Routes.user_page_path(@conn, :show, @conn.assigns.current_user.id) %></div>
-
-    <div class="a"><%= link "Contact Us", to: Routes.page_path(@conn, :contact_us) %></div>
-
-    <div class="a"><%= link "Terms Of Use", to: Routes.page_path(@conn, :term_of_use) %></div>
-
-    <div class="a"><%= link "Privacy Policy", to: Routes.page_path(@conn, :privacy_policy) %></div>
-</div>
-
-  <% @conn.assigns.current_user != nil -> %>
-
-  <div class="side-menu-container">
-
-    <div class="side-menu-profile">
-
-      <img src="/images/personnel.png"/>
-
-      <p><%= link @conn.assigns.current_user.fullname, to: "#" %></p>
-
-    </div>
-
-    <div class="a"><%= link "Transactions", to: Routes.user_page_path(@conn, :show, @conn.assigns.current_user.id) %></div>
-
-    <div class="a"><%= link "Contact Us", to: Routes.page_path(@conn, :contact_us) %></div>
-
-    <div class="a"><%= link "Terms Of Use", to: Routes.page_path(@conn, :term_of_use) %></div>
-
-    <div class="a"><%= link "Privacy Policy", to: Routes.page_path(@conn, :privacy_policy) %></div>
-
   </div>
 
   <% true -> %>
 
   <div class="side-menu-container">
-
     <div class="a"><i class="fa fa-home"></i><%= link "Home", to: Routes.page_path(@conn, :index) %></div>
-
     <div class="a"><i class="fa fa-info-circle"></i><%= link "About us", to: Routes.page_path(@conn, :about_us) %></div>
-
     <div class="a"><i class="fa fa-address-book"></i><%= link "Contact us", to: Routes.page_path(@conn, :contact_us) %></div>
-
     <div class="a"><i class="fa fa-legal"></i><%= link "Terms of use", to: Routes.page_path(@conn, :term_of_use) %></div>
-
     <div class="a"><i class="fa fa-lock"></i><%= link "Privacy policy", to: Routes.page_path(@conn, :privacy_policy) %></div>
-
     <div class="a"><i class="fa fa-user-plus"></i><%= link "Register", to: Routes.company_page_path(@conn, :new) %></div>
     <div class="a"><i class="fa fa-sign-in"></i><%= link "Log in", to: Routes.session_path(@conn, :new) %></div>
-
   </div>
   <% end %>
 </div>
