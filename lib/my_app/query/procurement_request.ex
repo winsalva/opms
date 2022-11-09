@@ -29,6 +29,15 @@ defmodule MyApp.Query.ProcurementRequest do
     Repo.one(query)
   end
 
+  def search_pr_number(pr_number) do
+    query =
+      from p in PR,
+        where: p.pr_number == ^pr_number,
+	preload: [:company, prs_remarks: :admin]
+
+    Repo.one(query)
+  end
+
   def list_prs do
     query =
       from p in PR,

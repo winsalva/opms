@@ -39,6 +39,9 @@ defmodule MyAppWeb.Router do
     resources "/requests", AccountController, only: [:new, :show, :index, :create, :edit, :update, :delete]
 
     resources "/end_users/requests", PageController, only: [:index, :show]
+
+    get "/search", PageController, :search
+    post "/search", PageController, :search_pr
   end
 
 

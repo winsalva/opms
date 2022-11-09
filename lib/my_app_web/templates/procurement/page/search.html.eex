@@ -1,0 +1,41 @@
+<%= render(MyAppWeb.SharedView, "top-nav.html", conn: @conn) %>
+
+<div id="page-content-container">
+
+  <!-- side menu for large devices -->
+  <%= render(MyAppWeb.SharedView, "side-menu.html", conn: @conn) %>
+
+
+  <div class="sub-container">
+
+    <div class="pc-content-container">
+      <div class="page-content">
+
+	<!--
+        <div class="page-titles"><i onclick="back();" class="fa fa-arrow-left"></i>&nbsp;&nbsp;&nbsp;Procurements
+        </div>
+	-->
+
+	<%= form_for @conn, Routes.pr_page_path(@conn, :search_pr), fn f -> %>
+	<%= text_input f, :pr_number, placeholder: "Enter procurement request number.." %>
+	<%= submit "Search" %>
+	<% end %>
+
+	<%= cond do %>
+	<% @query != nil -> %>
+	<p>Pr found </p>
+	<% @query == nil && @q_string != "" -> %>
+	<p>No result found for pr number <%= @q_string %></p>
+	<% true -> %>
+	<br><br>
+	<% end %>
+
+      </div>
+
+    </div>
+
+    <!-- footer -->
+    <%= render(MyAppWeb.SharedView, "footer.html", conn: @conn) %>
+
+  </div>
+</div>

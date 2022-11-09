@@ -12,8 +12,10 @@
       <div class="page-content">
 
         <div class="page-titles"><i onclick="back();" class="fa fa-arrow-left"></i>&nbsp;&nbsp;&nbsp;Procurements&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	  <!-- dont display this if there are users yet. There is no sense to add a pr when no users yet -->
 	  <%= if @end_users != 0 do %>
 	  <a href="<%= Routes.pr_account_path(@conn, :new) %>"><i class="fa fa-plus-square"></i></a>
+	  <a href="<%= Routes.pr_page_path(@conn, :search) %>">&nbsp;&nbsp;&nbsp;<i class="fa fa-search"></i></a>
 	  <% end %>
 	</div>
 

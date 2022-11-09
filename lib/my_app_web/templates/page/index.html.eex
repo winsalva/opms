@@ -13,7 +13,7 @@
       <img src="/images/opms3.jpg"/>
       <div id="sm-name-tag">
 	<h1><%= app_name() %></h1>
-	<p><span>O</span>nline <span>P</span>rocurement <span>M</span>onitoring <span>S</span>ystem</p>
+	<p>Online Procurement Monitoring System</p>
       </div>
     </div>
 
@@ -40,17 +40,17 @@
     <div class="home-page-content-container">
       <div class="home-page-content">
 	<img src="/images/opms3.jpg" alt="Image"/>
-	<p>Electronic procurement, also known as e-procurement or supplier exchange, is the process of requisitioning, ordering and purchasing goods and services online. It is a business-to-business process.</p>
+	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi suscipit lacus id vulputate lobortis. Nam massa justo, porttitor ac tortor eu, sagittis vulputate neque. Aliquam porttitor erat ac ultricies fermentum. Pellentesque quis sem a metus semper porttitor</p>
       </div>
 
       <div class="home-page-content">
 	<img src="/images/opms2.jpg" alt="Image"/>
-	<p>Electronic procurement, also known as e-procurement or supplier exchange, is the process of requisitioning, ordering and purchasing goods and services online. It is a business-to-business process.</p>
+	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi suscipit lacus id vulputate lobortis. Nam massa justo, porttitor ac tortor eu, sagittis vulputate neque. Aliquam porttitor erat ac ultricies fermentum. Pellentesque quis sem a metus semper porttitor</p>
       </div>
 
       <div class="home-page-content">
 	<img src="/images/opms1.jpg" alt="Image"/>
-	<p>Electronic procurement, also known as e-procurement or supplier exchange, is the process of requisitioning, ordering and purchasing goods and services online. It is a business-to-business process.</p>
+	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi suscipit lacus id vulputate lobortis. Nam massa justo, porttitor ac tortor eu, sagittis vulputate neque. Aliquam porttitor erat ac ultricies fermentum. Pellentesque quis sem a metus semper porttitor</p>
       </div>
     </div>
 
