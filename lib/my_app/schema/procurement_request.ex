@@ -27,6 +27,7 @@ defmodule MyApp.Schema.ProcurementRequest do
     pr
     |> cast(params, @allowed_fields)
     |> validate_required(@required_fields)
+    |> unique_constraint(:pr_number)
     |> assoc_constraint(:company) # must same to belongs_to key
   end
 end

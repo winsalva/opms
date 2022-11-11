@@ -29,7 +29,10 @@ defmodule MyApp.Query.ProcurementRequest do
     Repo.one(query)
   end
 
-  def search_pr_number(pr_number) do
+  @doc """
+  Searches any procurement request by id. If admin.
+  """
+  def admin_search_pr(pr_number) do
     query =
       from p in PR,
         where: p.pr_number == ^pr_number,
@@ -37,6 +40,19 @@ defmodule MyApp.Query.ProcurementRequest do
 
     Repo.one(query)
   end
+
+  @doc """
+  Search procurement request by id but only for procurement request that belongs to a user.
+  """
+  def user_search_pr(user_id, pr_number) do
+    query =
+      from p in PR,
+        where: p.pr_number == ^pr_number and p.company_id == ^user_id,
+	preload: [:company, prs_remarks: :admin]
+
+    Repo.one(query)
+  end
+
 
   def list_prs do
     query =

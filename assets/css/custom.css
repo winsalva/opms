@@ -1,4 +1,12 @@
-
+.color-red {
+    color: red;
+}
+.color-blue {
+    color: #1769ff;
+}
+.bold {
+    font-weight: 500;
+}
 .red {
     background-color: red;
     border: 1px solid red;

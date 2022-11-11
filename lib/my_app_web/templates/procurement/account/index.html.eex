@@ -5,9 +5,7 @@
   <!-- side menu for large devices -->
   <%= render(MyAppWeb.SharedView, "side-menu.html", conn: @conn) %>
 
-
   <div class="sub-container">
-
     <div class="pc-content-container">
       <div class="page-content">
 
@@ -15,7 +13,7 @@
 	  <!-- dont display this if there are users yet. There is no sense to add a pr when no users yet -->
 	  <%= if @end_users != 0 do %>
 	  <a href="<%= Routes.pr_account_path(@conn, :new) %>"><i class="fa fa-plus-square"></i></a>
-	  <a href="<%= Routes.pr_page_path(@conn, :search) %>">&nbsp;&nbsp;&nbsp;<i class="fa fa-search"></i></a>
+	  <a href="<%= Routes.pr_page_path(@conn, :search) %>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-search"></i></a>
 	  <% end %>
 	</div>
 
@@ -25,7 +23,7 @@
 	<table>
 	  <thead>
 	    <tr>
-	      <th>PR#</th>
+	      <th>PR No.</th>
 	      <th>Department</th>
 	      <th>Created</th>
 	      <th>Updated</th>
@@ -41,7 +39,7 @@
 		  <td><%= get_date(pr.inserted_at) %></td>
 		  <td><%= get_date(pr.updated_at) %></td>
 		  <td><%= pr.status %></td>
-		  <td><%= link "View", to: Routes.pr_account_path(@conn, :show, pr.id), class: "statuses blue" %></td>
+		  <td><%= link "View Details", to: Routes.pr_account_path(@conn, :show, pr.id), class: "statuses blue" %></td>
 		</tr>
 		<% end %>
 	  </tbody>

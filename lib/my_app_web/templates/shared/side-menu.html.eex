@@ -2,8 +2,8 @@
   <%= cond do %>
   <% @conn.assigns.current_company != nil and @conn.assigns.current_company.is_admin == true -> %>
   <div class="side-menu-container">
+    <div class="a"><i class="fa fa-user"></i><a href="<%= Routes.company_account_path(@conn, :account, @conn.assigns.current_company.id) %>">Admin Account</a></div>
     <div class="a"><i class="fa fa-home"></i><%= link "Home", to: Routes.page_path(@conn, :index) %></div>
-    <div class="a"><i class="fa fa-user"></i><a href="<%= Routes.company_account_path(@conn, :account, @conn.assigns.current_company.id) %>">Admin</a></div>
     <div class="a"><i class="fa fa-users"></i><%= link "Users", to: Routes.company_page_path(@conn, :index) %></div>
     <div class="a"><i class="fa fa-file"></i><%= link "Procurements", to: Routes.pr_account_path(@conn, :index) %></div>
     <div class="a"><i class="fa fa-info-circle"></i><%= link "About us", to: Routes.page_path(@conn, :about_us) %></div>
@@ -20,8 +20,8 @@
   <% @conn.assigns.current_company != nil && @conn.assigns.current_company.is_admin == false -> %>
 
   <div class="side-menu-container">
+    <div class="a"><i class="fa fa-user"></i><a href="<%= Routes.company_account_path(@conn, :account, @conn.assigns.current_company.id) %>">My Account</a></div>
     <div class="a"><i class="fa fa-home"></i><%= link "Home", to: Routes.page_path(@conn, :index) %></div>
-    <div class="a"><i class="fa fa-user"></i><a href="<%= Routes.company_account_path(@conn, :account, @conn.assigns.current_company.id) %>">Account</a></div>
     <div class="a"><i class="fa fa-file"></i><%= link "Procurements", to: Routes.pr_page_path(@conn, :index, id: @conn.assigns.current_company.id) %></div>
     <div class="a"><i class="fa fa-info-circle"></i><%= link "About us", to: Routes.page_path(@conn, :about_us) %></div>
     <div class="a"><i class="fa fa-address-book"></i><%= link "Contact us", to: Routes.page_path(@conn, :contact_us) %></div>

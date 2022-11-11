@@ -14,9 +14,14 @@ defmodule MyAppWeb.Procurement.PageController do
   end
 
   def search_pr(conn, %{"pr_number" => pr_number}) do
-    query = PR.search_pr_number(pr_number)
-    IO.inspect query
-    
-    render(conn, "search.html", query: query, q_string: pr_number)
+    if conn.assigns.current_company && conn.assigns.current_company.is_admin == true do
+      query = PR.admin_search_pr(pr_number)
+      render(conn, "search.html", query: query, q_string: pr_number)
+    end
+
+    if conn.assigns.current_company != nil do
+      query = PR.user_search_pr(conn.assigns.current_company.id, pr_number)
+      render(conn, "search.html", query: query, q_string: pr_number)
+    end
   end
 end

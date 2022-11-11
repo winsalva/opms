@@ -1,4 +1,4 @@
-@media only screen and (min-width: 769px) and (max-width: 1200px) {
+@media only screen and (min-width: 768px) {
     body {
 	background-image: url("/images/opms-bg.jpg");
 	background-repeat: no-repeat;
@@ -7,6 +7,10 @@
     }
     .container {
 	background-color: transparent;
+    }
+    .search-container {
+	margin: 0 auto;
+	display: flex;
     }
     .statuses {
         padding: .4rem 1rem;
@@ -66,9 +70,10 @@
     .page-content > p {
 	font-size: 1.6rem;
     }
+    /*
     .session-form {
 	margin: 25% auto;
-    }
+    }*/
     #sm-home-container {
 	position: top;
 	display: none;
@@ -192,19 +197,19 @@
         background-color: #eef;
         border: 1px solid #eef;
         border-radius: 5px;
-        width: 30%;
-        height: 100%;
-        margin: 20% auto;
-        padding: 3rem;
+        width: 35%;
+        /*height: 100%;*/
+        margin: 10% auto;
+        padding: 2.5rem;
     }
 
     .session-form {
         background-color: #eef;
         border: 1px solid #eef;
         border-radius: 5px;
-        width: 100%;
-        height: 100%;
-        margin: 15% auto;
-        padding: 3rem;
+        width: 35%;
+        /*height: 100%;*/
+        margin: 10% auto;
+        padding: 2.5rem;
     }
 }

@@ -17,17 +17,53 @@
 	-->
 
 	<%= form_for @conn, Routes.pr_page_path(@conn, :search_pr), fn f -> %>
-	<%= text_input f, :pr_number, placeholder: "Enter procurement request number.." %>
-	<%= submit "Search" %>
+	<div class="search-container">
+	  <%= text_input f, :pr_number, placeholder: "Enter procurement request number.." %>
+	  <%= submit "Search" %>
+	</div>
 	<% end %>
 
 	<%= cond do %>
 	<% @query != nil -> %>
-	<p>Pr found </p>
+	<table>
+          <thead>
+            <tr>
+              <th>PR No.</th>
+              <th>Department</th>
+              <th>Created</th>
+              <th>Updated</th>
+              <th>Status</th>
+              <%= if @conn.assigns.current_company != nil && @conn.assigns.current_company.is_admin == true do %>
+              <th>Action</th>
+              <% end %>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= @query.pr_number %></td>
+              <td><%= @query.company.department %></td>
+              <td><%= get_date(@query.inserted_at) %></td>
+              <td><%= get_date(@query.updated_at) %></td>
+              <td><%= @query.status %></td>
+	      <%= if @conn.assigns.current_company != nil && @conn.assigns.current_company.is_admin == true do %>
+              <td><%= link "Update", to: Routes.pr_account_path(@conn, :edit, @query.id), class: "statuses blue" %><%= link "Delete", to: Routes.pr_account_path(@conn, :delete, @query.id), method: :delete, class: "statuses red", data: [confirm: "Are you sure?"] %></td>
+              <% end %>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 id="remarks-heading">Remarks</h3>
+        <!-- Display remarks -->
+        <%= for pr <- @query.prs_remarks do %>
+            <div>
+              <div><i class="fa fa-user"></i>&nbsp;&nbsp;<%= pr.admin.name %>&nbsp;&nbsp;•&nbsp;&nbsp;<span><%= get_date(pr.inserted_at) %></span></div>
+              <p><%= pr.remarks %></p>
+            </div>
+            <% end %>
+	
 	<% @query == nil && @q_string != "" -> %>
 	<p>No result found for pr number <%= @q_string %></p>
 	<% true -> %>
-	<br><br>
 	<% end %>
 
       </div>

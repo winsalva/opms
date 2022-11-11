@@ -47,7 +47,7 @@ defmodule MyAppWeb.SessionController do
 	    |> redirect(to: Routes.company_account_path(conn, :account, company.id))
 	  _false ->
 	    conn
-	    |> put_flash(:error, "Email and password combination cannot be found!")
+	    |> put_flash(:error, "Email and password cannot be found!")
 	    |> redirect(to: Routes.session_path(conn, :new))
 	end
     end

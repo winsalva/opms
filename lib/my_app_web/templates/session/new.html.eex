@@ -1,7 +1,7 @@
 <div class="session-form-login">
   <div><p class="close-btn" onclick="back();">&times</div>
   <%= form_for @conn, "#", fn f -> %>
-  <h2 align="center"><strong>LOG IN</strong></h2>
+  <h3 align="center"><strong>LOG IN</strong></h3>
 
   <%= render(MyAppWeb.SharedView, "flash-messages.html", conn: @conn) %>
   <br/>
@@ -13,8 +13,12 @@
   <%= password_input f, :password, placeholder: "Enter your password..." %>
 
   <div align="center">
-    <br /><br />
+    <br />
     <%= submit "Log in" %>
+  </div>
+  <br>
+  <div align="center">
+    <p>No account yet? <%= link "Register.", to: Routes.company_page_path(@conn, :new) %></p>
   </div>
   <% end %>
 </div>
