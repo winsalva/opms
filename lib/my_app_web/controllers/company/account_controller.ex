@@ -13,6 +13,7 @@ defmodule MyAppWeb.Company.AccountController do
     render(conn, "edit-account.html", company: company)
   end
 
+
   def update_account(conn, %{"company" => params, "id" => id}) do
     case Company.update_company(id, params) do
       {:ok, _company} ->

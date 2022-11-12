@@ -97,7 +97,7 @@ defmodule MyAppWeb.Router do
     post "/cancel-approvals/:id", AccountController, :disapprove_company
 
     resources "/", PageController, only: [
-      :new, :create, :show, :index
+      :new, :create, :show, :index, :delete
     ]
    
   end

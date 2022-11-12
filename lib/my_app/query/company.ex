@@ -32,6 +32,11 @@ defmodule MyApp.Query.Company do
     Repo.get(Company, id)
   end
 
+  def delete_company(id) do
+    get_company(id)
+    |> Repo.delete()
+  end
+
   @doc """
   Get company with procurement requests.
   """

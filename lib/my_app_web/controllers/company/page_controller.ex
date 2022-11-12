@@ -25,8 +25,13 @@ defmodule MyAppWeb.Company.PageController do
     end
   end
 
-  def show(conn, %{"id" => id}) do
- 
+  def show(conn, %{"id" => id}) do 
     render(conn, :show)
+  end
+
+  def delete(conn, %{"id" => id}) do
+    Company.delete_company(id)
+    conn
+    |> redirect(to: Routes.company_page_path(conn, :index))
   end
 end

@@ -34,9 +34,9 @@
 		    <%= user.is_admin -> %>
 	            <td><b>Admin</b></td>
 		    <%= user.approved -> %>
-	            <td><%= link "Cancel Approval?", to: Routes.company_account_path(@conn, :disapprove_company, user.id), method: :post, class: "color-red bold", data: [confirm: "Are you sure?"] %></td>
+	            <td><%= link "Disapprove?", to: Routes.company_account_path(@conn, :disapprove_company, user.id), method: :post, class: "color-red bold", data: [confirm: "Are you sure?"] %></td>
 		    <% true -> %>
-		    <td><%= link "Approve Account?", to: Routes.company_account_path(@conn, :approve_company, user.id), method: :post, class: "bold", data: [confirm: "Are you sure?"] %></td>
+		    <td><%= link "Approve?", to: Routes.company_account_path(@conn, :approve_company, user.id), method: :post, class: "bold", data: [confirm: "Are you sure?"] %>&nbsp;&nbsp;<%= link "Delete?", to: Routes.company_page_path(@conn, :delete, user.id), method: :delete, class: "color-red", data: [confirm: "Are you sure to delete this account?"] %></td>
 		    <% end %>
 		  </tr>
 		  <% end %>
