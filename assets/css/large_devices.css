@@ -12,6 +12,9 @@
 	margin: 0 auto;
 	display: flex;
     }
+    .search-container > input {
+	
+    }
     .statuses {
         padding: .4rem 1rem;
 	font-weight: 500;
@@ -70,10 +73,29 @@
     .page-content > p {
 	font-size: 1.6rem;
     }
-    /*
-    .session-form {
-	margin: 25% auto;
-    }*/
+    .pr-updates-count {
+	color: #fff;
+	font-weight: bold;
+	padding: .15rem .6rem;
+	border-radius: 50%;
+	border: 1px solid red;
+	background-color: red;
+	margin-left: -1.2rem;
+	margin-top: -5rem;
+	z-index: 99;
+    }
+    .statuses-blue {
+	font-weight: 500;
+	color: #1769ff;
+	padding: .3rem 1rem;
+	border: .5px solid #1769ff;
+	border-radius: 4px;
+    }
+    .statuses-blue:hover {
+	background-color: #1769ff;
+	color: #fff;
+    }
+	
     #sm-home-container {
 	position: top;
 	display: none;
@@ -197,7 +219,7 @@
         background-color: #eef;
         border: 1px solid #eef;
         border-radius: 5px;
-        width: 35%;
+        width: 30%;
         /*height: 100%;*/
         margin: 10% auto;
         padding: 2.5rem;
@@ -207,7 +229,7 @@
         background-color: #eef;
         border: 1px solid #eef;
         border-radius: 5px;
-        width: 35%;
+        width: 30%;
         /*height: 100%;*/
         margin: 10% auto;
         padding: 2.5rem;

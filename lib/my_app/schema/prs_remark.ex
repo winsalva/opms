@@ -5,6 +5,7 @@ defmodule MyApp.Schema.PrsRemark do
   schema "prs_remarks" do
     belongs_to :procurement_request, MyApp.Schema.ProcumentRequest
     belongs_to :admin, MyApp.Schema.Company
+    field :status, :string
     field :remarks, :string
     timestamps()
   end
@@ -13,6 +14,7 @@ defmodule MyApp.Schema.PrsRemark do
   @allowed_fields [
     :procurement_request_id,
     :admin_id,
+    :status,
     :remarks
   ]
   

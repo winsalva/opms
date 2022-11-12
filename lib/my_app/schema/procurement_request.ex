@@ -9,6 +9,8 @@ defmodule MyApp.Schema.ProcurementRequest do
     field :pr_number, :string
     field :status, :string
     field :remarks, :string
+    field :update_count, :integer, default: 1
+    field :seen, :boolean, default: false
     timestamps()
   end
 
@@ -17,7 +19,9 @@ defmodule MyApp.Schema.ProcurementRequest do
     :pr_personnel_id,
     :pr_number,
     :status,
-    :remarks
+    :remarks,
+    :update_count,
+    :seen
   ]
 
   @required_fields @allowed_fields

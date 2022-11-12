@@ -36,7 +36,7 @@ defmodule MyAppWeb.SessionController do
 	|> put_session(:user_id, user.id)
 	|> put_session(:company_id, nil)
 	|> configure_session(renew: true)
-	|> redirect(to: Routes.user_page_path(conn, :show, user.id))
+	|> redirect(to: Routes.page_path(conn, :index))
       false ->
         case Company.get_company_by_email_and_password(email, password) do
 	  %MyApp.Schema.Company{} = company ->
@@ -44,7 +44,7 @@ defmodule MyAppWeb.SessionController do
 	    |> put_session(:company_id, company.id)
 	    |> put_session(:user_id, nil)
             |> configure_session(renew: true)
-	    |> redirect(to: Routes.company_account_path(conn, :account, company.id))
+	    |> redirect(to: Routes.page_path(conn, :index))
 	  _false ->
 	    conn
 	    |> put_flash(:error, "Email and password cannot be found!")

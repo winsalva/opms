@@ -38,7 +38,7 @@
 		  <td><%= pr.company.department %></td>
 		  <td><%= get_date(pr.inserted_at) %></td>
 		  <td><%= get_date(pr.updated_at) %></td>
-		  <td><%= pr.status %></td>
+		  <td><span class="<%= get_css_class(pr.status) %>"><%= pr.status %></span></td>
 		  <td><%= link "View Details", to: Routes.pr_account_path(@conn, :show, pr.id), class: "statuses blue" %></td>
 		</tr>
 		<% end %>

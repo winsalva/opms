@@ -37,7 +37,7 @@ defmodule MyAppWeb.Procurement.AccountController do
     case PR.insert_pr(params) do
       {:ok, pr} ->
 
-        Remark.insert_prs_remark(%{"procurement_request_id": pr.id, "admin_id": conn.assigns.current_company.id, "remarks": remarks})
+        Remark.insert_prs_remark(%{"procurement_request_id": pr.id, "admin_id": conn.assigns.current_company.id, "status": status, "remarks": remarks})
 
         conn
 	|> redirect(to: Routes.pr_account_path(conn, :index))
@@ -52,8 +52,16 @@ defmodule MyAppWeb.Procurement.AccountController do
   end
 
   def show(conn, %{"id" => id}) do
-    pr = PR.get_pr_with_remarks(id)
-    render(conn, :show, pr: pr)
+    if conn.assigns.current_company != nil && conn.assigns.current_company.is_admin == false do
+      # Reset update to 0 viewed by end user
+      PR.update_pr(id, %{update_count: 0})
+    
+      pr = PR.get_pr_with_remarks(id)
+      render(conn, :show, pr: pr)
+    else
+      pr = PR.get_pr_with_remarks(id)
+      render(conn, :show, pr: pr)
+    end
   end
 
   def edit(conn, %{"id" => id}) do
@@ -66,15 +74,17 @@ defmodule MyAppWeb.Procurement.AccountController do
     render(conn, :edit, params)
   end
 
-  def update(conn, %{"procurement_request" => %{"company_id" => company_id, "pr_number" => pr_number, "remarks" => remarks, "status" => status}, "id" => id}) do
+  def update(conn, %{"procurement_request" => %{ "remarks" => remarks, "status" => status}, "id" => id}) do
+  
+    pr = PR.get_pr(id)
+    
     params = %{
-      "company_id": company_id,
-      "pr_number": pr_number,
+      "status": status,
       "remarks": remarks,
-      "status": status
+      "update_count": pr.update_count + 1
     }
 
-    Remark.insert_prs_remark(%{"procurement_request_id": id, "admin_id": conn.assigns.current_company.id, "remarks": remarks})
+    Remark.insert_prs_remark(%{"procurement_request_id": id, "admin_id": conn.assigns.current_company.id, "status": status, "remarks": remarks})
     
     case PR.update_pr(id, params) do
       {:ok, pr} ->

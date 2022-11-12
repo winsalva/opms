@@ -23,10 +23,10 @@
   <label>Status</label>
   <%= select f, :status, [
       "Receive PR": "Receive PR",
-      "Non-Common Use Supplies": "Non-Common Use Supplies",
       "Prepare RFQ": "Prepare RFQ",
       "Open RFQ": "Open RFQ",
       "Prepare AOQ": "Prepare AOQ",
+      "Prepare PO": "Prepare PO",
       "Serve PO": "Serve PO",
       "Delivery of Items": "Delivery of Items"
     ], prompt: "Select Status", value: "Receive PR" %>
