@@ -95,14 +95,17 @@
 	margin: 0 0 1rem 0;
     }
     .home-page-content {
-	text-align: center;
 	margin: 2rem 1rem 5rem 1rem;
     }
     .home-page-content > img {
-	width: 250px;
+	width: 100%;
 	height: 150px;
 	object-fit: cover;
-	margin-bottom: .5rem;
+	margin: .5rem auto;
+	border-radius: 5px;
+    }
+    .home-page-content > p {
+	text-align: justify;
     }
     .footer {
 	margin: 0;
