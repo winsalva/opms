@@ -6,6 +6,31 @@
   <%= render(MyAppWeb.SharedView, "side-menu.html", conn: @conn) %>
 
   <div class="sub-container">
+
+    <!-- small devices -->
+    <div class="page-content">
+      <div class="page-titles">
+	<i onclick="back();" class="fa fa-arrow-left"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;My Account
+	<span class="sm-top-options">
+	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<%= Routes.page_path(@conn, :index) %>"><i class="fa fa-home"></i></a>
+	</span>
+      </div>
+
+      <div class="sm-account-container">
+	<i class="fa fa-user"></i>
+	<h3>NAME</h3>
+	<p><%= @company.name %></p>
+	<h3>DEPARTMENT</h3>
+        <p><%= @company.department %></p>
+	<h3>MOBILE</h3>
+        <p><%= @company.mobile %></p>
+	<h3>EMAIL</h3>
+        <p><%= @company.email %></p>
+	<%= button "Edit Account", to: Routes.company_account_path(@conn, :edit_account, @company.id), method: :get %>
+      </div>
+    </div>
+    
+    <!-- large devices -->
     <div class="pc-content-container">
       <div class="pc-content">
 	<p class="page-titles">My Account</p>

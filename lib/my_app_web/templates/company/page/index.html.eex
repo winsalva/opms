@@ -6,6 +6,43 @@
   <%= render(MyAppWeb.SharedView, "side-menu.html", conn: @conn) %>
 
   <div class="sub-container">
+
+    <!-- small devices -->
+    <div class="page-content">
+      <div class="page-titles">
+        <i onclick="back();" class="fa fa-arrow-left"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Listing Users
+        <span class="sm-top-options">
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<%= Routes.page_path(@conn, :index) %>"><i class="fa fa-home"></i></a>
+        </span>
+      </div>
+      
+
+
+      <!-- Content -->
+
+      <div>
+
+	<%= if @users == [] do %>
+
+	<p align="center">No Records Available Yet.</p>
+
+	<% else %>
+
+	<%= for user <- @users do %>
+
+	    <div>Name: <%= user.name %></div>
+
+	    <% end %>
+
+
+	    <% end %>
+
+      </div>
+    </div>
+    
+
+
+    <!-- Large devices -->
     <div class="pc-content-container">
       <div class="page-content">
 	<div class="page-titles"><i onclick="back();" class="fa fa-arrow-left"></i>&nbsp;&nbsp;&nbsp;Users</div>

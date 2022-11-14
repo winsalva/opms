@@ -3,6 +3,10 @@
 	margin: 1.5rem 1.5rem 3rem 1.5rem;
 	padding-top: 5rem;
     }
+    .pc-content-container {
+	border: 1px solid #000;
+	display: none;
+    }
     .page-titles {
 	top: 0;
 	position: fixed;
@@ -10,7 +14,14 @@
 	width: 100%;
 	font-size: 2rem;
 	padding: 1rem 0 1rem 0;
-	margin-left: -1rem;
+	margin-left: -3rem;
+	border-bottom: 1px solid  #c0c0c0;
+    }
+    .page-titles > i {
+	margin-left: 3rem;
+    }
+    .sm-top-options {
+	float-right: 1rem;
     }
     #side-bar-menu {
 	display: none;
@@ -89,6 +100,23 @@
     }
     .sub-container {
 	background: #eef;
+    }
+    .sm-account-container {
+	text-align: center;;
+    }
+    .sm-account-container > i {
+	font-size: 8rem;
+    }
+    .sm-account-container > h3 {
+	padding-top: 2rem;
+	font-weight: bold;
+    }
+    .sm-account-container > p {
+	padding: 0;
+	margin-top: -1rem;
+    }
+    .sm-account-container > button {
+	margin: 5rem 0;
     }
     .home-page-content-container {
 	padding: 3rem 1rem 1rem 1rem;

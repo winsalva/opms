@@ -27,8 +27,26 @@
 
     <!-- available menu options for small devices -->
     <div id="sm-menu-options-container">
+      <!-- Admins -->
+      <%= if @conn.assigns.current_company != nil && @conn.assigns.current_company.is_admin == true do %>
+      <div><%= link "ADMIN ACCOUNT", to: Routes.company_account_path(@conn, :account, @conn.assigns.current_company.id) %></div>
+      <div><%= link "USERS", to: Routes.company_page_path(@conn, :index) %></div>
+      <div><%= link "PROCUREMENTS", to: Routes.pr_account_path(@conn, :index) %></div>
+      <div><%= link "LOG OUT", to: Routes.session_path(@conn, :delete), method: :delete, data: [confirm: "Are you sure?"] %></div>
+      <% end %>
+      
+      <!-- End Users -->
+      <%= if @conn.assigns.current_company != nil && @conn.assigns.current_company.is_admin == false do %>
+      <div><%= link "MY ACCOUNT", to: Routes.company_account_path(@conn, :account, @conn.assigns.current_company.id) %></div>
+      <div><%= link "PROCUREMENTS", to: Routes.pr_page_path(@conn, :index, id: @conn.assigns.current_company.id) %></div>
+      <div><%= link "LOG OUT", to: Routes.session_path(@conn, :delete), method: :delete, data: [confirm: "Are you sure?"] %></div>
+      <% end %>
+      
+      <!-- No logged in users -->
+      <%= if @conn.assigns.current_company == nil do %>
       <div><%= link "LOG IN", to: Routes.session_path(@conn, :new) %></div>
       <div><%= link "REGISTER ACCOUNT", to: Routes.company_page_path(@conn, :new) %></div>
+      <% end %>
     </div>
   </div>
 
