@@ -8,6 +8,9 @@
     .container {
 	background-color: transparent;
     }
+    .sm-page-content {
+	display: none;
+    }
     .search-container {
 	margin: 0 auto;
 	display: flex;

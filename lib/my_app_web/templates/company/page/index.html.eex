@@ -8,7 +8,7 @@
   <div class="sub-container">
 
     <!-- small devices -->
-    <div class="page-content">
+    <div class="sm-page-content">
       <div class="page-titles">
         <i onclick="back();" class="fa fa-arrow-left"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Listing Users
         <span class="sm-top-options">
