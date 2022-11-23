@@ -7,6 +7,10 @@
 	border: 1px solid #000;
 	display: none;
     }
+    .sm-user-accounts-container {
+	text-align: left;
+	border: 1px solid red;
+    }
     .page-titles {
 	top: 0;
 	position: fixed;
@@ -18,7 +22,7 @@
 	border-bottom: 1px solid  #c0c0c0;
     }
     .page-titles > i {
-	margin-left: 3rem;
+	margin-left: 2.5rem;
     }
     .sm-top-options {
 	float-right: 1rem;
@@ -102,10 +106,11 @@
 	background: #eef;
     }
     .sm-account-container {
-	text-align: center;;
+	text-align: center;
+	padding-top: 7rem;
     }
     .sm-account-container > i {
-	font-size: 8rem;
+	font-size: 6rem;
     }
     .sm-account-container > h3 {
 	padding-top: 2rem;
@@ -118,6 +123,10 @@
     .sm-account-container > button {
 	margin: 5rem 0;
     }
+    .sm-page-content > .page-titles {
+	margin: -.1rem 0 0 0;
+    }
+	
     .home-page-content-container {
 	padding: 3rem 1rem 1rem 1rem;
 	margin: 0 0 1rem 0;

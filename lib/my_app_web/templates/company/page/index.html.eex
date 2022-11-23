@@ -15,32 +15,36 @@
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<%= Routes.page_path(@conn, :index) %>"><i class="fa fa-home"></i></a>
         </span>
       </div>
-      
 
-
-      <!-- Content -->
-
-      <div>
-
+      <div class="sm-account-container">
 	<%= if @users == [] do %>
-
-	<p align="center">No Records Available Yet.</p>
-
+	<br><br><br>
+	<p align="center">No Available Records \
+	  Yet.</p>
+	<br><br><br>
 	<% else %>
-
 	<%= for user <- @users do %>
-
-	    <div>Name: <%= user.name %></div>
-
+	    <div class="sm-user-accounts-container">
+	      <div>
+		<div><i class="fa fa-user"></i> <%= user.name %></div>
+		<div><i class="fa fa-building-o"></i> <%= user.department %></div>
+		<div><i class="fa fa-phone"></i> <%= user.mobile %></div>
+		<div><i class="fa fa-envelope"></i> <%= user.email %></div>
+	      </div>
+	      <div>
+		<%= cond do %>
+                    <%= user.is_admin -> %>
+                    <p>Admin</p>
+                    <%= user.approved -> %>
+                    <%= link "Disapprove?", to: Routes.company_account_path(@conn, :disapprove_company, user.id), method: :post, class: "color-red bold", data: [confirm: "Are you sure?"] %>
+                    <% true -> %>
+                    <%= link "Approve?", to: Routes.company_account_path(@conn, :approve_company, user.id), method: :post, class: "bold", data: [confirm: "Are you sure?"] %>
+                    <% end %>
+	    </div>
 	    <% end %>
-
-
-	    <% end %>
-
+	<% end %>
       </div>
     </div>
-    
-
 
     <!-- Large devices -->
     <div class="pc-content-container">
@@ -73,7 +77,7 @@
 		    <%= user.approved -> %>
 	            <td><%= link "Disapprove?", to: Routes.company_account_path(@conn, :disapprove_company, user.id), method: :post, class: "color-red bold", data: [confirm: "Are you sure?"] %></td>
 		    <% true -> %>
-		    <td><%= link "Approve?", to: Routes.company_account_path(@conn, :approve_company, user.id), method: :post, class: "bold", data: [confirm: "Are you sure?"] %>&nbsp;&nbsp;<%= link "Delete?", to: Routes.company_page_path(@conn, :delete, user.id), method: :delete, class: "color-red", data: [confirm: "Are you sure to delete this account?"] %></td>
+		    <td><%= link "Approve?", to: Routes.company_account_path(@conn, :approve_company, user.id), method: :post, class: "bold", data: [confirm: "Are you sure?"] %></td>
 		    <% end %>
 		  </tr>
 		  <% end %>
