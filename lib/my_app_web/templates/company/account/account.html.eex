@@ -9,11 +9,7 @@
 
     <!-- small devices -->
     <div class="sm-page-content">
-      <div class="page-titles">
-	<i onclick="back();" class="fa fa-arrow-left"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;My Account
-	<span class="sm-top-options">
-	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<%= Routes.page_path(@conn, :index) %>"><i class="fa fa-home"></i></a>
-	</span>
+      <%= render(MyAppWeb.SharedView, "sm-menu.html", conn: @conn, title: "My Account") %>
       </div>
 
       <div class="sm-account-container">

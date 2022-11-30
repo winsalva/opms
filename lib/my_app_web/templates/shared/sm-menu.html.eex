@@ -1,0 +1,15 @@
+<div class="sm-menu">
+  <div><i class="fa fa-arrow-left" onclick="back();"></i></div>
+  <div class="back-nav-title"><%= @title %></div>
+  <div id="openNav" class="back-nav-menu"><i class="fa fa-bars"></i></div>
+</div>
+
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" i_d="closeNav">&times;</a>
+  <%= if @conn.assigns.company != nil do %>
+  <a href=""><i class="fa fa-user"></i>&nbsp;&nbsp;Admin Account</a>
+
+  <a href=""><i class="fa fa-users"></i>&nbsp;&nbsp;Users</a>
+  <% end %>
+</div>
+

@@ -4,25 +4,35 @@
 	padding-top: 5rem;
     }
     .pc-content-container {
-	border: 1px solid #000;
 	display: none;
     }
     .sm-user-accounts-container {
 	text-align: left;
-	border: 1px solid red;
     }
-    .page-titles {
+
+    .sm-menu {
+	display: flex;
+	justify-content: space-between;
 	top: 0;
 	position: fixed;
 	background-color: #eef;
 	width: 100%;
 	font-size: 2rem;
-	padding: 1rem 0 1rem 0;
-	margin-left: -3rem;
-	border-bottom: 1px solid  #c0c0c0;
+	padding: 1rem;
+	border-bottom: 1.5px solid  #ddd;
     }
-    .page-titles > i {
-	margin-left: 2.5rem;
+    .sm-menu > div .fa-arrow-left {
+	padding: .5rem 0 0 1.5rem;
+    }
+    .sm-menu > div i:hover {
+        opacity: 0.5;
+    }
+    .sm-menu > div .fa-bars {
+	padding: .5rem 1.5rem 0 0;
+    }
+    .sm-menu > .back-nav-title {
+	font-weight: 550;
+	color: #0069d9;
     }
     .sm-top-options {
 	float-right: 1rem;
@@ -123,10 +133,6 @@
     .sm-account-container > button {
 	margin: 5rem 0;
     }
-    .sm-page-content > .page-titles {
-	margin: -.1rem 0 0 0;
-    }
-	
     .home-page-content-container {
 	padding: 3rem 1rem 1rem 1rem;
 	margin: 0 0 1rem 0;
@@ -145,6 +151,9 @@
 	text-align: justify;
     }
     .footer {
+	display: none;
+    }
+    .h-footer {
 	margin: 0;
 	padding: 0;
 	background-color: #1769ff;

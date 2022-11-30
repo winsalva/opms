@@ -27,29 +27,10 @@
 
     <!-- available menu options for small devices -->
     <div id="sm-menu-options-container">
-      <!-- Admins -->
-      <%= if @conn.assigns.current_company != nil && @conn.assigns.current_company.is_admin == true do %>
-      <div><%= link "ADMIN ACCOUNT", to: Routes.company_account_path(@conn, :account, @conn.assigns.current_company.id) %></div>
-      <div><%= link "USERS", to: Routes.company_page_path(@conn, :index) %></div>
-      <div><%= link "PROCUREMENTS", to: Routes.pr_account_path(@conn, :index) %></div>
-      <div><%= link "LOG OUT", to: Routes.session_path(@conn, :delete), method: :delete, data: [confirm: "Are you sure?"] %></div>
-      <% end %>
-      
-      <!-- End Users -->
-      <%= if @conn.assigns.current_company != nil && @conn.assigns.current_company.is_admin == false do %>
-      <div><%= link "MY ACCOUNT", to: Routes.company_account_path(@conn, :account, @conn.assigns.current_company.id) %></div>
-      <div><%= link "PROCUREMENTS", to: Routes.pr_page_path(@conn, :index, id: @conn.assigns.current_company.id) %></div>
-      <div><%= link "LOG OUT", to: Routes.session_path(@conn, :delete), method: :delete, data: [confirm: "Are you sure?"] %></div>
-      <% end %>
-      
-      <!-- No logged in users -->
-      <%= if @conn.assigns.current_company == nil do %>
       <div><%= link "LOG IN", to: Routes.session_path(@conn, :new) %></div>
       <div><%= link "REGISTER ACCOUNT", to: Routes.company_page_path(@conn, :new) %></div>
-      <% end %>
     </div>
   </div>
-
 
   <div class="sub-container">
 
@@ -73,7 +54,21 @@
     </div>
 
     <!-- footer -->
-    <%= render(MyAppWeb.SharedView, "footer.html", conn: @conn) %>
-    
+    <div class="h-footer">
+      <div id="opms-logo">
+	<img src="/images/opms-logo.png" alt="Logo"/>
+      </div>
+      <p class="footer-company-name">Southern Leyte State University</p>
+      <div class="footer-options">
+	<div><%= link "Contact Us", to: Routes.page_path(@conn, :contact_us) %></div>
+	<div><%= link "Terms Of Use", to: Routes.page_path(@conn, :term_of_use) %></div>
+	<div><%= link "Privacy Policy", to: Routes.page_path(@conn, :privacy_policy) %></div>
+	<div><%= link "About Us", to: Routes.page_path(@conn, :about_us) %></div>
+      </div>
+      <div class="copyright">
+	<p>Copyright &copy; <%= current_year() %> <%= app_name() %><p>
+	<p>All rights reserved.</p>
+      </div>
+    </div>
   </div>
 </div>

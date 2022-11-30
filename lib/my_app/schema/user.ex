@@ -36,7 +36,7 @@ defmodule MyApp.Schema.User do
     user
     |> cast(params, @allowed_fields)
     |> validate_required(@required_fields)
-    |> validate_format(:email, ~r/@/)
+    |> validate_format(:email, ~r/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)
     |> unique_constraint(:email)
   end
 

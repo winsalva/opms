@@ -284,12 +284,14 @@ footer {
     padding: 1rem;
     width: 100%;
 }
+/*
 .page-titles {
     font-weight: 500;
     margin: .2rem 0 1rem .2rem;
     color: #000000;
     font-size: 1.8rem;
 }
+*/
 .personnel-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
