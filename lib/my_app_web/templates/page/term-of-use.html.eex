@@ -6,10 +6,15 @@
   <%= render(MyAppWeb.SharedView, "side-menu.html", conn: @conn) %>
 
   <div class="sub-container">
+
+    <!-- small devices -->
+    <div class="sm-page-content">
+      <%= render(MyAppWeb.SharedView, "sm-menu.html", conn: @conn, title: "Term of use") %>
+    </div>
+  
     <div class="page-content">
       <div class="page-titles"><i onclick="back();" class="fa fa-arrow-left"></i>&nbsp;&nbsp;&nbsp;Terms of Use</div>
   
-
       <h4><b>The website</b></h4>
 
       <p>The "website" refers to the website managed by the ONLINE PROCUREMENT MONITORING SYSTEM (hereinafter OPMS) with its additional components e-Notification, e-Tendering, e-Auction, e-Awarding and e-Catalogue including the practice websites. The "website" also refers to all content and services offered by the OPMS via the website.</p>

@@ -5,8 +5,13 @@
   <!-- side menu for large devices -->
   <%= render(MyAppWeb.SharedView, "side-menu.html", conn: @conn) %>
 
-
   <div class="sub-container">
+
+    <!-- small devices -->
+    <div class="sm-page-content">
+      <%= render(MyAppWeb.SharedView, "sm-menu.html", conn: @conn, title: "Privacy policy") %>
+    </div>
+
     <div class="page-content">
       <div class="page-titles"><i onclick="back();" class="fa fa-arrow-left"></i>&nbsp;&nbsp;&nbsp;Privacy Policy</div>
 

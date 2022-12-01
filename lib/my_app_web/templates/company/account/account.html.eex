@@ -10,7 +10,6 @@
     <!-- small devices -->
     <div class="sm-page-content">
       <%= render(MyAppWeb.SharedView, "sm-menu.html", conn: @conn, title: "My Account") %>
-      </div>
 
       <div class="sm-account-container">
 	<i class="fa fa-user"></i>

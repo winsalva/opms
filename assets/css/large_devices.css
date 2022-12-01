@@ -179,7 +179,8 @@
 	font-size: 1.4rem;
 	text-align: justify;
     }
-    .footer {
+    
+    .footer, .h-footer {
 	margin: 0;
 	padding: 0;
 	background-color: #1769ff;

@@ -3,6 +3,17 @@
 	margin: 1.5rem 1.5rem 3rem 1.5rem;
 	padding-top: 5rem;
     }
+    .contacts {
+	padding: 0 1rem;
+	display: flex;
+	flex-direction: column;
+    }
+    .contacts p > i {
+	padding: 0 1rem;
+    }
+    .contacts p {
+	font-weight: 400;
+    }
     .pc-content-container {
 	display: none;
     }
@@ -192,6 +203,9 @@
     .copyright > p {
 	color: #000;
     }
+    .page-titles {
+	display: none;
+    }
 
     /* session form */
     .session-form-login {
@@ -206,5 +220,144 @@
 	width: 100%;
 	height: 100%;
 	padding: 1.5rem;
+    }
+    /* The side navigation menu */
+    .sidenav {
+        height: 100%; /* 100% Full-height */
+        width: 0; /* 0 width - change this with JavaScript*/
+        position: fixed; /* Stay in place */
+        z-index: 999; /* Stay on top */
+        top: 0; /* Stay at the top */
+        right: 0;
+        background-color: #0069d9; /*  */
+        overflow-x: hidden; /* Disable horizontal scroll */
+        padding-top: 5rem; /* Place content 30px from the top */
+        transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+    }
+
+    /* The navigation menu links */
+    .sidenav a {
+        font-weight: 450;
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 1.7rem;
+        background-color: #0069d9;
+        color: #eef;
+        display: block;
+        transition: 0.15s;
+    }
+    /* When you mouse over the navigation links, change their color */
+    .sidenav a:hover {
+        color: #222;
+        background-color: #fff;
+        opacity: 0.8;
+    }
+    /* Position and style the close button (top right corner) */
+
+    .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 2.5rem;
+        font-size: 3.5rem;
+        margin-left: 6rem;
+        padding: 0;
+        color: #fff;
+        background-color: #0069d9;
+        font-weight: bold;
+    }
+    .sidenav .closebtn:hover {
+        background-color: #0069d9;
+        color: #222;
+    }
+    .sm-user-accounts-container {
+	border: 1px solid #ccc;
+	padding: 1rem;
+	border-radius: 5px;
+	margin: 0 1rem 1rem 1rem;
+    }
+    .sm-user-accounts-container i, a {
+	padding: 0 1rem;
+    }
+    .sm-user-accounts-container a {
+	padding-top: 1rem;
+    }
+    .sm-procurement-options {
+	margin: 7rem auto 1rem auto;
+	text-align: right;
+    }
+    .sm-procurement-options a {
+	padding-right: 3rem;
+    }
+    .sm-procurement-options a > i {
+	color: #222;
+	font-size: 2rem;
+    }
+    .sm-procurement-options a > i:hover {
+	opacity: 0.5;
+    }
+    .sm-pr-container {
+	border: 1px solid #ccc;
+	margin: 0 1rem 1rem 1rem;
+	padding: 1.5rem 1.2rem;
+    }
+    .sm-pr-container p {
+	margin: 0;
+	padding: .1rem 0;
+    }
+    .sm-pr-container p > span {
+	font-weight: bold;
+    }
+    .statuses {
+	padding: .3rem 1rem;
+	border-radius: 2px;
+    }
+    .sm-pr {
+	margin: 6rem 1.5rem 1.5rem 1.5rem;
+	padding: 1rem;
+    }
+    .sm-pr-search {
+	margin: 1rem;
+	padding: 1rem;
+    }
+    .sm-pr p {
+	margin: 0;
+	padding: 0.3rem 0;
+    }
+    .sm-pr-search p {
+	margin: 0;
+	paddung: 0.3rem 0;
+    }
+    .sm-pr-search span {
+	font-weight: bold;
+    }
+    .sm-pr span {
+	font-weight: bold;
+    }
+    .search-container {
+	margin: 6.5rem 1rem 1rem 1rem;
+	display: flex;
+    }
+    .statuses-blue {
+	background-color: #0069d9;
+	color: #fff;
+	padding: .3rem 1.5rem;
+	border-radius: 2px;
+    }
+    .statuses-blue:hover {
+	background-color: #eef;
+	border: 1px solid #0069d9;
+	color: #0069d9;
+    }
+    .sm-pr-container sup {
+	margin-left: -1rem;
+	color: #fff;
+	font-weight: bold;
+	border-radius: 50%;
+	padding: .2rem .8rem;
+	background-color: red;
+    }
+    hr {
+	background-color: #ddd;
+	border: 1px solid #ddd;
     }
 }

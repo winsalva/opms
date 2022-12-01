@@ -5,13 +5,55 @@
   <!-- side menu for large devices -->
   <%= render(MyAppWeb.SharedView, "side-menu.html", conn: @conn) %>
   <div class="sub-container">
-    <div>
+
+    <div class="sm-page-content">
+      <%= render(MyAppWeb.SharedView, "sm-menu.html", conn: @conn, title: "Search Procurement") %>
+
+      <%= form_for @conn, Routes.pr_page_path(@conn, :search_pr), fn f -> %>
+
+      <div class="search-container">
+        <%= text_input f, :pr_number, placeholder: "Enter PR #.." %>
+        <%= submit "Search" %>
+      </div>
+      <% end %>
+
+      <%= cond do %>
+      <% @query != nil -> %>
+      <div class="sm-pr-search">
+	<p>PR No. <span><%= @query.pr_number %></span></p>
+	<p>Department: <%= @query.company.department %></p>
+	<p>Created: <%= get_date(@query.inserted_at) %></p>
+	<p>Updated: <%= get_date(@query.updated_at) %></p>
+	<p>Status: <span class="<%= get_css_class(@query.status) %>"><%= @query.status %></span></p>
+
+	<hr/>
+
+	<!-- Display remarks -->
+      <%= for pr <- @query.prs_remarks do %>
+          <div>
+            <div><i class="fa fa-user"></i>&nbsp;&nbsp;<%= pr.admin.name %>&nbsp;&nbsp;•&nbsp;&nbsp;<i><%= get_date(pr.inserted_at) %></i></div>
+            <p><span class="<%= get_css_class(pr.status) %>"><%= pr.status %></span> - <%= pr.remarks %></p>
+          </div>
+          <% end %>
+      </div>
+      <% @query == nil && @q_string != "" -> %>
+      <div class="sm-pr">
+	<p>No result found for pr number <%= @q_string %></p>
+      </div>
+      
+      <% true -> %>
+      <br><br>
+      <% end %>
+    </div>
+
+
+    <div class="pc-content-container">
     <div class="page-content">
       
       <%= form_for @conn, Routes.pr_page_path(@conn, :search_pr), fn f -> %>
 
       <div class="search-container">
-	<%= text_input f, :pr_number, placeholder: "Enter procurement request number.." %>
+	<%= text_input f, :pr_number, placeholder: "Enter PR #.." %>
 	<%= submit "Search" %>
       </div>
       <% end %>
@@ -57,6 +99,7 @@
       <% true -> %>
       <br><br>
       <% end %>
+      
     </div>
   </div>
   

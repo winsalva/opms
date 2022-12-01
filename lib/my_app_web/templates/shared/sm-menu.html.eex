@@ -5,11 +5,42 @@
 </div>
 
 <div id="mySidenav" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" i_d="closeNav">&times;</a>
-  <%= if @conn.assigns.company != nil do %>
-  <a href=""><i class="fa fa-user"></i>&nbsp;&nbsp;Admin Account</a>
+  <a href="javascript:void(0)" class="closebtn" id="closeNav">&times;</a>
 
-  <a href=""><i class="fa fa-users"></i>&nbsp;&nbsp;Users</a>
+  <%= if @conn.assigns.current_company != nil and @conn.assigns.current_company.is_admin == true do %>
+  <a href="<%= Routes.company_account_path(@conn, :account, @conn.assigns.current_company.id) %>"><i class="fa fa-user"></i>&nbsp;&nbsp;Admin Account</a>
+  <a href="<%= Routes.company_page_path(@conn, :index) %>"><i class="fa fa-users"></i>&nbsp;&nbsp;Users</a>
+  <a href="<%= Routes.pr_account_path(@conn, :index) %>"><i class="fa fa-file"></i>&nbsp;&nbsp;Procurements</a>
+  <a href="<%= Routes.page_path(@conn, :about_us) %>"><i class="fa fa-info-circle"></i>&nbsp;&nbsp;About us</a>
+  <a href="<%= Routes.page_path(@conn, :contact_us) %>"><i class="fa fa-address-book"></i>&nbsp;&nbsp;Contact us</a>
+  <a href="<%= Routes.page_path(@conn, :term_of_use) %>"><i class="fa fa-legal"></i>&nbsp;&nbsp;Terms of use</a>
+  <a href="<%= Routes.page_path(@conn, :privacy_policy) %>"><i class="fa fa-lock"></i>&nbsp;&nbsp;Privacy policy</a>
+  <%= link "Log out", to: Routes.session_path(@conn, :delete), method: :delete, data: [confirm: "Are you sure?"] %>
+  <% end %>
+  
+  <%= if @conn.assigns.current_company != nil && @conn.assigns.current_company.is_admin != true do %>
+  <!-- non admin users -->
+  <a href="<%= Routes.company_account_path(@conn, :account, @conn.assigns.current_company.id) %>"><i class="fa fa-user"></i>&nbsp;&nbsp;My Account</a>
+    <a href="<%= Routes.pr_page_path(@conn, :index, id: @conn.assigns.current_company.id) %>"><i class="fa fa-file"></i>&nbsp;&nbsp;Procurements</a>
+    <a href="<%= Routes.page_path(@conn, :about_us) %>"><i class="fa fa-info-circle"></i>&nbsp;&nbsp;About us</a>
+
+    <a href="<%= Routes.page_path(@conn, :contact_us) %>"><i class="fa fa-address-book"></i>&nbsp;&nbsp;Contact us</a>
+
+    <a href="<%= Routes.page_path(@conn, :term_of_use) %>"><i class="fa fa-legal"></i>&nbsp;&nbsp;Terms of use</a>
+
+    <a href="<%= Routes.page_path(@conn, :privacy_policy) %>"><i class="fa fa-lock"></i>&nbsp;&nbsp;Privacy policy</a>
+
+    <%= link "Log out", to: Routes.session_path(@conn, :delete), method: :delete, data: [confirm: "Are you sure?"] %>
+    
+  <% end %>
+
+  <%= if @conn.assigns.current_company == nil do %>
+  <a href="<%= Routes.page_path(@conn, :index) %>"><i class="fa fa-home"></i>&nbsp;&nbsp;Home</a>
+  <a href="<%= Routes.page_path(@conn, :about_us) %>"><i class="fa fa-info-circle"></i>&nbsp;&nbsp;About us</a>
+  <a href="<%= Routes.page_path(@conn, :contact_us) %>"><i class="fa fa-address-book"></i>&nbsp;&nbsp;Contact us</a>
+  <a href="<%= Routes.page_path(@conn, :term_of_use) %>"><i class="fa fa-legal"></i>&nbsp;&nbsp;Terms of use</a>
+  <a href="<%= Routes.page_path(@conn, :privacy_policy) %>"><i class="fa fa-lock"></i>&nbsp;&nbsp;Privacy policy</a>
+  <a href="<%= Routes.session_path(@conn, :new) %>"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;Sign in</a>
   <% end %>
 </div>
 

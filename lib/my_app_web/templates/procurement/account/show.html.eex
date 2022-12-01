@@ -5,9 +5,37 @@
   <!-- side menu for large devices -->
   <%= render(MyAppWeb.SharedView, "side-menu.html", conn: @conn) %>
 
-
   <div class="sub-container">
 
+    <!-- small devices -->
+    <div class="sm-page-content">
+      <%= render(MyAppWeb.SharedView, "sm-menu.html", conn: @conn, title: "Procurement Request") %>
+      <div class="sm-pr">
+	<p>PR No. <span><%= @pr.pr_number %></span></p>
+	<p>Department: <%= @pr.company.department %></p>
+	<p>Created: <%= get_date(@pr.inserted_at) %></p>
+	<p>Updated: <%= get_date(@pr.updated_at) %></p>
+	<p>Status: <span class="<%= get_css_class(@pr.status) %>"><%= @pr.status %></span></p>
+	<%= if @conn.assigns.current_company != nil && @conn.assigns.current_company.is_admin == true do %>
+
+	<br>
+	<p><%= link "Update", to: Routes.pr_account_path(@conn, :edit, @pr.id), class: "statuses blue" %>&nbsp;&nbsp;&nbsp;<%= link "Delete", to: Routes.pr_account_path(@conn, :delete, @pr.id), method: :delete, class: "statuses red", data: [confirm: "Are you sure?"] %></p>
+	<% end %>
+
+	<hr/>
+
+	<!-- Display remarks -->
+        <%= for pr <- @pr.prs_remarks do %>
+            <div class="pr-remarks">
+              <div><i class="fa fa-user"></i>&nbsp;&nbsp;<%= pr.admin.name %>&nbsp;&nbsp;•&nbsp;&nbsp;<i><%= get_date(pr.inserted_at) %></i></div>
+              <p><span class="<%= get_css_class(pr.status) %>"><%= pr.status %></span> - <%= pr.remarks %></p>
+            </div>
+            <% end %>
+      </div>
+    </div>
+
+
+    <!-- large devices -->
     <div class="pc-content-container">
       <div class="page-content">
 
