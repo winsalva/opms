@@ -77,7 +77,7 @@
 		    <%= user.approved -> %>
 	            <td><%= link "Disapprove?", to: Routes.company_account_path(@conn, :disapprove_company, user.id), method: :post, class: "color-red bold", data: [confirm: "Are you sure?"] %></td>
 		    <% true -> %>
-		    <td><%= link "Approve?", to: Routes.company_account_path(@conn, :approve_company, user.id), method: :post, class: "bold", data: [confirm: "Are you sure?"] %> | <%= link "Delete", to: Routes.company_page_path(@conn, :delete, user.id), method: :delete %></td>
+		    <td><%= link "Approve?", to: Routes.company_account_path(@conn, :approve_company, user.id), method: :post, class: "bold", data: [confirm: "Are you sure?"] %></td>
 		    <% end %>
                     </tr>
                   <% end %>
