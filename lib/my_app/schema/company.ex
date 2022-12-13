@@ -39,7 +39,6 @@ defmodule MyApp.Schema.Company do
     |> validate_required(@allowed_fields)
     |> validate_format(:email, ~r/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)
     |> unique_constraint(:email)
-    |> unique_constraint(:department)
   end
 
 
