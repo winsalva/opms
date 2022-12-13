@@ -4,7 +4,11 @@
   <div class="side-menu-container">
     <div class="a"><i class="fa fa-user"></i><a href="<%= Routes.company_account_path(@conn, :account, @conn.assigns.current_company.id) %>">Admin Account</a></div>
     <div class="a"><i class="fa fa-home"></i><%= link "Home", to: Routes.page_path(@conn, :index) %></div>
-    <div class="a"><i class="fa fa-users"></i><%= link "Users", to: Routes.company_page_path(@conn, :index) %></div>
+    <div class="a"><i class="fa fa-users"></i><%= link "Users", to: Routes.company_page_path(@conn, :index) %>
+      <%= if get_new_registers() > 0 do %>
+      <sup class="user-notif"><%= get_new_registers() %></sup>
+      <% end %>
+    </div>
     <div class="a"><i class="fa fa-file"></i><%= link "Procurements", to: Routes.pr_account_path(@conn, :index) %></div>
     <div class="a"><i class="fa fa-info-circle"></i><%= link "About us", to: Routes.page_path(@conn, :about_us) %></div>
 

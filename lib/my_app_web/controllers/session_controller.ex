@@ -44,7 +44,8 @@ defmodule MyAppWeb.SessionController do
 	    |> put_session(:company_id, company.id)
 	    |> put_session(:user_id, nil)
             |> configure_session(renew: true)
-	    |> redirect(to: Routes.company_account_path(conn, :account, company.id))
+	    |> put_flash(:info, "Welcome back #{company.name}!")
+	    |> redirect(to: Routes.page_path(conn, :index))
 	  _false ->
 	    conn
 	    |> put_flash(:error, "Email and password cannot be found!")

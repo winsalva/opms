@@ -16,6 +16,7 @@ defmodule MyApp.Schema.Company do
     field :hashed_password, :string
     field :approved, :boolean, default: false
     field :is_admin, :boolean, default: false
+    field :seen, :boolean, default: false
     timestamps()
   end
 
@@ -27,7 +28,8 @@ defmodule MyApp.Schema.Company do
     :description,
     :email,
     :hashed_password,
-    :approved
+    :approved,
+    :seen
   ]
 
   @doc false
@@ -37,6 +39,7 @@ defmodule MyApp.Schema.Company do
     |> validate_required(@allowed_fields)
     |> validate_format(:email, ~r/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)
     |> unique_constraint(:email)
+    |> unique_constraint(:department)
   end
 
 

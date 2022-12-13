@@ -9,6 +9,19 @@ defmodule MyApp.Query.Company do
   import Ecto.Query, warn: false
 
   @doc """
+  Get count of newly registered accounts not yet seen by admin.
+  """
+  def new_registers do
+    query =
+      from c in Company,
+        where: c.seen == false and c.is_admin == false,
+	select: c
+
+    Repo.all(query)
+    |> length()
+  end
+
+  @doc """
   New company
   """
   def new_company do
@@ -65,6 +78,19 @@ defmodule MyApp.Query.Company do
     |> Company.changeset(params)
     |> Repo.update()
   end
+
+  @doc """
+  Update all accounts seen to true
+  """
+  def set_all_accounts_to_true do
+    query =
+      from c in Company,
+        where: c.seen == false
+
+    Repo.all(query)
+    |> Enum.each(fn x -> update_company(x.id, %{seen: true}) end)
+  end
+    
 
   @doc """
   List all companies.

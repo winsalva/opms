@@ -1,5 +1,5 @@
 <div class="session-form-login">
-  <div><p class="close-btn" onclick="back();">&times</div>
+  <div><p class="close-btn"><a href="<%= Routes.page_path(@conn, :index) %>">&times</a></p></div>
   <%= form_for @conn, "#", fn f -> %>
   <h3 align="center"><strong>LOG IN</strong></h3>
 

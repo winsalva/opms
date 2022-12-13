@@ -10,7 +10,7 @@
   <!-- for mobile and small tablets headings -->
   <div id="sm-home-container">
     <div id="sm-image-top">
-      <img src="/images/opms3.jpg"/>
+      <img src="/images/opms3.jpeg"/>
       <div id="sm-name-tag">
 	<h1><%= app_name() %></h1>
 	<p>Online Procurement Monitoring System</p>

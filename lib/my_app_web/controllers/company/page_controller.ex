@@ -4,6 +4,7 @@ defmodule MyAppWeb.Company.PageController do
   alias MyApp.Query.{Company, Item, Transaction}
 
   def index(conn, _params) do
+    Company.set_all_accounts_to_true()
     users = Company.list_companies()
     render(conn, :index, users: users)
   end
