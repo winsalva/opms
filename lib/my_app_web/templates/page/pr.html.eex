@@ -1,0 +1,40 @@
+<body style="background-image:none;background-color:#000;">
+  <div class="data-entries-container">
+    <div class="data-table">
+      <h2><b>PROCUREMENTS:</b></h2>
+
+      <%= if @lists == [] do %>
+      <h3>DATA RECORDS IS EMPTY</h3>
+      <% else %>
+      <table>
+        <thead>
+          <tr>
+            <th>PR ID</th>
+            <th>PR NUMBER</th>
+            <th>DEPARTMENT</th>
+	    <th>BID MODE</th>
+            <th>STATUS</th>
+            <th>UPDATE COUNT</th>
+            <th>INSERTED AT</th>
+            <th>UPDATED AT</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= for p <- @lists do %>
+              <tr>
+                <td><%= p.id %></td>
+                <td><%= p.pr_number %></td>
+                <td><%= p.company.department %></td>
+		<td><%= p.bid_mode %></td>
+                <td><%= p.status %></td>
+                <td><%= p.update_count %></td>
+                <td><%= p.inserted_at %></td>
+                <td><%= p.updated_at %></td>
+              </tr>
+              <% end %>
+        </tbody>
+      </table>
+      <% end %>
+    </div>
+  </div>
+</body>

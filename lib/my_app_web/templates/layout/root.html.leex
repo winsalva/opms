@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <%= csrf_meta_tag() %>
-    <%= live_title_tag assigns[:page_title] || app_name(), suffix: "" %>
+    <%= live_title_tag assigns[:page_title] || app_name(), suffix: " - OPMS" %>
     <link phx-track-static rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
     <script defer phx-track-static type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </head>
@@ -15,6 +15,21 @@
     <%= @inner_content %>
 
     <script>
+
+      let prSideNav = document.getElementById("lsidepr");
+      let prSideNavContainer = document.getElementById("lsideprcontainer");
+
+      prSideNav.addEventListener("click", () => {
+	  let div = prSideNavContainer.classList;
+
+	  if(div.contains('hide')) {
+	      div.classList.remove("hide");
+	  }
+	  else {
+	      div.classList.add('hide');
+	  }
+      });
+      
       // open and close toggles on home pagw
       let open = document.getElementById("open");
       let close = document.getElementById("close");

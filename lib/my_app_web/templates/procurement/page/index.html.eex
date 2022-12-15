@@ -24,10 +24,10 @@
 	    <p>Updated: <%= get_date(pr.updated_at) %></p>
 	    <p>Status: <span class="<%= get_css_class(pr.status) %>"><%= pr.status %></span></p>
 
-	    <p><%= link "View", to: Routes.pr_account_path(@conn, :show, pr.id), class: "statuses-blue" %>
-            <%= if pr.update_count > 0 do %>
-            <sup class="pr-updates-count"><%= pr.update_count %></sup>
-            <% end %>
+	    <p><a class="statuses-blue" href="<%= Routes.pr_account_path(@conn, :show, pr.id) %>">View
+		<%= if pr.update_count > 0 do %>
+                <sup class="pr-updates-count"><%= pr.update_count %></sup>
+                <% end %></a>
             </p>
            </div>
 	    <% end %>

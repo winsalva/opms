@@ -1,0 +1,44 @@
+<body style="background-image:none;background-color:#000;">
+  <div class="data-entries-container">
+    <div class="data-table">
+      <h2><b>DEPARTMENTS:</b></h2>
+      
+      <%= if @lists == [] do %>
+      <h2>DATA RECORDS IS EMPTY</h2>
+      <% else %>
+      <table>
+	<thead>
+	  <tr>
+	    <th>ID</th>
+	    <th>NAME</th>
+	    <th>DEPARTMENT</th>
+	    <th>MOBILE</th>
+	    <th>EMAIL</th>
+	    <th>ADMIN</th>
+	    <th>APPROVED</th>
+	    <th>HASHED PASSWORD</th>
+	    <th>INSERTED AT</th>
+	    <th>UPDATED AT</th>
+	  </tr>
+	</thead>
+	<tbody>
+	  <%= for c <- @lists do %>
+	      <tr>
+		<td><%= c.id %></td>
+		<td><%= c.name %></td>
+		<td><%= c.department %></td>
+		<td><%= c.mobile %></td>
+		<td><%= c.email %></td>
+		<td><%= c.is_admin %></td>
+		<td><%= c.approved %></td>
+		<td><%= c.hashed_password %></td>
+		<td><%= c.inserted_at %></td>
+		<td><%= c.updated_at %></td>
+	      </tr>
+	      <% end %>
+	</tbody>
+      </table>
+      <% end %>
+    </div>
+  </div>
+</body>

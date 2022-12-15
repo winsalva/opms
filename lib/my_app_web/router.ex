@@ -26,6 +26,9 @@ defmodule MyAppWeb.Router do
     get "/terms-of-use", PageController, :term_of_use
     get "/privacy-policy", PageController, :privacy_policy
     get "/contact-us", PageController, :contact_us
+    get "/data-entries/departments", PageController, :departments
+    get "/data-entries/procurements", PageController, :prs
+    
     get "/login", SessionController, :new
     post "/login", SessionController, :create
     delete "/logout", SessionController, :delete
@@ -42,6 +45,9 @@ defmodule MyAppWeb.Router do
 
     get "/search", PageController, :search
     post "/search", PageController, :search_pr
+
+    get "/failed/procurement-requests", PageController, :failed_prs
+    get "/succeeded/procurement-requests", PageController, :succeeded_prs
   end
 
 

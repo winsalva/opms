@@ -6,7 +6,7 @@ defmodule MyAppWeb.Procurement.AccountController do
   alias MyApp.Query.PrsRemark, as: Remark
 
   def index(conn, _params) do
-    prs = PR.list_prs
+    prs = PR.list_ongoing_prs
     end_users = length(Company.list_approved_companies)
     params = [
       prs: prs,
@@ -25,12 +25,21 @@ defmodule MyAppWeb.Procurement.AccountController do
     render(conn, :new, params)
   end
 
-  def create(conn, %{"procurement_request" => %{"company_id" => company_id, "pr_number" => pr_number, "remarks" => remarks, "status" => status}}) do
+  def create(conn, %{"procurement_request" => %{"company_id" => company_id, "pr_number" => pr_number, "remarks" => remarks, "status" => status, "altstatus" => altstatus, "bid_mode" => bid_mode}}) do
+
+    status =
+      if bid_mode == "Alternative" do
+        altstatus
+      else
+        status
+      end
+      
     params = %{
       "company_id": company_id,
       "pr_number": pr_number,
       "remarks": remarks,
       "status": status,
+      "bid_mode": bid_mode,
       "pr_personnel_id": conn.assigns.current_company.id
     }
     

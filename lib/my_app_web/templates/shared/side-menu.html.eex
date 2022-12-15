@@ -9,7 +9,16 @@
       <sup class="user-notif"><%= get_new_registers() %></sup>
       <% end %>
     </div>
-    <div class="a"><i class="fa fa-file"></i><%= link "Procurements", to: Routes.pr_account_path(@conn, :index) %></div>
+    
+    <div id="lsidepr" class="a"><i class="fa fa-file"></i><a href="<%= Routes.pr_account_path(@conn, :index) %>">Procurements</a>
+    </div>
+    <!--
+      <div id="lsideprcontainer" class="clsideprcontainer hide">
+	<a href="<%= Routes.pr_account_path(@conn, :index) %>">Ongoing   &gt;</a>
+	<a href="<%= Routes.pr_page_path(@conn, :succeeded_prs) %>">Completed &gt;</a>
+	<a href="<%= Routes.pr_page_path(@conn, :failed_prs) %>">Failed    &gt;</a>
+      </div>
+    -->
     <div class="a"><i class="fa fa-info-circle"></i><%= link "About us", to: Routes.page_path(@conn, :about_us) %></div>
 
     <div class="a"><i class="fa fa-address-book"></i><%= link "Contact us", to: Routes.page_path(@conn, :contact_us) %></div>
@@ -26,7 +35,11 @@
   <div class="side-menu-container">
     <div class="a"><i class="fa fa-user"></i><a href="<%= Routes.company_account_path(@conn, :account, @conn.assigns.current_company.id) %>">My Account</a></div>
     <div class="a"><i class="fa fa-home"></i><%= link "Home", to: Routes.page_path(@conn, :index) %></div>
-    <div class="a"><i class="fa fa-file"></i><%= link "Procurements", to: Routes.pr_page_path(@conn, :index, id: @conn.assigns.current_company.id) %></div>
+    <div class="a"><i class="fa fa-file"></i><%= link "Procurements", to: Routes.pr_page_path(@conn, :index, id: @conn.assigns.current_company.id) %>
+      <%= if get_number_of_pr_updates_for_user(@conn.assigns.current_company.id) > 0 do %>              <sup class="user-notif">
+	<%= get_number_of_pr_updates_for_user(@conn.assigns.current_company.id) %></sup>
+      <% end %>
+    </div>
     <div class="a"><i class="fa fa-info-circle"></i><%= link "About us", to: Routes.page_path(@conn, :about_us) %></div>
     <div class="a"><i class="fa fa-address-book"></i><%= link "Contact us", to: Routes.page_path(@conn, :contact_us) %></div>
     <div class="a"><i class="fa fa-legal"></i><%= link "Terms of use", to: Routes.page_path(@conn, :term_of_use) %></div>

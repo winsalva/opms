@@ -21,14 +21,11 @@
     }
     .data-entries-container .data-table {
 	margin: 10% auto;
+	padding: 2rem;
     }
-    .data-table table {
-	padding: 1rem 2rem;
-    }
-    .data-entries-container .data-table th, td {
+    .data-entries-container .data-table > thead, th, tr, td {
 	border: 1px solid #fff;
-	padding: 1rem 2rem;
-	text-align: center;
+	padding: .2rem;
     }
     .f-inputs {
 	max-width: 240px;

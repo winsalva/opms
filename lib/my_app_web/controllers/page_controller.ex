@@ -1,6 +1,21 @@
 defmodule MyAppWeb.PageController do
   use MyAppWeb, :controller
 
+  alias MyApp.Query.Company
+  alias MyApp.Query.ProcurementRequest, as: PR
+
+  def departments(conn, _params) do
+    lists = Company.list_companies
+    conn
+    |> render("departments.html", lists: lists)
+  end
+
+  def prs(conn, _params) do
+    lists = PR.list_prs
+    conn
+    |> render("pr.html", lists: lists)
+  end
+
   def test(conn, _params) do
     render(conn, "test.html")
   end

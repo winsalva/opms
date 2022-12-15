@@ -30,9 +30,9 @@
 
 	      <div>
 		<%= cond do %>
-                    <%= user.is_admin -> %>
+                    <% user.is_admin -> %>
                     <p>Admin</p>
-                    <%= user.approved -> %>
+                    <% user.approved -> %>
                     <%= link "Disapprove?", to: Routes.company_account_path(@conn, :disapprove_company, user.id), method: :post, class: "color-red bold", data: [confirm: "Are you sure?"] %>
                     <% true -> %>
                     <%= link "Approve?", to: Routes.company_account_path(@conn, :approve_company, user.id), method: :post, class: "bold", data: [confirm: "Are you sure?"] %>
@@ -74,10 +74,10 @@
 		    <%= cond do %>
 		    <%= user.is_admin -> %>
 	            <td><b>Admin</b></td>
-		    <%= user.approved -> %>
-	            <td><%= link "Disapprove?", to: Routes.company_account_path(@conn, :disapprove_company, user.id), method: :post, class: "color-red bold", data: [confirm: "Are you sure?"] %></td>
+		    <% user.approved -> %>
+	            <td><%= link "Cancel Approval", to: Routes.company_account_path(@conn, :disapprove_company, user.id), method: :post, class: "statuses red", data: [confirm: "You are about to cancel the approval for this user account. Continue?"] %></td>
 		    <% true -> %>
-		    <td><%= link "Approve?", to: Routes.company_account_path(@conn, :approve_company, user.id), method: :post, class: "bold", data: [confirm: "Are you sure?"] %></td>
+		    <td><%= link "Approve", to: Routes.company_account_path(@conn, :approve_company, user.id), method: :post, class: "statuses blue", data: [confirm: "You are about to approve this user account. Continue?"] %>&nbsp;<%= link "Remove", to: Routes.company_page_path(@conn, :delete, user.id), method: :delete, class: "statuses red", data: [confirm: "Removing user account will also remove all Procurement requests done under this user. Continue?"] %></td>
 		    <% end %>
                     </tr>
                   <% end %>

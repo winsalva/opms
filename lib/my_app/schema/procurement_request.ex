@@ -11,6 +11,7 @@ defmodule MyApp.Schema.ProcurementRequest do
     field :remarks, :string
     field :update_count, :integer, default: 1
     field :seen, :boolean, default: false
+    field :bid_mode, :string
     timestamps()
   end
 
@@ -21,7 +22,8 @@ defmodule MyApp.Schema.ProcurementRequest do
     :status,
     :remarks,
     :update_count,
-    :seen
+    :seen,
+    :bid_mode
   ]
 
   @required_fields @allowed_fields

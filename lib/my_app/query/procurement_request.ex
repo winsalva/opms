@@ -62,6 +62,33 @@ defmodule MyApp.Query.ProcurementRequest do
     Repo.all(query)
   end
 
+  def list_ongoing_prs do
+    query =
+      from p in PR,
+        where: p.status != "Delivery of Items" and p.status != "Failed Purchase Request",
+	preload: [:company, :pr_personnel]
+
+    Repo.all(query)
+  end
+
+  def list_succeeded_prs do
+    query =
+      from p in PR,
+        where: p.status == "Delivery of Items",
+        preload: [:company, :pr_personnel]
+
+    Repo.all(query)
+  end
+
+  def list_failed_prs do
+    query =
+      from p in PR,
+        where: p.status == "Failed Purchase Request",
+        preload: [:company, :pr_personnel]
+
+    Repo.all(query)
+  end
+
   def get_pr(id) do
     Repo.get(PR, id)
   end

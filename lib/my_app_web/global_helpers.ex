@@ -6,7 +6,7 @@ defmodule MyAppWeb.GlobalHelpers do
   def get_css_class(status) do
     case status do
       "Delivery of Items" -> "color-green"
-      "Failed PR" -> "color-red"
+      "Failed Purchase Request" -> "color-red"
       _ -> "color-yellow"
     end
   end
@@ -24,6 +24,20 @@ defmodule MyAppWeb.GlobalHelpers do
   end
 
   def get_date(date) do
-    "#{date.month}-#{date.day}-#{date.year}"
+    "#{date.year}-#{date.month}-#{date.day}"
+  end
+
+  def get_datetime(date) do
+    y = date.year
+    m = date.month
+    d = date.day
+    h = date.hour + 8
+    ms = date.minute
+
+    if h > 11 do
+      "#{y}-#{m}-#{d} : #{h-12}:#{ms} pm"
+    else
+      "#{y}-#{m}-#{d} : #{h}:#{ms} am"
+    end
   end
 end

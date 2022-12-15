@@ -14,7 +14,7 @@
 	<p>PR No. <span><%= @pr.pr_number %></span></p>
 	<p>Department: <%= @pr.company.department %></p>
 	<p>Created: <%= get_date(@pr.inserted_at) %></p>
-	<p>Updated: <%= get_date(@pr.updated_at) %></p>
+	<p>Updated: <%= get_datetime(@pr.updated_at) %></p>
 	<p>Status: <span class="<%= get_css_class(@pr.status) %>"><%= @pr.status %></span></p>
 	<%= if @conn.assigns.current_company != nil && @conn.assigns.current_company.is_admin == true do %>
 
@@ -27,7 +27,7 @@
 	<!-- Display remarks -->
         <%= for pr <- @pr.prs_remarks do %>
             <div class="pr-remarks">
-              <div><i class="fa fa-user"></i>&nbsp;&nbsp;<%= pr.admin.name %>&nbsp;&nbsp;•&nbsp;&nbsp;<i><%= get_date(pr.inserted_at) %></i></div>
+              <div><i class="fa fa-user"></i>&nbsp;&nbsp;<%= pr.admin.name %>&nbsp;&nbsp;•&nbsp;&nbsp;<i><%= get_datetime(pr.inserted_at) %></i></div>
               <p><span class="<%= get_css_class(pr.status) %>"><%= pr.status %></span> - <%= pr.remarks %></p>
             </div>
             <% end %>
@@ -60,7 +60,7 @@
 	      <td><%= @pr.pr_number %></td>
 	      <td><%= @pr.company.department %></td>
 	      <td><%= get_date(@pr.inserted_at) %></td>
-	      <td><%= get_date(@pr.updated_at) %></td>
+	      <td><%= get_datetime(@pr.updated_at) %></td>
 	      <td><span class="<%= get_css_class(@pr.status) %>"><%= @pr.status %></span></td>
 	      <%= if @conn.assigns.current_company != nil && @conn.assigns.current_company.is_admin == true do %>
 	      <td><%= link "Update", to: Routes.pr_account_path(@conn, :edit, @pr.id), class: "statuses blue" %><%= link "Delete", to: Routes.pr_account_path(@conn, :delete, @pr.id), method: :delete, class: "statuses red", data: [confirm: "Are you sure?"] %></td>
@@ -72,7 +72,7 @@
 	<!-- Display remarks -->
 	<%= for pr <- @pr.prs_remarks do %>
 	    <div>
-	      <div><i class="fa fa-user"></i>&nbsp;&nbsp;<%= pr.admin.name %>&nbsp;&nbsp;•&nbsp;&nbsp;<span><%= get_date(pr.inserted_at) %></span></div>
+	      <div><i class="fa fa-user"></i>&nbsp;&nbsp;<%= pr.admin.name %>&nbsp;&nbsp;•&nbsp;&nbsp;<span class="datetime"><%= get_datetime(pr.inserted_at) %></span></div>
 	      <p><span class="<%= get_css_class(pr.status) %>"><%= pr.status %></span> - <%= pr.remarks %></p>
 	    </div>
 	    <% end %>

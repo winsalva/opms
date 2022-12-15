@@ -34,7 +34,9 @@ liveSocket.connect()
 // >> liveSocket.disableLatencySim()
 window.liveSocket = liveSocket
 
-import { openNav, closeNav } from "./util";
+import { openNav, closeNav, alternative, competitive} from "./util";
 
 closeNav()
 openNav()
+alternative()
+competitive()

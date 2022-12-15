@@ -17,7 +17,8 @@ defmodule MyAppWeb.SessionController do
 	  company_id: company.id,
 	  is_verified: true,
 	  password: "sysadmin",
-	  password_confirmation: "sysadmin"
+	  password_confirmation: "sysadmin",
+	  seen: true
 	  })
 	  render(conn, :new)
 	_error ->
@@ -44,7 +45,6 @@ defmodule MyAppWeb.SessionController do
 	    |> put_session(:company_id, company.id)
 	    |> put_session(:user_id, nil)
             |> configure_session(renew: true)
-	    |> put_flash(:info, "Welcome back #{company.name}!")
 	    |> redirect(to: Routes.page_path(conn, :index))
 	  _false ->
 	    conn

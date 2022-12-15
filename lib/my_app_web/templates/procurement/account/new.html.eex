@@ -13,28 +13,62 @@
   else
   acc
   end
-  end), prompt: "Select Department" %>
+  end), prompt: "Select Department", class: "f-inputs" %>
   <%= error_tag f, :company_id %>
 
   <label>PR number</label>
   <%= text_input f, :pr_number, placeholder: "12345678" %>
   <%= error_tag f, :pr_number %>
 
+  <fieldset>
+    <legend>Bidding method:</legend>
+    <div class="bid-mode">
+      <label>
+      <%= radio_button f, :bid_mode, "Alternative", checked: true, id: "alternative" %> Alternative</label>
+    </div>
+    <div class="bid-mode">
+      <label>
+	<%= radio_button f, :bid_mode, "Competitive", id: "competitive" %> Competitive</label>
+    </div>
+   
+    <%= error_tag f, :bid_mode %>
+  </fieldset>
+
+  <div id="alternative-status" class="alternative-statuses">
+  <label>Status</label>
+  <%= select f, :altstatus, [
+      "Received Purchase Request": "Received Purchase Request",
+      "Posted Purchase Request (greater than 50k)": "Posted Purchase Request",
+      "Prepared Request For Quotation": "Prepared Request For Quotation",
+      "Opened Request For Quotation": "Opened Request For Quotation",
+      "Prepared Abstract Of Quotation": "Prepared Abstract Of Quotation",
+      "Prepared Purchase Order": "Prepared Purchase Order",
+      "Served Purchase Order": "Served Purchase Order",
+      "Delivery of Items": "Delivery of Items"
+    ], prompt: "Select Status", class: "f-inputs" %>
+  <%= error_tag f, :status %>
+  </div>
+
+
+  <!-- Competitive bidding statuses -->
+  <div id="competitive-status" class="competitive-statuses hide">
   <label>Status</label>
   <%= select f, :status, [
-      "Received PR": "Receive PR",
-      "Posted PR (greater than 50k)": "Posted PR",
-      "Prepared RFQ": "Prepare RFQ",
-      "Opened RFQ": "Open RFQ",
-      "Prepared AOQ": "Prepare AOQ",
-      "Prepared PO": "Prepare PO",
-      "Served PO": "Serve PO",
-      "Delivery of Items": "Delivery of Items"
-    ], prompt: "Select Status", value: "Receive PR" %>
+      "Conducted Pre-Procurement Assessment": "Conducted Pre-Procurement Assessment",
+      "Invited Bidders": "Invited Bidders",
+      "Conducted Pre-bid Conference": "Conducted Pre-bid Conference",
+      "Receipt & Opened Bids": "Receipt & Opened Bids",
+      "Bid Evaluated": "Bid Evaluated",
+      "Posted Qualification": "Posted Qualification",
+      "Noticed & Executed Award": "Noticed & Executed Award",
+      "Contract Prepared & Signed": "Contract Prepared & Signed",
+      "Issued Notice To Proceed": "Issued Notice To Proceed"
+    ], prompt: "Select Status", class: "f-inputs" %>
   <%= error_tag f, :status %>
-
-  <label>Initial Remarks</label>
-  <%= textarea f, :remarks, placeholder: "Add your remarks..." %>
+  </div>
+  
+  <label>Remarks</label>
+  <%= textarea f, :remarks, placeholder: "Add your brief remark regarding this request.." %>
   <%= error_tag f, :remarks %>
  
   <div align="center">

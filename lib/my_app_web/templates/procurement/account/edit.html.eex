@@ -20,19 +20,52 @@
   <%= text_input f, :pr_number, [placeholder: "Enter procurement request #", disabled: true] %>
   <%= error_tag f, :pr_number %>
 
+  <fieldset>
+    <legend>Bidding method:</legend>
+    <div class="bid-mode">
+      <label>
+      <%= radio_button f, :bid_mode, "Alternative", checked: true, id: "alternative", disabled: true %> Alternative</label>
+    </div>
+    <div class="bid-mode">
+      <label>
+        <%= radio_button f, :bid_mode, "Competitive", id: "competitive", disabled: true %> Competitive</label>
+    </div>
+
+    <%= error_tag f, :bid_mode %>
+  </fieldset>
+
+  <%= if @pr.data.bid_mode == "Alternative" do %>
   <label>Status</label>
   <%= select f, :status, [
-      "Received PR": "Receive PR",
-      "Posted PR (greater than 50k)": "Posted PR",
-      "Prepared RFQ": "Prepare RFQ",
-      "Opened RFQ": "Open RFQ",
-      "Prepared AOQ": "Prepare AOQ",
-      "Prepared PO": "Prepare PO",
-      "Served PO": "Serve PO",
+      "Received Purchase Request": "Received Purchase Request",
+      "Posted Purchase Request (greater than 50k)": "Posted Purchase Request",
+      "Prepared Request For Quotation": "Prepared Request For Quotation",
+      "Opened Request For Quotation": "Opened Request For Quotation",
+      "Prepared Abstract Of Quotation": "Prepared Abstract Of Quotation",
+      "Prepared Purchase Order": "Prepared Purchase Order",
+      "Served Purchase Order": "Served Purchase Order",
       "Delivery of Items": "Delivery of Items",
-      "Failed PR": "Failed PR"
-    ], prompt: "Select Status" %>
+      "Failed Purchase Request": "Failed Purchase Request"
+    ], class: "f-inputs" %>
   <%= error_tag f, :status %>
+
+  <% else %>
+
+  <!-- Competitive bidding statuses -->
+  <label>Status</label>
+  <%= select f, :status, [
+      "Conducted Pre-Procurement Assessment": "Conducted Pre-Procurement Assessment",
+      "Invited Bidders": "Invited Bidders",
+      "Conducted Pre-bid Conference": "Conducted Pre-bid Conference",
+      "Receipt & Opened Bids": "Receipt & Opened Bids",
+      "Bid Evaluated": "Bid Evaluated",
+      "Posted Qualification": "Posted Qualification",
+      "Noticed & Executed Award": "Noticed & Executed Award",
+      "Contract Prepared & Signed": "Contract Prepared & Signed",
+      "Issued Notice To Proceed": "Issued Notice To Proceed"
+    ], prompt: "Select Status", class: "f-inputs" %>
+  <%= error_tag f, :status %>
+  <% end %>
 
   <label>Add Remarks</label>
   <%= textarea f, :remarks, placeholder: "Add your remarks.." %>

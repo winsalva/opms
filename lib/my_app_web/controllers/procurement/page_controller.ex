@@ -3,6 +3,27 @@ defmodule MyAppWeb.Procurement.PageController do
 
   alias MyApp.Query.Company
   alias MyApp.Query.ProcurementRequest, as: PR
+  alias MyApp.Query.PrsRemark, as: Remark
+
+  def failed_prs(conn, _params) do
+    prs = PR.list_failed_prs
+    end_users = length(Company.list_approved_companies)
+    params = [
+      prs: prs,
+      end_users: end_users
+    ]
+    render(conn, "failed-prs.html", params)
+  end
+
+  def succeeded_prs(conn, _params) do
+    prs = PR.list_succeeded_prs
+    end_users = length(Company.list_approved_companies)
+    params = [
+      prs: prs,
+      end_users: end_users
+    ]
+    render(conn, "succeeded-prs.html", params)
+  end
   
   def index(conn, %{"id" => id}) do
     prs = Company.get_company_with_procurement_request(id)
