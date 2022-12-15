@@ -20,7 +20,7 @@
       <%= if @prs == [] do %>
 
       <br><br><br>
-      <p align="center">No Records Available Yet!</p>
+      <p>No Records Available Yet!</p>
 
       <% else %>
       <%= for pr <- @prs do %>
@@ -50,7 +50,7 @@
 	</div>
 
 	<%= if @prs == [] do %>
-	<p style="width:100%;text-align:center;">No Records Available Yet!</p>
+	<p>No Records Available Yet!</p>
 	<% else %>
 	<table>
 	  <thead>

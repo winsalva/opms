@@ -30,6 +30,9 @@
 	padding: 1rem 2rem;
 	text-align: center;
     }
+    table tr th {
+	text-align: center;
+    }
     .f-inputs {
 	max-width: 240px;
     }
