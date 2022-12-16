@@ -34,10 +34,12 @@ defmodule MyAppWeb.GlobalHelpers do
     h = date.hour + 8
     ms = date.minute
 
-    if h > 11 do
-      "#{y}-#{m}-#{d} : #{h-12}:#{ms} pm"
-    else
-      "#{y}-#{m}-#{d} : #{h}:#{ms} am"
+    cond do
+      h == 24 -> "#{y}-#{m}-#{d} : 12:#{ms} am"
+      h > 23  -> "#{y}-#{m}-#{d} : #{h-24}:#{ms} am"
+      h == 12 -> "#{y}-#{m}-#{d} : 12:#{ms} pm"
+      h > 11  -> "#{y}-#{m}-#{d} : #{h-12}:#{ms} pm"
+      true    -> "#{y}-#{m}-#{d} : #{h}:#{ms} am"
     end
   end
 end
