@@ -14,14 +14,14 @@
 
       <div class="contacts">
         <p>
-	  <i class="fa fa-phone"></i>
-	  (+63) 9091234567</p>
+	  <i class="fa fa-map-marker"></i>&nbsp;
+	  <b>MAIN CAMPUS</b><p style="margin:-2.5rem 0 2rem 0;padding-left:3.5rem;">San Roque, Sogod, Southern Leyte</p>
 	<p>
 	  <i class="fa fa-envelope-square"></i>
-	  example@gmail.com</p>
+	  president@southernleytestateu.edu.ph</p>
 	<p>
-	  <i class="fa fa-map-marker"></i>
-	  1234 street, Sample location, Sample City, Philippines</p>
+	  <i class="fa fa-globe"></i>
+	  www.southernleytestateu.edu.ph</p>
       </div>
     </div>
 
@@ -33,15 +33,15 @@
 	<div class="page-titles"><i onclick="back();" class="fa fa-arrow-left"></i>&nbsp;&nbsp;&nbsp;Contact Us</div>
 
 	<div class="contacts">
-          <span><i class="fa fa-phone"></i>  &nbsp;&nbsp;&nbsp;(+63) 9091234567</span>
+          <span><i class="fa fa-map-marker"></i>  &nbsp;&nbsp;&nbsp;<b>MAIN CAMPUS</b><p style="margin-bottom:0;padding-left:2rem;font-size:1.5rem;"> San Roque, Sogod, Southern Leyte</p></span>
         </div>
 
         <div class="contacts">
-          <span><i class="fa fa-envelope-square"></i>&nbsp;&nbsp;&nbsp;example@gmail.com</span>
+          <span><i class="fa fa-envelope-square"></i>&nbsp;&nbsp;&nbsp;president@southernleytestateu.edu.ph</span>
         </div>
 
         <div class="contacts">
-          <span><i class="fa fa-map-marker"></i>&nbsp;&nbsp;&nbsp;1234 street, Sample location, Sample City, Philippines</span>
+          <span><i class="fa fa-globe"></i>&nbsp;&nbsp;&nbsp;www.southernleytestateu.edu.ph</span>
 	</div>
       </div>
     </div>
