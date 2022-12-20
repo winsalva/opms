@@ -51,6 +51,7 @@
 
 	<%= if @prs == [] do %>
 	<p>No Records Available Yet!</p>
+	<br>
 	<% else %>
 	<table>
 	  <thead>

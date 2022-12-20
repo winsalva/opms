@@ -55,6 +55,7 @@
   <label>Status</label>
   <%= select f, :status, [
       "Conducted Pre-Procurement Assessment": "Conducted Pre-Procurement Assessment",
+      "Failed Purchase Request": "Failed Purchase Request",
       "Invited Bidders": "Invited Bidders",
       "Conducted Pre-bid Conference": "Conducted Pre-bid Conference",
       "Receipt & Opened Bids": "Receipt & Opened Bids",

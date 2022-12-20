@@ -17,7 +17,7 @@ defmodule MyAppWeb.Procurement.AccountController do
   
   def new(conn, _params) do
     new_pr = PR.new_pr
-    departments = Company.list_companies
+    departments = Company.list_approved_companies
     params = [
       new_pr: new_pr,
       departments: departments

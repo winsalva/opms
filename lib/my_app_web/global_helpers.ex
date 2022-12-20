@@ -6,6 +6,7 @@ defmodule MyAppWeb.GlobalHelpers do
   def get_css_class(status) do
     case status do
       "Delivery of Items" -> "color-green"
+      "Issued Notice To Proceed" -> "color-green"
       "Failed Purchase Request" -> "color-red"
       _ -> "color-yellow"
     end

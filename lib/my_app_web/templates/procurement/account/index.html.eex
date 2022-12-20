@@ -49,13 +49,15 @@
 	  <!-- dont display this if there are users yet. There is no sense to add a pr when no users yet -->
 	  <%= if @end_users != 0 do %>
 	  <a class="pr-menu-options" href="<%= Routes.pr_account_path(@conn, :new) %>"><i class="fa fa-plus-square"></i> New</a>
+	  <% end %>
 	  <a class="pr-menu-options" href="<%= Routes.pr_page_path(@conn, :succeeded_prs) %>"><i class="fa fa-check"></i> Completed</a>
         <a class="pr-menu-options" href="<%= Routes.pr_page_path(@conn, :failed_prs) %>"><i class="fa fa-warning"></i> Failed</a>
 	  <a class="pr-menu-options" href="<%= Routes.pr_page_path(@conn, :search) %>"><i class="fa fa-search"></i>&nbsp;Search</a>
-	  <% end %>
+	  
 	</div>
 
 	<%= if @prs == [] do %>
+	<br><br>
 	<p style="width:100%;text-align:center;">No Records Available Yet!</p>
 	<% else %>
 	<table>

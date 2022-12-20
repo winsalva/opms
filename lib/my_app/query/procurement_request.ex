@@ -65,7 +65,7 @@ defmodule MyApp.Query.ProcurementRequest do
   def list_ongoing_prs do
     query =
       from p in PR,
-        where: p.status != "Delivery of Items" and p.status != "Failed Purchase Request",
+        where: p.status != "Delivery of Items" and p.status != "Failed Purchase Request" and p.status != "Issued Notice To Proceed",
 	preload: [:company, :pr_personnel]
 
     Repo.all(query)
@@ -74,7 +74,7 @@ defmodule MyApp.Query.ProcurementRequest do
   def list_succeeded_prs do
     query =
       from p in PR,
-        where: p.status == "Delivery of Items",
+        where: p.status == "Delivery of Items" or p.status == "Issued Notice To Proceed",
         preload: [:company, :pr_personnel]
 
     Repo.all(query)
