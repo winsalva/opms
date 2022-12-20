@@ -3,8 +3,7 @@
 //let sideNav = document.getElementById("mySidenav")
 /* Set side bar width 240px */
 
-/*
-let openNav = document.getElementById("openNav").addEventListener("click", () => {
+/*let openNav = document.getElementById("openNav").addEventListener("click", () => {
     sideNav.style.width = "240px";
 })
 */
@@ -14,7 +13,6 @@ let closeNav = document.getElementById("closeNav").addEventListener("click", () 
     sideNav.style.width = "0";
 })
 */
-
 let alternative = document.getElementById("alternative");
 let competitive = document.getElementById("competitive");
 let alternativeStatus = document.getElementById("alternative-status");
@@ -30,17 +28,18 @@ competitive.addEventListener("click", () => {
     alternativeStatus.classList.add("hide");
 });
 
+
+let sideNav = document.getElementById("mySidenav")
 /* Set side bar width 240px */
-/*
+
 let openNav = document.getElementById("openNav").addEventListener("click", () => {
     sideNav.style.width = "240px";
 })
-*/
+
 /* Set the width of the side navigation to 0 */
-/*
+
 let closeNav = document.getElementById("closeNav").addEventListener("click", () => {
     sideNav.style.width = "0";
 })
-*/
-//export {openNav, closeNav, alternative, competitive}
-export {alternative, competitive}
+
+export {alternative, competitive, openNav, closeNav}

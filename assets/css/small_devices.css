@@ -14,6 +14,9 @@
     .contacts p {
 	font-weight: 400;
     }
+    .hide {
+	display: none;
+    }
     .pc-content-container {
 	display: none;
     }
