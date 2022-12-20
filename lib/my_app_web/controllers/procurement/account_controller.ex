@@ -92,11 +92,10 @@ defmodule MyAppWeb.Procurement.AccountController do
       "remarks": remarks,
       "update_count": pr.update_count + 1
     }
-
-    Remark.insert_prs_remark(%{"procurement_request_id": id, "admin_id": conn.assigns.current_company.id, "status": status, "remarks": remarks})
     
     case PR.update_pr(id, params) do
       {:ok, pr} ->
+        Remark.insert_prs_remark(%{"procurement_request_id": id, "admin_id": conn.assigns.current_company.id, "status": status, "remarks": remarks})
         conn
 	|> redirect(to: Routes.pr_account_path(conn, :show, pr.id))
       {:error, %Ecto.Changeset{} = pr} ->

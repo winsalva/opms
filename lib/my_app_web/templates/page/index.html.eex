@@ -27,9 +27,21 @@
 
     <!-- available menu options for small devices -->
     <div id="sm-menu-options-container">
+      <%= cond do %>
+      <% @conn.assigns.current_company != nil && @conn.assigns.current_company.is_admin == true -> %>
+      <div><%= link "ADMIN ACCOUNT", to: Routes.company_account_path(@conn, :account, @conn.assigns.current_company.id) %></div>
+      <div><%= link "LOG OUT", to: Routes.session_path(@conn, :delete), method: :delete, data: [confirm: "Are you sure?"] %></div>
+
+      <% @conn.assigns.current_company != nil && @conn.assigns.current_company.is_admin == false -> %>
+      <div><%= link "MY ACCOUNT", to: Routes.company_account_path(@conn, :account, @conn.assigns.current_company.id) %></div>
+      <div><%= link "LOG OUT", to: Routes.session_path(@conn, :delete), method: :delete, data: [confirm: "Are you sure?"] %></div>
+
+      <% true -> %>
       <div><%= link "LOG IN", to: Routes.session_path(@conn, :new) %></div>
       <div><%= link "REGISTER ACCOUNT", to: Routes.company_page_path(@conn, :new) %></div>
+      <% end %>
     </div>
+    
   </div>
 
   <div class="sub-container">
