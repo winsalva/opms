@@ -35,10 +35,7 @@ liveSocket.connect()
 window.liveSocket = liveSocket
 
 
-import {alternative, competitive, openNav, closeNav} from "./util";
+import {alternative, competitive} from "./util";
 
 alternative()
 competitive()
-
-openNav()
-closeNav()

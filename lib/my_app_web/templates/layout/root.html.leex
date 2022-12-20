@@ -15,23 +15,7 @@
     <%= @inner_content %>
 
     <script>
-
-      /*
-      let prSideNav = document.getElementById("lsidepr");
-      let prSideNavContainer = document.getElementById("lsideprcontainer");
-
-      prSideNav.addEventListener("click", () => {
-	  let div = prSideNavContainer.classList;
-
-	  if(div.contains('hide')) {
-	      div.classList.remove("hide");
-	  }
-	  else {
-	      div.classList.add('hide');
-	  }
-      });
-      */
-      // open and close toggles on home pagw
+      // open and close toggles on home page
       let open = document.getElementById("open");
       let close = document.getElementById("close");
       let menus = document.getElementById("sm-menu-options-container");
@@ -47,9 +31,20 @@
 	  menus.style.display = "none";
           close.style.display = "none";
       });
+
+      function opennav() {
+	  let sideNav = document.getElementById("mySidenav");
+          sideNav.style.width = "240px";
+      }
+      function closenav() {
+          let sideNav = document.getElementById("mySidenav");
+          sideNav.style.width = "0";
+      }
       function back() {
           window.history.back();
       }
     </script>
+
+    
   </body>
 </html>

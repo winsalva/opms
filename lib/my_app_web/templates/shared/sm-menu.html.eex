@@ -1,11 +1,11 @@
 <div class="sm-menu">
   <div><i class="fa fa-arrow-left" onclick="back();"></i></div>
   <div class="back-nav-title"><%= @title %></div>
-  <div id="openNav" class="back-nav-menu"><i class="fa fa-bars"></i></div>
+  <div id="openNav" onclick="opennav();" class="back-nav-menu"><i class="fa fa-bars"></i></div>
 </div>
 
 <div id="mySidenav" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" id="closeNav">&times;</a>
+  <a href="javascript:void(0)" onclick="closenav();" class="closebtn" id="closeNav">&times;</a>
 
   <%= if @conn.assigns.current_company != nil and @conn.assigns.current_company.is_admin == true do %>
   <a href="<%= Routes.company_account_path(@conn, :account, @conn.assigns.current_company.id) %>"><i class="fa fa-user"></i>&nbsp;&nbsp;Admin Account</a>

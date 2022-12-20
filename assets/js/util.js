@@ -28,18 +28,19 @@ competitive.addEventListener("click", () => {
     alternativeStatus.classList.add("hide");
 });
 
-
-let sideNav = document.getElementById("mySidenav")
+/*
+  let sideNav = document.getElementById("mySidenav")
+  */
 /* Set side bar width 240px */
-
+/*
 let openNav = document.getElementById("openNav").addEventListener("click", () => {
     sideNav.style.width = "240px";
 })
-
+*/
 /* Set the width of the side navigation to 0 */
-
+/*
 let closeNav = document.getElementById("closeNav").addEventListener("click", () => {
     sideNav.style.width = "0";
 })
-
-export {alternative, competitive, openNav, closeNav}
+*/
+export {alternative, competitive}
