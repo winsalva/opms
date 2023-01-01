@@ -60,6 +60,20 @@
 	margin: 0 auto;
 	display: flex;
     }
+    #send-mail-link {
+	text-align: center;
+	background-color: #1769ff;
+	border: 1px solid #1769ff;
+	border-radius: 5px;
+	font-weight: 500;
+	color: #fff;
+	padding: 1rem 2rem;
+    }
+    #send-mail-link:hover {
+	background-color: #eef;
+        border: 1px solid #1769ff;
+	color: #1769ff;
+    }
     .search-container > input {
 	
     }

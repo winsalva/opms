@@ -15,8 +15,7 @@
       <div class="sm-account-container">
 	<%= if @users == [] do %>
 	<br><br><br>
-	<p align="center">No Available Records \
-	  Yet.</p>
+	<p align="center">No Available Records Yet.</p>
 	<br><br><br>
 
 	<% else %>
@@ -41,10 +40,9 @@
               </div>
           </div>
         <% end %>
-      </div>
-      <% end %>
-    </div>
-  
+  <% end %>
+  </div>
+</div>
 
     <!-- Large devices -->
     <div class="pc-content-container">
@@ -52,7 +50,7 @@
 	<div class="page-titles"><i onclick="back();" class="fa fa-arrow-left"></i>&nbsp;&nbsp;&nbsp;Users</div>
 	<div class="users-container">
 	  <%= if @users == [] do %>
-	  <p align="center">No Available Records Yet.</p>
+	  <p style="margin-left:26rem;">No Available Records Yet.</p>
 	  <% else %>
 	  <table>
 	    <thead>
@@ -72,10 +70,10 @@
 		    <td><%= user.mobile %></td>
 		    <td><%= user.email %></td>
 		    <%= cond do %>
-		    <%= user.is_admin -> %>
+		    <% user.is_admin -> %>
 	            <td><b>Admin</b></td>
 		    <% user.approved -> %>
-	            <td><%= link "Cancel_Approval", to: Routes.company_account_path(@conn, :disapprove_company, user.id), method: :post, class: "statuses red", data: [confirm: "You are about to cancel the approval for this user account. Continue?"] %></td>
+	            <td><%= link "Cancel Approval", to: Routes.company_account_path(@conn, :disapprove_company, user.id), method: :post, class: "statuses red", data: [confirm: "You are about to cancel the approval for this user account. Continue?"] %></td>
 		    <% true -> %>
 		    <td><%= link "Approve", to: Routes.company_account_path(@conn, :approve_company, user.id), method: :post, class: "statuses blue", data: [confirm: "You are about to approve this user account. Continue?"] %>&nbsp;<%= link "Remove", to: Routes.company_page_path(@conn, :delete, user.id), method: :delete, class: "statuses red", data: [confirm: "Removing user account will also remove all Procurement requests done under this user. Continue?"] %></td>
 		    <% end %>
@@ -85,9 +83,9 @@
 	    </tbody>
 	  </table>
 	  <% end %>
-	</div>
-      </div>
-    </div>
+</div>
+</div>
+</div>
     <!-- footer -->
     <%= render(MyAppWeb.SharedView, "footer.html", conn: @conn) %>
   </div>

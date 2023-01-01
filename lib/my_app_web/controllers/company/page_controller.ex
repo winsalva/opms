@@ -31,8 +31,13 @@ defmodule MyAppWeb.Company.PageController do
   end
 
   def delete(conn, %{"id" => id}) do
-    Company.delete_company(id)
-    conn
-    |> redirect(to: Routes.company_page_path(conn, :index))
+    case Company.delete_company(id) do
+      {:ok, company} ->
+        conn
+        |> redirect(to: Routes.company_account_path(conn, :notify_account, company.email))
+      _error ->
+        conn
+	|> redirect(to: Routes.company_page_path(conn, :index))
+    end
   end
 end

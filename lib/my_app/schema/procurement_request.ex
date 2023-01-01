@@ -9,6 +9,8 @@ defmodule MyApp.Schema.ProcurementRequest do
     field :pr_number, :string
     field :status, :string
     field :remarks, :string
+    field :purpose, :string
+    field :end_user, :string
     field :update_count, :integer, default: 1
     field :seen, :boolean, default: false
     field :bid_mode, :string
@@ -21,6 +23,8 @@ defmodule MyApp.Schema.ProcurementRequest do
     :pr_number,
     :status,
     :remarks,
+    :end_user,
+    :purpose,
     :update_count,
     :seen,
     :bid_mode

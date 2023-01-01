@@ -36,35 +36,14 @@
 
   <%= if @pr.data.bid_mode == "Alternative" do %>
   <label>Status</label>
-  <%= select f, :status, [
-      "Received Purchase Request": "Received Purchase Request",
-      "Posted Purchase Request (greater than 50k)": "Posted Purchase Request",
-      "Prepared Request For Quotation": "Prepared Request For Quotation",
-      "Opened Request For Quotation": "Opened Request For Quotation",
-      "Prepared Abstract Of Quotation": "Prepared Abstract Of Quotation",
-      "Prepared Purchase Order": "Prepared Purchase Order",
-      "Served Purchase Order": "Served Purchase Order",
-      "Delivery of Items": "Delivery of Items",
-      "Failed Purchase Request": "Failed Purchase Request"
-    ], class: "f-inputs" %>
+  <%= select f, :status, get_next_status(@pr.data.bid_mode, @pr.data.status), prompt: "Select Status", class: "f-inputs" %>
   <%= error_tag f, :status %>
 
   <% else %>
 
   <!-- Competitive bidding statuses -->
   <label>Status</label>
-  <%= select f, :status, [
-      "Conducted Pre-Procurement Assessment": "Conducted Pre-Procurement Assessment",
-      "Failed Purchase Request": "Failed Purchase Request",
-      "Invited Bidders": "Invited Bidders",
-      "Conducted Pre-bid Conference": "Conducted Pre-bid Conference",
-      "Receipt & Opened Bids": "Receipt & Opened Bids",
-      "Bid Evaluated": "Bid Evaluated",
-      "Posted Qualification": "Posted Qualification",
-      "Noticed & Executed Award": "Noticed & Executed Award",
-      "Contract Prepared & Signed": "Contract Prepared & Signed",
-      "Issued Notice To Proceed": "Issued Notice To Proceed"
-    ], prompt: "Select Status", class: "f-inputs" %>
+  <%= select f, :status, get_next_status(@pr.data.bid_mode, @pr.data.status), prompt: "Select Status", class: "f-inputs" %>
   <%= error_tag f, :status %>
   <% end %>
 

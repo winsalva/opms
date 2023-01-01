@@ -1,0 +1,11 @@
+<div class="session-form-login">
+  <div><p class="close-btn"><a href="<%= Routes.company_page_path(@conn, :index) %>">&times</a></p></div>
+  
+  <h3 align="center"><strong>NOTIFY USER</strong></h3>
+
+  <br>
+  <div align="center">
+    <a id="send-mail-link" href="mailto:<%= @email %>">Send an Email</a>
+  </div>
+  <br>
+</div>

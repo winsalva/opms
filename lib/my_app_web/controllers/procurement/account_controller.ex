@@ -25,7 +25,7 @@ defmodule MyAppWeb.Procurement.AccountController do
     render(conn, :new, params)
   end
 
-  def create(conn, %{"procurement_request" => %{"company_id" => company_id, "pr_number" => pr_number, "remarks" => remarks, "status" => status, "altstatus" => altstatus, "bid_mode" => bid_mode}}) do
+  def create(conn, %{"procurement_request" => %{"company_id" => company_id, "pr_number" => pr_number, "remarks" => remarks, "status" => status, "altstatus" => altstatus, "bid_mode" => bid_mode, "end_user" => end_user, "purpose" => purpose}}) do
 
     status =
       if bid_mode == "Alternative" do
@@ -36,10 +36,12 @@ defmodule MyAppWeb.Procurement.AccountController do
       
     params = %{
       "company_id": company_id,
-      "pr_number": pr_number,
+            "pr_number": pr_number,
       "remarks": remarks,
       "status": status,
       "bid_mode": bid_mode,
+      "end_user": end_user,
+      "purpose": purpose,
       "pr_personnel_id": conn.assigns.current_company.id
     }
     
@@ -47,13 +49,12 @@ defmodule MyAppWeb.Procurement.AccountController do
       {:ok, pr} ->
 
         Remark.insert_prs_remark(%{"procurement_request_id": pr.id, "admin_id": conn.assigns.current_company.id, "status": status, "remarks": remarks})
-
         conn
 	|> redirect(to: Routes.pr_account_path(conn, :index))
       {:error, %Ecto.Changeset{} = new_pr} ->
         params = [
 	  new_pr: new_pr,
-	  departments: Company.list_companies
+	  departments: Company.list_approved_companies
 	]
         conn
 	|> render(:new, params)

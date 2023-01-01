@@ -51,13 +51,17 @@ defmodule MyAppWeb.Company.AccountController do
       params = %{approved: false}
       
       case Company.update_company(id, params) do
-           {:ok, _company} ->
+           {:ok, company} ->
            conn
-           |> redirect(to: Routes.company_page_path(conn, :index))
+           |> redirect(to: Routes.company_account_path(conn, :notify_account, company.email))
             _ ->
             conn
             |> redirect(to: Routes.company_page_path(conn, :index))
       end
+  end
+
+  def notify_account(conn, %{"email" => email}) do
+    render(conn, "notification-form.html", email: email)
   end
 
   def unapproved_companies(conn, _params) do

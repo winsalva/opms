@@ -65,10 +65,12 @@
 	  <tr>
 	    <th>PR No.</th>
 	    <th>Department</th>
+	    <th>End User</th>
+	    <th>Purpose</th>
 	    <th>Created</th>
 	    <th>Updated</th>
 	    <th>Status</th>
-	    <%= if @conn.assigns.current_company != nil && @conn.assigns.current_company.is_admin == true do %>
+	    <%= if @conn.assigns.current_company != nil && @conn.assigns.current_company.is_admin == true && !process_done(@query.status) do %>
 	    <th>Action</th>
 	    <% end %>
 	  </tr>
@@ -77,10 +79,12 @@
 	  <tr>
 	    <td><%= @query.pr_number %></td>
 	    <td><%= @query.company.department %></td>
+	    <td><%= @query.end_user %></td>
+	    <td><%= @query.purpose %></td>
 	    <td><%= get_date(@query.inserted_at) %></td>
 	    <td><%= get_date(@query.updated_at) %></td>
 	    <td><span class="<%= get_css_class(@query.status) %>"><%= @query.status %></span></td>
-	    <%= if @conn.assigns.current_company != nil && @conn.assigns.current_company.is_admin == true do %>
+	    <%= if @conn.assigns.current_company != nil && @conn.assigns.current_company.is_admin == true && !process_done(@query.status) do %>
 	    <td><%= link "Update", to: Routes.pr_account_path(@conn, :edit, @query.id), class: "statuses blue" %><%= link "Delete", to: Routes.pr_account_path(@conn, :delete, @query.id), method: :delete, class: "statuses red", data: [confirm: "Are you sure?"] %></td>
 	    <% end %>
 	  </tr>

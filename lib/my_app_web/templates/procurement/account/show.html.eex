@@ -47,10 +47,12 @@
             <tr>
               <th>PR No.</th>
               <th>Department</th>
+	      <th>End User</th>
+	      <th>Purpose</th>
               <th>Created</th>
               <th>Updated</th>
               <th>Status</th>
-	      <%= if @conn.assigns.current_company != nil && @conn.assigns.current_company.is_admin == true do %>
+	      <%= if @conn.assigns.current_company != nil && @conn.assigns.current_company.is_admin == true && !process_done(@pr.status) do %>
               <th>Action</th>
 	      <% end %>
             </tr>
@@ -59,11 +61,15 @@
 	    <tr>
 	      <td><%= @pr.pr_number %></td>
 	      <td><%= @pr.company.department %></td>
+	      <td><%= @pr.end_user %></td>
+	      <td><%= @pr.purpose %></td>
 	      <td><%= get_date(@pr.inserted_at) %></td>
 	      <td><%= get_datetime(@pr.updated_at) %></td>
 	      <td><span class="<%= get_css_class(@pr.status) %>"><%= @pr.status %></span></td>
-	      <%= if @conn.assigns.current_company != nil && @conn.assigns.current_company.is_admin == true do %>
-	      <td><%= link "Update", to: Routes.pr_account_path(@conn, :edit, @pr.id), class: "statuses blue" %><%= link "Delete", to: Routes.pr_account_path(@conn, :delete, @pr.id), method: :delete, class: "statuses red", data: [confirm: "Are you sure?"] %></td>
+	
+	      <%= if @conn.assigns.current_company != nil && @conn.assigns.current_company.is_admin == true && !process_done(@pr.status) do %>
+	      <td><%= link "Update", to: Routes.pr_account_path(@conn, :edit, @pr.id), class: "statuses blue" %><!-- link "Delete", to: Routes.pr_account_path(conn, :delete, pr.id), method: :delete, class: "statuses red", data: [confirm: "Are you sure?"] --></td>
+	    
 	      <% end %>
 	    </tr>
           </tbody>

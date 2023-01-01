@@ -97,6 +97,8 @@ defmodule MyAppWeb.Router do
     get "/accounts/:id/edit", AccountController, :edit_account
     put "/accounts", AccountController, :update_account
 
+    get "/accounts/notify/:email", AccountController, :notify_account
+
     get "/approved-accounts", AccountController, :approved_companies
     get "/unapproved-accounts", AccountController, :unapproved_companies
     post "/approve-accounts/:id", AccountController, :approve_company

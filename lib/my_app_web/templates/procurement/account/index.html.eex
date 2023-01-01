@@ -57,17 +57,19 @@
 	</div>
 
 	<%= if @prs == [] do %>
-	<br><br>
-	<p style="width:100%;text-align:center;">No Records Available Yet!</p>
+	<br>
+	<p style="margin-left:26rem;">No Records Available Yet!</p>
 	<% else %>
 	<table>
 	  <thead>
 	    <tr>
 	      <th>PR No.</th>
 	      <th>Department</th>
+	      <th>End User</th>
+	      <th>Purpose</th>
 	      <th>Created</th>
 	      <th>Updated</th>
-	      <th>Current Status</th>
+	      <th>Status</th>
 	      <th>Action</th>
 	    </tr>
 	  </thead>
@@ -76,10 +78,12 @@
 		<tr>
 		  <td><%= pr.pr_number %></td>
 		  <td><%= pr.company.department %></td>
+		  <td><%= pr.end_user %></td>
+		  <td><%= pr.purpose %></td>
 		  <td><%= get_date(pr.inserted_at) %></td>
 		  <td><%= get_datetime(pr.updated_at) %></td>
 		  <td><span class="<%= get_css_class(pr.status) %>"><%= pr.status %></span></td>
-		  <td><%= link "View_Details", to: Routes.pr_account_path(@conn, :show, pr.id), class: "statuses blue" %></td>
+		  <td><a class="statuses blue" href="<%= Routes.pr_account_path(@conn, :show, pr.id) %>">View&nbsp;Details</a></td>
 		</tr>
 		<% end %>
 	  </tbody>

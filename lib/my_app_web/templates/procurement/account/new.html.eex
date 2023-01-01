@@ -20,6 +20,10 @@
   <%= text_input f, :pr_number, placeholder: "12345678" %>
   <%= error_tag f, :pr_number %>
 
+  <label>End User</label>
+  <%= text_input f, :end_user, placeholder: "Christal Betita" %>
+  <%= error_tag f, :end_user %>
+
   <fieldset>
     <legend>Bidding method:</legend>
     <div class="bid-mode">
@@ -37,15 +41,7 @@
   <div id="alternative-status" class="alternative-statuses">
   <label>Status</label>
   <%= select f, :altstatus, [
-      "Received Purchase Request": "Received Purchase Request",
-      "Posted Purchase Request (greater than 50k)": "Posted Purchase Request",
-      "Prepared Request For Quotation": "Prepared Request For Quotation",
-      "Opened Request For Quotation": "Opened Request For Quotation",
-      "Prepared Abstract Of Quotation": "Prepared Abstract Of Quotation",
-      "Prepared Purchase Order": "Prepared Purchase Order",
-      "Served Purchase Order": "Served Purchase Order",
-      "Delivery of Items": "Delivery of Items"
-    ], prompt: "Select Status", class: "f-inputs" %>
+      "Received Purchase Request": "Received Purchase Request"], value: "Received Purchase Request", class: "f-inputs" %>
   <%= error_tag f, :status %>
   </div>
 
@@ -53,19 +49,13 @@
   <!-- Competitive bidding statuses -->
   <div id="competitive-status" class="competitive-statuses hide">
   <label>Status</label>
-  <%= select f, :status, [
-      "Conducted Pre-Procurement Assessment": "Conducted Pre-Procurement Assessment",
-      "Invited Bidders": "Invited Bidders",
-      "Conducted Pre-bid Conference": "Conducted Pre-bid Conference",
-      "Receipt & Opened Bids": "Receipt & Opened Bids",
-      "Bid Evaluated": "Bid Evaluated",
-      "Posted Qualification": "Posted Qualification",
-      "Noticed & Executed Award": "Noticed & Executed Award",
-      "Contract Prepared & Signed": "Contract Prepared & Signed",
-      "Issued Notice To Proceed": "Issued Notice To Proceed"
-    ], prompt: "Select Status", class: "f-inputs" %>
+  <%= select f, :status, ["Conducted Pre-Procurement Assessment": "Conducted Pre-Procurement Assessment"], value: "Conducted Pre-Procurement Assessment", class: "f-inputs" %>
   <%= error_tag f, :status %>
   </div>
+
+  <label>Purpose</label>
+  <%= text_input f, :purpose, placeholder: "Christmas Party" %>
+  <%= error_tag f, :purpose %>
   
   <label>Remarks</label>
   <%= textarea f, :remarks, placeholder: "Add your brief remark regarding this request.." %>
