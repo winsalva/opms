@@ -36,6 +36,10 @@
     .f-inputs {
 	max-width: 240px;
     }
+    .g-report-container {
+	display: flex;
+	justify-content: space-between;
+    }
     .hide {
 	display: none;
     }
@@ -52,6 +56,20 @@
         padding: .2rem 2.5rem;
 	color: #fff;
     }
+    .report-container {
+	padding: 3rem 0;
+	border-radius: 1rem;
+	color: #000;
+	font-weight: bold;
+	background-color: #c4dff6;
+	margin: 4rem 1rem;
+	text-align: center;
+	width: 20rem;
+	border: 1px solid #c4dff6;
+    }
+    .report-container:hover {
+	border: 2px solid #1769ff;
+    }
 	    
     .sm-page-content {
 	display: none;
@@ -59,6 +77,13 @@
     .search-container {
 	margin: 0 auto;
 	display: flex;
+    }
+    .search-container label {
+	font-size: 1.6rem;
+	padding-right: 1rem;
+    }
+    .search-container select {
+	margin-top: -.5rem;
     }
     #send-mail-link {
 	text-align: center;
@@ -74,8 +99,12 @@
         border: 1px solid #1769ff;
 	color: #1769ff;
     }
-    .search-container > input {
-	
+    .search-container .tb-search {
+	width: 60rem;
+	margin-top: -1rem;
+    }
+    .search-container button {
+	margin-top: -1rem;
     }
     .statuses {
 	font-size: 14px;
@@ -102,6 +131,7 @@
     #side-bar-menu {
 	border-right: 3px solid #fff;
     }
+  
     #nav {
 	display: flex;
 	padding: 1rem 0 0 1rem;

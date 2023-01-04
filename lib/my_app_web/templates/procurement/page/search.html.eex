@@ -10,10 +10,9 @@
       <%= render(MyAppWeb.SharedView, "sm-menu.html", conn: @conn, title: "Search Procurement") %>
 
       <%= form_for @conn, Routes.pr_page_path(@conn, :search_pr), fn f -> %>
-
-      <div class="search-container">
-        <%= text_input f, :pr_number, placeholder: "Enter PR #.." %>
-        <%= submit "Search" %>
+	<div class="search-container">
+        <%= text_input f, :pr_number, placeholder: "Enter PR Number.." %>
+        <button style="background-color:#000;color:#fff;border:1px solid #ddd;" type="submit"><i class="fa fa-search"></i>Search</button>
       </div>
       <% end %>
 
@@ -53,8 +52,12 @@
       <%= form_for @conn, Routes.pr_page_path(@conn, :search_pr), fn f -> %>
 
       <div class="search-container">
-	<%= text_input f, :pr_number, placeholder: "Enter PR #.." %>
-	<%= submit "Search" %>
+	<label>CATEGORY: </label>
+	<%= select f, :type, ["Year": "Year", "PR ID": "PR ID", "Status": "Status"] %><br>
+	</div>
+	<div class="search-container">
+	<%= text_input f, :q_string, placeholder: "Search...", class: "tb-search" %>
+	<button type="submit"><i class="fa fa-search"></i>&nbsp;Search</button>
       </div>
       <% end %>
       

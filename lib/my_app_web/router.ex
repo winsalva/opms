@@ -48,6 +48,7 @@ defmodule MyAppWeb.Router do
 
     get "/failed/procurement-requests", PageController, :failed_prs
     get "/succeeded/procurement-requests", PageController, :succeeded_prs
+    get "/generated-reports", PageController, :generated_report
   end
 
 

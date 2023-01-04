@@ -8,10 +8,6 @@ defmodule MyApp.Query.ProcurementRequest do
   alias MyApp.Schema.PrsRemark, as: Remark
 
   import Ecto.Query, warn: false
-
-  def search_pr(type, q_string) do
-
-  end
   
   def new_pr do
     %PR{}

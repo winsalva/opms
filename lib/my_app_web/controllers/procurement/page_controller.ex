@@ -24,6 +24,23 @@ defmodule MyAppWeb.Procurement.PageController do
     ]
     render(conn, "succeeded-prs.html", params)
   end
+
+  @doc """
+  Generate Report.
+  """
+  def generated_report(conn, _params) do
+    failed_prs = PR.list_failed_prs
+    completed_prs = PR.list_succeeded_prs
+    ongoing_prs = PR.list_ongoing_prs
+    end_users = length(Company.list_approved_companies)
+    params = [
+      failed_prs: failed_prs,
+      completed_prs: completed_prs,
+      ongoing_prs: ongoing_prs,
+      end_users: end_users
+    ]
+    render(conn, "generated-report.html", params)
+  end
   
   def index(conn, %{"id" => id}) do
     prs = Company.get_company_with_procurement_request(id)
@@ -34,15 +51,15 @@ defmodule MyAppWeb.Procurement.PageController do
     render(conn, "search.html", query: nil, q_string: "")
   end
 
-  def search_pr(conn, %{"pr_number" => pr_number}) do
+  def search_pr(conn, %{"type" => type, "q_string" => q_string}) do
     if conn.assigns.current_company && conn.assigns.current_company.is_admin == true do
-      query = PR.admin_search_pr(pr_number)
-      render(conn, "search.html", query: query, q_string: pr_number)
+      query = PR.admin_search_pr(q_string)
+      render(conn, "search.html", query: query, q_string: q_string)
     end
 
     if conn.assigns.current_company != nil do
-      query = PR.user_search_pr(conn.assigns.current_company.id, pr_number)
-      render(conn, "search.html", query: query, q_string: pr_number)
+      query = PR.user_search_pr(conn.assigns.current_company.id, q_string)
+      render(conn, "search.html", query: query, q_string: q_string)
     end
   end
 end

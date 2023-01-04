@@ -39,7 +39,7 @@
     <div class="pc-content-container">
       <div class="page-content">
 
-        <div class="page-titles"><i onclick="back();" class="fa fa-arrow-left"></i>&nbsp;&nbsp;&nbsp;Procurements<a href="<%= Routes.pr_page_path(@conn, :search) %>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-search"></i></a>
+        <div class="page-titles"><i onclick="back();" class="fa fa-arrow-left"></i>&nbsp;&nbsp;&nbsp;Procurements &nbsp;&nbsp;&nbsp;<a class="pr-menu-options"href="<%= Routes.pr_page_path(@conn, :search) %>"><i class="fa fa-search"></i>&nbsp;Search</a>
         </div>
 
         <%= if @prs != nil && @prs.procurement_request == [] do %>
@@ -50,6 +50,8 @@
             <tr>
               <th>PR No.</th>
               <th>Department</th>
+	      <th>End User</th>
+	      <th>Purpose</th>
               <th>Created</th>
               <th>Updated</th>
               <th>Status</th>
@@ -61,6 +63,8 @@
                 <tr>
                   <td><%= pr.pr_number %></td>
                   <td><%= @prs.department %></td>
+		  <td><%= pr.end_user %></td>
+		  <td><%= pr.purpose %></td>
                   <td><%= get_date(pr.inserted_at) %></td>
                   <td><%= get_date(pr.updated_at) %></td>
                   <td><span class="<%= get_css_class(pr.status) %>"><%= pr.status %></span></td>
