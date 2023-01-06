@@ -14,6 +14,8 @@ defmodule MyApp.Schema.ProcurementRequest do
     field :update_count, :integer, default: 1
     field :seen, :boolean, default: false
     field :bid_mode, :string
+    field :date_needed, :date
+    field :archive, :boolean, default: false
     timestamps()
   end
 
@@ -27,7 +29,9 @@ defmodule MyApp.Schema.ProcurementRequest do
     :purpose,
     :update_count,
     :seen,
-    :bid_mode
+    :bid_mode,
+    :date_needed,
+    :archive
   ]
 
   @required_fields @allowed_fields

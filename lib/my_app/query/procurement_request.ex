@@ -9,8 +9,20 @@ defmodule MyApp.Query.ProcurementRequest do
 
   import Ecto.Query, warn: false
 
-  def search_pr(type, q_string) do
+  def search_department_prs(department, q_string) do
+    query_string =
+    case q_string do
+      "Date Needed" -> :date_needed
+      "Date Created" -> :inserted_at
+      "Date Updated" -> :updated_at
+    end
+    
+    query =
+      from pr in PR,
+        where: pr.department == ^department,
+	order_by: [desc: ^query_string]
 
+    Repo.all(query)
   end
   
   def new_pr do

@@ -10,12 +10,11 @@
       <% end %>
     </div>
     
-    <div id="lsidepr" class="a"><i class="fa fa-file"></i><a href="<%= Routes.pr_account_path(@conn, :index) %>">Procurements</a>
+    <div id="lsidepr" class="a"><i class="fa fa-file"></i><a href="<%= Routes.pr_account_path(@conn, :ongoing_prs, "nil", "nil") %>">Procurements</a>
     </div>
     <div class="a"><i class="fa fa-file"></i><%= link "Generate Report", to: Routes.pr_page_path(@conn, :generated_report) %></div>
     <!--
       <div id="lsideprcontainer" class="clsideprcontainer hide">
-	<a href="<%= Routes.pr_account_path(@conn, :index) %>">Ongoing   &gt;</a>
 	<a href="<%= Routes.pr_page_path(@conn, :succeeded_prs) %>">Completed &gt;</a>
 	<a href="<%= Routes.pr_page_path(@conn, :failed_prs) %>">Failed    &gt;</a>
       </div>

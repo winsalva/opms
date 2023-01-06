@@ -48,10 +48,17 @@
         <div class="page-titles"><i onclick="back();" class="fa fa-arrow-left"></i>&nbsp;&nbsp;&nbsp;Ongoing Procurements&nbsp;&nbsp;&nbsp;&nbsp;
 	  <!-- dont display this if there are users yet. There is no sense to add a pr when no users yet -->
 	  <%= if @end_users != 0 do %>
-	  <a class="pr-menu-options" href="<%= Routes.pr_account_path(@conn, :new) %>"><i class="fa fa-plus-square"></i> New</a>
+	  <a class="pr-menu-options" href="<%= Routes.pr_account_path(@conn, :new) %>"><i class="fa fa-plus-square"></i>&nbsp;New</a>
 	  <% end %>
-	  <a class="pr-menu-options" href="<%= Routes.pr_page_path(@conn, :succeeded_prs) %>"><i class="fa fa-check"></i> Completed</a>
-        <a class="pr-menu-options" href="<%= Routes.pr_page_path(@conn, :failed_prs) %>"><i class="fa fa-warning"></i> Failed</a>
+
+	  <!-- check if there is/are records available -->
+	  <%= if @prs != [] do %>
+	  <div class="sort-options">
+	    <div>Filter By:&nbsp;
+	    </div>
+	  </div>
+	  <% end %>
+	  
 	  <a class="pr-menu-options" href="<%= Routes.pr_page_path(@conn, :search) %>"><i class="fa fa-search"></i>&nbsp;Search</a>
 	  
 	</div>

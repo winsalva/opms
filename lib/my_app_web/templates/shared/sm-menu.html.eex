@@ -10,7 +10,7 @@
   <%= if @conn.assigns.current_company != nil and @conn.assigns.current_company.is_admin == true do %>
   <a href="<%= Routes.company_account_path(@conn, :account, @conn.assigns.current_company.id) %>"><i class="fa fa-user"></i>&nbsp;&nbsp;Admin Account</a>
   <a href="<%= Routes.company_page_path(@conn, :index) %>"><i class="fa fa-users"></i>&nbsp;&nbsp;Users</a>
-  <a href="<%= Routes.pr_account_path(@conn, :index) %>"><i class="fa fa-file"></i>&nbsp;&nbsp;Procurements</a>
+  <a href="<%= Routes.pr_account_path(@conn, :ongoing_prs, "nil", "nil") %>"><i class="fa fa-file"></i>&nbsp;&nbsp;Procurements</a>
   <a href="<%= Routes.page_path(@conn, :about_us) %>"><i class="fa fa-info-circle"></i>&nbsp;&nbsp;About us</a>
   <a href="<%= Routes.page_path(@conn, :contact_us) %>"><i class="fa fa-address-book"></i>&nbsp;&nbsp;Contact us</a>
   <a href="<%= Routes.page_path(@conn, :term_of_use) %>"><i class="fa fa-legal"></i>&nbsp;&nbsp;Terms of use</a>

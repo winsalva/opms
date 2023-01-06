@@ -53,6 +53,10 @@
   <%= error_tag f, :status %>
   </div>
 
+  <label>Date Needed</label>
+  <input id="procureme_request_date_needed" name="procurement_request[date_needed]" type="date"/>
+  <%= error_tag f, :date_needed %>
+
   <label>Purpose</label>
   <%= text_input f, :purpose, placeholder: "Christmas Party" %>
   <%= error_tag f, :purpose %>

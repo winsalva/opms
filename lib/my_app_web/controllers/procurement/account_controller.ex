@@ -5,14 +5,26 @@ defmodule MyAppWeb.Procurement.AccountController do
   alias MyApp.Query.Company
   alias MyApp.Query.PrsRemark, as: Remark
 
-  def index(conn, _params) do
+  def ongoing_prs(conn, %{"department" => department, "q_string" => q_string}) do
     prs = PR.list_ongoing_prs
     end_users = length(Company.list_approved_companies)
-    params = [
-      prs: prs,
-      end_users: end_users
-    ]
-    render(conn, :index, params)
+    if department != "nil" && q_string != "nil" do
+      sorted_prs = PR.search_pr(department, q_string)
+    
+      params = [
+        sorted_prs: sorted_prs,
+        prs: prs,
+        end_users: end_users
+      ]
+      render(conn, :index, params)
+    else
+      params = [
+        sorted_prs: nil,
+        prs: prs,
+        end_users: end_users
+      ]
+      render(conn, :index, params)
+    end
   end
   
   def new(conn, _params) do
@@ -25,7 +37,15 @@ defmodule MyAppWeb.Procurement.AccountController do
     render(conn, :new, params)
   end
 
-  def create(conn, %{"procurement_request" => %{"company_id" => company_id, "pr_number" => pr_number, "remarks" => remarks, "status" => status, "altstatus" => altstatus, "bid_mode" => bid_mode, "end_user" => end_user, "purpose" => purpose}}) do
+  def create(conn, %{"procurement_request" => %{"company_id" => company_id, "pr_number" => pr_number, "remarks" => remarks, "status" => status, "altstatus" => altstatus, "bid_mode" => bid_mode, "end_user" => end_user, "purpose" => purpose, "date_needed" => date_needed}}) do
+    date =
+      if date_needed != "" do
+        [y, m, d] = String.split(date_needed, "-")
+	{:ok, date_target} = Date.new(String.to_integer(y), String.to_integer(m), String.to_integer(d))
+	date_target
+      else
+        nil
+      end
 
     status =
       if bid_mode == "Alternative" do
@@ -35,22 +55,24 @@ defmodule MyAppWeb.Procurement.AccountController do
       end
       
     params = %{
-      "company_id": company_id,
-            "pr_number": pr_number,
-      "remarks": remarks,
-      "status": status,
-      "bid_mode": bid_mode,
-      "end_user": end_user,
-      "purpose": purpose,
-      "pr_personnel_id": conn.assigns.current_company.id
+      company_id: company_id,
+      pr_number: pr_number,
+      remarks: remarks,
+      status: status,
+      bid_mode: bid_mode,
+      end_user: end_user,
+      purpose: purpose,
+      pr_personnel_id: conn.assigns.current_company.id,
+      date_needed: date,
+      archive: false
     }
     
     case PR.insert_pr(params) do
       {:ok, pr} ->
 
-        Remark.insert_prs_remark(%{"procurement_request_id": pr.id, "admin_id": conn.assigns.current_company.id, "status": status, "remarks": remarks})
+        Remark.insert_prs_remark(%{procurement_request_id: pr.id, admin_id: conn.assigns.current_company.id, status: status, remarks: remarks})
         conn
-	|> redirect(to: Routes.pr_account_path(conn, :index))
+	|> redirect(to: Routes.pr_account_path(conn, :ongoing_prs, "nil", "nil"))
       {:error, %Ecto.Changeset{} = new_pr} ->
         params = [
 	  new_pr: new_pr,
@@ -89,9 +111,9 @@ defmodule MyAppWeb.Procurement.AccountController do
     pr = PR.get_pr(id)
     
     params = %{
-      "status": status,
-      "remarks": remarks,
-      "update_count": pr.update_count + 1
+      status: status,
+      remarks: remarks,
+      update_count: pr.update_count + 1
     }
     
     case PR.update_pr(id, params) do
@@ -113,6 +135,6 @@ defmodule MyAppWeb.Procurement.AccountController do
   def delete(conn, %{"id" => id}) do
     PR.delete_pr(id)
     conn
-    |> redirect(to: Routes.pr_account_path(conn, :index))
+    |> redirect(to: Routes.pr_account_path(conn, :ongoing_prs, "nil", "nil"))
   end
 end
