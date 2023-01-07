@@ -39,7 +39,8 @@ defmodule MyAppWeb.Router do
   scope "/procurements", MyAppWeb.Procurement, as: :pr do
     pipe_through [:browser]
 
-    get "/on-going/requests/:department/:q_string", AccountController, :ongoing_prs
+    get "/on-going/requests", AccountController, :ongoing_prs
+    post "/on-going/requests", AccountController, :sort_ongoing_prs 
 
     resources "/requests", AccountController, only: [:new, :show, :create, :edit, :update, :delete]
 

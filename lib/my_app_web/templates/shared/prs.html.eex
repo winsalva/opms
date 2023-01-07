@@ -1,0 +1,75 @@
+<%= cond do %>
+<% @sorted_prs == "" && @prs == [] -> %>
+<br>
+<p style="margin-left:26rem;">No Records Available Yet!</p>
+
+<% @sorted_prs == "" && @prs != [] -> %>
+<table>
+  <thead>
+    <tr>
+      <th>PR No.</th>
+      <th>Department</th>
+      <th>End User</th>
+      <th>Purpose</th>
+      <th>Date Needed</th>
+      <th>Created</th>
+      <th>Updated</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= for pr <- @prs do %>
+        <tr>
+          <td><%= pr.pr_number %></td>
+          <td><%= pr.company.department %></td>
+          <td><%= pr.end_user %></td>
+          <td><%= pr.purpose %></td>
+          <th><%= get_date(pr.date_needed) %></th>
+          <td><%= get_date(pr.inserted_at) %></td>
+          <td><%= get_datetime(pr.updated_at) %></td>
+	  <td><span class="<%= get_css_class(pr.status) %>"><%= pr.status %></span></td>
+	  <td><a class="statuses blue" href="<%= Routes.pr_account_path(@conn, :show, pr.id) %>">View&nbsp;Details</a></td>
+	</tr>
+        <% end %>
+  </tbody>
+</table>
+<% @sorted_prs == [] || @sorted_prs == nil -> %>
+<br>
+<p style="margin-left:26rem;">No Records Available.</p>
+<% @sorted_prs != [] -> %>
+<table>
+  <thead>
+    <tr>
+      <th>PR No.</th>
+      <th>Department</th>
+      <th>End User</th>
+      <th>Purpose</th>
+      <th>Date Needed</th>
+      <th>Created</th>
+      <th>Updated</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= for pr <- @prs do %>
+        <tr>
+          <td><%= pr.pr_number %></td>
+          <td><%= pr.company.department %></td>
+          <td><%= pr.end_user %></td>
+          <td><%= pr.purpose %></td>
+          <th><%= get_date(pr.date_needed) %></th>
+          <td><%= get_date(pr.inserted_at) %></td>
+          <td><%= get_datetime(pr.updated_at) %></td>
+          <td><span class="<%= get_css_class(pr.status) %>"><%= pr.status %></span></td>
+          <td><a class="statuses blue" href="<%= Routes.pr_account_path(@conn, :show, pr.id) %>">View&nbsp;Details</a></td>
+        </tr>
+        <% end %>
+  </tbody>
+</table>
+<% true -> %>
+<br>
+<p style="margin-left:26rem;">Something went wrong.</p>    
+    
+<% end %>

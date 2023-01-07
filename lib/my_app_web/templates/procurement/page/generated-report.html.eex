@@ -30,7 +30,7 @@
 
 	<!-- Generated Reports Container -->
 	<div class="g-report-container">
-	  <a href="<%= Routes.pr_account_path(@conn, :ongoing_prs, "nil", "nil") %>">
+	  <a href="<%= Routes.pr_account_path(@conn, :ongoing_prs) %>">
 	    <div class="report-container">
 	      <i class="fa fa-file"></i> Ongoing PRs - <%= length(@ongoing_prs) %>
 	    </div>

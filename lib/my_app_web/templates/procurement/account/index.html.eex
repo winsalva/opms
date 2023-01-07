@@ -54,48 +54,28 @@
 	  <!-- check if there is/are records available -->
 	  <%= if @prs != [] do %>
 	  <div class="sort-options">
-	    <div>Filter By:&nbsp;
+	    <div>Department:&nbsp;
+	      <%= form_for @conn, Routes.pr_account_path(@conn, :sort_ongoing_prs), [method: :post], fn f -> %>
+              <%= select f, :department_id, Enum.reduce(@departments, [], fn x, acc ->
+                if !x.is_admin do
+                  [{String.to_atom(x.department), x.id}|acc]
+                else
+                   acc
+                end
+              end) %>
+      Sort by:&nbsp;
+      <%= select f, :q_string, ["Date Needed": "Date Needed", "Date Created": "Date Created", "Date Updated": "Date Updated"] %>
+      <%= submit "Display" %>
+      <% end %>
 	    </div>
 	  </div>
 	  <% end %>
 	  
 	  <a class="pr-menu-options" href="<%= Routes.pr_page_path(@conn, :search) %>"><i class="fa fa-search"></i>&nbsp;Search</a>
 	  
-	</div>
+</div>
 
-	<%= if @prs == [] do %>
-	<br>
-	<p style="margin-left:26rem;">No Records Available Yet!</p>
-	<% else %>
-	<table>
-	  <thead>
-	    <tr>
-	      <th>PR No.</th>
-	      <th>Department</th>
-	      <th>End User</th>
-	      <th>Purpose</th>
-	      <th>Created</th>
-	      <th>Updated</th>
-	      <th>Status</th>
-	      <th>Action</th>
-	    </tr>
-	  </thead>
-	  <tbody>
-	    <%= for pr <- @prs do %>
-		<tr>
-		  <td><%= pr.pr_number %></td>
-		  <td><%= pr.company.department %></td>
-		  <td><%= pr.end_user %></td>
-		  <td><%= pr.purpose %></td>
-		  <td><%= get_date(pr.inserted_at) %></td>
-		  <td><%= get_datetime(pr.updated_at) %></td>
-		  <td><span class="<%= get_css_class(pr.status) %>"><%= pr.status %></span></td>
-		  <td><a class="statuses blue" href="<%= Routes.pr_account_path(@conn, :show, pr.id) %>">View&nbsp;Details</a></td>
-		</tr>
-		<% end %>
-	  </tbody>
-	</table>
-	<% end %>
+<%= render(MyAppWeb.SharedView, "prs.html", conn: @conn, prs: @prs, sorted_prs: @sorted_prs) %>
 
 	</div>
     </div>

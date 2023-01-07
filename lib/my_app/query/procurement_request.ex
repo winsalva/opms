@@ -9,7 +9,7 @@ defmodule MyApp.Query.ProcurementRequest do
 
   import Ecto.Query, warn: false
 
-  def search_department_prs(department, q_string) do
+  def search_department_prs(department_id, q_string) do
     query_string =
     case q_string do
       "Date Needed" -> :date_needed
@@ -19,7 +19,7 @@ defmodule MyApp.Query.ProcurementRequest do
     
     query =
       from pr in PR,
-        where: pr.department == ^department,
+        where: pr.company_id == ^department_id,
 	order_by: [desc: ^query_string]
 
     Repo.all(query)

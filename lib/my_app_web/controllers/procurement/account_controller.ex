@@ -5,20 +5,40 @@ defmodule MyAppWeb.Procurement.AccountController do
   alias MyApp.Query.Company
   alias MyApp.Query.PrsRemark, as: Remark
 
-  def ongoing_prs(conn, %{"department" => department, "q_string" => q_string}) do
+  def ongoing_prs(conn, _params) do
     prs = PR.list_ongoing_prs
     end_users = length(Company.list_approved_companies)
-    if department != "nil" && q_string != "nil" do
-      sorted_prs = PR.search_pr(department, q_string)
+    departments = Company.list_companies
+
+    params = [
+      departments: departments,
+      sorted_prs: "",
+      prs: prs,
+      end_users: end_users
+    ]
+    render(conn, :index, params)
+  end
+
+  def sort_ongoing_prs(conn, %{"department_id" => department_id, "q_string" => q_string}) do
+    prs = PR.list_ongoing_prs
+    end_users = length(Company.list_approved_companies)
+    departments = Company.list_companies
     
+    if department_id != "" && q_string != "" do
+      sorted_prs = PR.search_department_prs(String.to_integer(department_id), q_string)
+
       params = [
+        departments: departments,
         sorted_prs: sorted_prs,
         prs: prs,
         end_users: end_users
       ]
+      IO.inspect sorted_prs
+      
       render(conn, :index, params)
     else
       params = [
+        departments: departments,
         sorted_prs: nil,
         prs: prs,
         end_users: end_users
@@ -72,7 +92,7 @@ defmodule MyAppWeb.Procurement.AccountController do
 
         Remark.insert_prs_remark(%{procurement_request_id: pr.id, admin_id: conn.assigns.current_company.id, status: status, remarks: remarks})
         conn
-	|> redirect(to: Routes.pr_account_path(conn, :ongoing_prs, "nil", "nil"))
+	|> redirect(to: Routes.pr_account_path(conn, :ongoing_prs))
       {:error, %Ecto.Changeset{} = new_pr} ->
         params = [
 	  new_pr: new_pr,
