@@ -50,7 +50,9 @@ defmodule MyAppWeb.Router do
     post "/search", PageController, :search_pr
 
     get "/failed/procurement-requests", PageController, :failed_prs
+    post "/failed/procurement-requests", PageController, :sort_failed_prs
     get "/succeeded/procurement-requests", PageController, :succeeded_prs
+    post "/succeeded/procurement-requests", PageController, :sort_succeeded_prs
     get "/generated-reports", PageController, :generated_report
   end
 

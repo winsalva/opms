@@ -62,7 +62,7 @@
 	color: #000;
 	font-weight: bold;
 	background-color: #c4dff6;
-	margin: 4rem 1rem;
+	margin: 2rem 1rem 3rem 1rem;
 	text-align: center;
 	width: 20rem;
 	border: 1px solid #c4dff6;
@@ -131,6 +131,9 @@
     #side-bar-menu {
 	border-right: 3px solid #fff;
     }
+    .sort-options {
+	display: flex;
+    }
   
     #nav {
 	display: flex;
@@ -163,7 +166,12 @@
 	color: #0069d9;
 	font-size: 1.8rem;
 	font-weight: 550;
-	padding-bottom: 2rem;
+	margin-bottom: 4rem;
+	display: flex;
+	height: 3.2rem;
+    }
+    .page-titles .fa-arrow-left {
+	padding-top: .5rem;
     }
     .page-content > p {
 	font-size: 1.6rem;
@@ -272,13 +280,14 @@
 	text-align: justify;
     }
     .pr-menu-options {
-	padding: .5rem 1.5rem;
+	padding: .3rem 1.5rem 0 1.5rem;
 	border-radius: 10px;
 	background-color: #eef;
 	color: #222;
 	font-size: 1.5rem;
 	font-weight: 450;
 	border: 1px solid #c0c0c0;
+	margin-right: 5rem;
     }
     .pr-menu-options:hover {
         padding: .5rem 1.5rem;

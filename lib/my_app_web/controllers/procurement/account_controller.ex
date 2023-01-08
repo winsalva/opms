@@ -25,7 +25,7 @@ defmodule MyAppWeb.Procurement.AccountController do
     departments = Company.list_companies
     
     if department_id != "" && q_string != "" do
-      sorted_prs = PR.search_department_prs(String.to_integer(department_id), q_string)
+      sorted_prs = PR.sort_ongoing_department_prs(String.to_integer(department_id), q_string)
 
       params = [
         departments: departments,
@@ -33,7 +33,6 @@ defmodule MyAppWeb.Procurement.AccountController do
         prs: prs,
         end_users: end_users
       ]
-      IO.inspect sorted_prs
       
       render(conn, :index, params)
     else
@@ -155,6 +154,6 @@ defmodule MyAppWeb.Procurement.AccountController do
   def delete(conn, %{"id" => id}) do
     PR.delete_pr(id)
     conn
-    |> redirect(to: Routes.pr_account_path(conn, :ongoing_prs, "nil", "nil"))
+    |> redirect(to: Routes.pr_account_path(conn, :ongoing_prs))
   end
 end

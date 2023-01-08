@@ -35,19 +35,19 @@
   </fieldset>
 
   <%= if @pr.data.bid_mode == "Alternative" do %>
-  <label>Status</label>
+  <label>*Status</label>
   <%= select f, :status, get_next_status(@pr.data.bid_mode, @pr.data.status), prompt: "Select Status", class: "f-inputs" %>
   <%= error_tag f, :status %>
 
   <% else %>
 
   <!-- Competitive bidding statuses -->
-  <label>Status</label>
+  <label>*Status</label>
   <%= select f, :status, get_next_status(@pr.data.bid_mode, @pr.data.status), prompt: "Select Status", class: "f-inputs" %>
   <%= error_tag f, :status %>
   <% end %>
 
-  <label>Add Remarks</label>
+  <label>*Add Remarks</label>
   <%= textarea f, :remarks, placeholder: "Add your remarks.." %>
   <%= error_tag f, :remarks %>
 

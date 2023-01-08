@@ -6,7 +6,7 @@
   <%= render(MyAppWeb.SharedView, "flash-messages.html", conn: @conn) %>
   <br/>
 
-  <label>Department</label>
+  <label>*Department</label>
   <%= select f, :company_id, Enum.reduce(@departments, [], fn x, acc ->
   if !x.is_admin do
   [{String.to_atom(x.department), x.id}|acc]
@@ -16,11 +16,11 @@
   end), prompt: "Select Department", class: "f-inputs" %>
   <%= error_tag f, :company_id %>
 
-  <label>PR number</label>
+  <label>*PR number</label>
   <%= text_input f, :pr_number, placeholder: "12345678" %>
   <%= error_tag f, :pr_number %>
 
-  <label>End User</label>
+  <label>*End User</label>
   <%= text_input f, :end_user, placeholder: "Christal Betita" %>
   <%= error_tag f, :end_user %>
 
@@ -53,15 +53,15 @@
   <%= error_tag f, :status %>
   </div>
 
-  <label>Date Needed</label>
+  <label>*Date Needed</label>
   <input id="procureme_request_date_needed" name="procurement_request[date_needed]" type="date"/>
   <%= error_tag f, :date_needed %>
 
-  <label>Purpose</label>
+  <label>*Purpose</label>
   <%= text_input f, :purpose, placeholder: "Christmas Party" %>
   <%= error_tag f, :purpose %>
   
-  <label>Remarks</label>
+  <label>*Remarks</label>
   <%= textarea f, :remarks, placeholder: "Add your brief remark regarding this request.." %>
   <%= error_tag f, :remarks %>
  

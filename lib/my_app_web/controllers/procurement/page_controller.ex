@@ -8,21 +8,81 @@ defmodule MyAppWeb.Procurement.PageController do
   def failed_prs(conn, _params) do
     prs = PR.list_failed_prs
     end_users = length(Company.list_approved_companies)
+    departments = Company.list_companies
     params = [
+      departments: departments,
+      sorted_prs: "",
       prs: prs,
       end_users: end_users
     ]
     render(conn, "failed-prs.html", params)
   end
 
+  def sort_failed_prs(conn, %{"department_id" => department_id, "q_string" => q_string}) do
+    prs = PR.list_ongoing_prs
+    end_users = length(Company.list_approved_companies)
+    departments = Company.list_companies
+
+    if department_id != "" && q_string != "" do
+      sorted_prs = PR.sort_failed_department_prs(String.to_integer(department_id), q_string)
+
+      params = [
+        departments: departments,
+        sorted_prs: sorted_prs,
+        prs: prs,
+        end_users: end_users
+      ]
+
+      render(conn, "failed-prs.html", params)
+    else
+      params = [
+        departments: departments,
+        sorted_prs: nil,
+        prs: prs,
+        end_users: end_users
+      ]
+      render(conn, "failed-prs.html", params)
+    end
+  end
+
   def succeeded_prs(conn, _params) do
     prs = PR.list_succeeded_prs
     end_users = length(Company.list_approved_companies)
+    departments = Company.list_companies
     params = [
+      departments: departments,
+      sorted_prs: "",
       prs: prs,
       end_users: end_users
     ]
     render(conn, "succeeded-prs.html", params)
+  end
+
+  def sort_succeeded_prs(conn, %{"department_id" => department_id, "q_string" => q_string}) do
+    prs = PR.list_ongoing_prs
+    end_users = length(Company.list_approved_companies)
+    departments = Company.list_companies
+
+    if department_id != "" && q_string != "" do
+      sorted_prs = PR.sort_completed_department_prs(String.to_integer(department_id), q_string)
+
+      params = [
+        departments: departments,
+        sorted_prs: sorted_prs,
+        prs: prs,
+        end_users: end_users
+      ]
+
+      render(conn, "succeeded-prs.html", params)
+    else
+      params = [
+        departments: departments,
+        sorted_prs: nil,
+        prs: prs,
+        end_users: end_users
+      ]
+      render(conn, "succeeded-prs.html", params)
+    end
   end
 
   @doc """

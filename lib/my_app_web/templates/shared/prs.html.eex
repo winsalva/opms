@@ -53,7 +53,7 @@
     </tr>
   </thead>
   <tbody>
-    <%= for pr <- @prs do %>
+    <%= for pr <- @sorted_prs do %>
         <tr>
           <td><%= pr.pr_number %></td>
           <td><%= pr.company.department %></td>

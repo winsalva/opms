@@ -9,18 +9,65 @@ defmodule MyApp.Query.ProcurementRequest do
 
   import Ecto.Query, warn: false
 
-  def search_department_prs(department_id, q_string) do
+  def list_archived_prs do
+    query =
+      from pr in PR,
+        where: pr.archive == true,
+	order_by: [asc: :inserted_at]
+
+    Repo.all(query)
+  end
+
+  def sort_ongoing_department_prs(department_id, q_string) do
     query_string =
-    case q_string do
-      "Date Needed" -> :date_needed
-      "Date Created" -> :inserted_at
-      "Date Updated" -> :updated_at
-    end
+      case q_string do
+        "Date Needed" -> :date_needed
+        "Date Created" -> :inserted_at
+        "Date Updated" -> :updated_at
+      end
     
     query =
       from pr in PR,
-        where: pr.company_id == ^department_id,
-	order_by: [desc: ^query_string]
+        where: pr.company_id == ^department_id and pr.status != "Delivered Items" and pr.status != "Failed Purchase Request" and pr.status != "Issued Notice To Proceed" and pr.archive == false,
+	order_by: [asc: ^query_string],
+	preload: [:company]
+
+    Repo.all(query)
+  end
+
+  def sort_failed_department_prs(department_id, q_string) do
+    query_string =
+      case q_string do
+        "Date Needed" -> :date_needed
+        "Date Created" -> :inserted_at
+        "Date Updated" -> :updated_at
+      end
+
+    query =
+      from pr in PR,
+        where: pr.company_id == ^department_id and pr.status == "Failed Purchase Request",
+        order_by: [asc: ^query_string],
+        preload: [:company]
+
+    Repo.all(query)
+  end
+
+  @doc """
+  Sort completed prs of a department.
+  """
+  def sort_completed_department_prs(department_id, q_string) do
+    query_string =
+      case q_string do
+        "Date Needed" -> :date_needed
+        "Date Created" -> :inserted_at
+        "Date Updated" -> :updated_at
+      end
+
+    query =
+      from pr in PR,
+        where: (pr.company_id == ^department_id and pr.status == "Delivered Items") or (pr.company_id == ^department_id and pr.status == "Issued Notice To Proceed"),
+        order_by: [asc: ^query_string],
+        preload: [:company]
 
     Repo.all(query)
   end
@@ -81,7 +128,7 @@ defmodule MyApp.Query.ProcurementRequest do
   def list_ongoing_prs do
     query =
       from p in PR,
-        where: p.status != "Delivered Items" and p.status != "Failed Purchase Request" and p.status != "Issued Notice To Proceed",
+        where: p.status != "Delivered Items" and p.status != "Failed Purchase Request" and p.status != "Issued Notice To Proceed" and p.archive == false,
 	preload: [:company, :pr_personnel]
 
     Repo.all(query)
@@ -118,6 +165,20 @@ defmodule MyApp.Query.ProcurementRequest do
     get_pr(id)
     |> PR.changeset(params)
     |> Repo.update()
+  end
+
+  def archive_prs do
+    query =
+      from p in PR,
+        where: p.status != "Delivered Items" and p.status != "Failed Purchase Request" and p.status != "Issued Notice To Proceed" and p.archive == false
+
+    prs = Repo.all(query)
+
+    if prs != [] do
+      for p <- prs do
+        update_pr(p.id, %{archive: true})
+      end
+    end
   end
 
   def delete_pr(id) do

@@ -27,8 +27,12 @@
     
     <!-- large devices -->
     <div class="pc-content-container">
-      <div class="pc-content">
-	<p class="page-titles">My Account</p>
+      <div class="page-content">
+	<%= if @conn.assigns.current_company != nil && @conn.assigns.current_company.is_admin do %>
+	<div class="page-titles"><i onclick="back();" class="fa fa-arrow-left"></i>&nbsp;&nbsp;&nbsp;Admin Account</div>
+	<% else %>
+	<div class="page-titles"><i onclick="back();" class="fa fa-arrow-left"></i>&nbsp;&nbsp;&nbsp;My Account</div>
+	<% end %>
 	<table>
 	  <thead>
 	    <tr>

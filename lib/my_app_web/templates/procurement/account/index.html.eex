@@ -47,14 +47,16 @@
 
         <div class="page-titles"><i onclick="back();" class="fa fa-arrow-left"></i>&nbsp;&nbsp;&nbsp;Ongoing Procurements&nbsp;&nbsp;&nbsp;&nbsp;
 	  <!-- dont display this if there are users yet. There is no sense to add a pr when no users yet -->
+	  
+	  
 	  <%= if @end_users != 0 do %>
 	  <a class="pr-menu-options" href="<%= Routes.pr_account_path(@conn, :new) %>"><i class="fa fa-plus-square"></i>&nbsp;New</a>
 	  <% end %>
 
 	  <!-- check if there is/are records available -->
 	  <%= if @prs != [] do %>
-	  <div class="sort-options">
-	    <div>Department:&nbsp;
+	 
+	    Sort by:&nbsp;
 	      <%= form_for @conn, Routes.pr_account_path(@conn, :sort_ongoing_prs), [method: :post], fn f -> %>
               <%= select f, :department_id, Enum.reduce(@departments, [], fn x, acc ->
                 if !x.is_admin do
@@ -63,16 +65,12 @@
                    acc
                 end
               end) %>
-      Sort by:&nbsp;
+
       <%= select f, :q_string, ["Date Needed": "Date Needed", "Date Created": "Date Created", "Date Updated": "Date Updated"] %>
-      <%= submit "Display" %>
+      <%= submit "Sort" %>
       <% end %>
-	    </div>
-	  </div>
+	    
 	  <% end %>
-	  
-	  <a class="pr-menu-options" href="<%= Routes.pr_page_path(@conn, :search) %>"><i class="fa fa-search"></i>&nbsp;Search</a>
-	  
 </div>
 
 <%= render(MyAppWeb.SharedView, "prs.html", conn: @conn, prs: @prs, sorted_prs: @sorted_prs) %>
