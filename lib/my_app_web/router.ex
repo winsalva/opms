@@ -53,6 +53,8 @@ defmodule MyAppWeb.Router do
     post "/failed/procurement-requests", PageController, :sort_failed_prs
     get "/succeeded/procurement-requests", PageController, :succeeded_prs
     post "/succeeded/procurement-requests", PageController, :sort_succeeded_prs
+    get "/archived/procurement-requests", PageController, :archived_prs
+    post "/archived/procurement-requests", PageController, :sort_archived_prs
     get "/generated-reports", PageController, :generated_report
   end
 

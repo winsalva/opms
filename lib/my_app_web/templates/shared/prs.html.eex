@@ -7,11 +7,11 @@
 <table>
   <thead>
     <tr>
-      <th>PR No.</th>
+      <th>PR_No.</th>
       <th>Department</th>
-      <th>End User</th>
+      <th>End_User</th>
       <th>Purpose</th>
-      <th>Date Needed</th>
+      <th>Date_Needed</th>
       <th>Created</th>
       <th>Updated</th>
       <th>Status</th>
@@ -41,11 +41,11 @@
 <table>
   <thead>
     <tr>
-      <th>PR No.</th>
+      <th>PR_No.</th>
       <th>Department</th>
-      <th>End User</th>
+      <th>End_User</th>
       <th>Purpose</th>
-      <th>Date Needed</th>
+      <th>Date_Needed</th>
       <th>Created</th>
       <th>Updated</th>
       <th>Status</th>

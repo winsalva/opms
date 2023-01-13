@@ -129,11 +129,7 @@ defmodule MyAppWeb.Procurement.AccountController do
   
     pr = PR.get_pr(id)
     
-    params = %{
-      status: status,
-      remarks: remarks,
-      update_count: pr.update_count + 1,
-      archive: false
+  
     }
     
     case PR.update_pr(id, params) do

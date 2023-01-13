@@ -10,32 +10,33 @@
       <%= render(MyAppWeb.SharedView, "sm-menu.html", conn: @conn, title: "Search Procurement") %>
 
       <%= form_for @conn, Routes.pr_page_path(@conn, :search_pr), fn f -> %>
+        <br><br><br>
+        <div class="search-container">
+        <label>CATEGORY:&nbsp;&nbsp;</label>
+        <%= select f, :type, ["Year": "Year", "PR ID": "PR ID", "Status": "Status"], id: "select-category" %>
+        </div>
 	<div class="search-container">
-        <%= text_input f, :pr_number, placeholder: "Enter PR Number.." %>
+        <%= text_input f, :pr_number, placeholder: "Search..." %>
         <button style="background-color:#000;color:#fff;border:1px solid #ddd;" type="submit"><i class="fa fa-search"></i>Search</button>
       </div>
       <% end %>
 
       <%= cond do %>
-      <% @query != nil -> %>
-      <div class="sm-pr-search">
-	<p>PR No. <span><%= @query.pr_number %></span></p>
-	<p>Department: <%= @query.company.department %></p>
-	<p>Created: <%= get_date(@query.inserted_at) %></p>
-	<p>Updated: <%= get_date(@query.updated_at) %></p>
-	<p>Status: <span class="<%= get_css_class(@query.status) %>"><%= @query.status %></span></p>
+      <% @query != [] -> %>
+      <%= for q <- @query do %>
+	  <div class="sm-pr-search">
+	    <p>PR No. <span><%= q.pr_number %></span></p>
 
-	<hr/>
+	    <p>Department: <%= q.company.department %></p>
 
-	<!-- Display remarks -->
-      <%= for pr <- @query.prs_remarks do %>
-          <div>
-            <div><i class="fa fa-user"></i>&nbsp;&nbsp;<%= pr.admin.name %>&nbsp;&nbsp;•&nbsp;&nbsp;<i><%= get_date(pr.inserted_at) %></i></div>
-            <p><span class="<%= get_css_class(pr.status) %>"><%= pr.status %></span> - <%= pr.remarks %></p>
-          </div>
-          <% end %>
-      </div>
-      <% @query == nil && @q_string != "" -> %>
+	    <p>Created: <%= get_date(q.inserted_at) %></p>
+
+	    <p>Updated: <%= get_date(q.updated_at) %></p>
+
+	    <p>Status: <span class="<%= get_css_class(q.status) %>"><%= q.status %></span></p>
+	  </div>
+	  <% end %>
+	  <% @query == [] && @q_string != "" -> %>
       <div class="sm-pr">
 	<p>No result found for pr number <%= @q_string %></p>
       </div>
@@ -48,65 +49,49 @@
 
     <div class="pc-content-container">
     <div class="page-content">
-      
+
+      <%= if @conn.assigns.current_company != nil && @conn.assigns.current_company.is_admin do %>
       <%= form_for @conn, Routes.pr_page_path(@conn, :search_pr), fn f -> %>
 
       <div class="search-container">
-	<label>CATEGORY: </label>
-	<%= select f, :type, ["Year": "Year", "PR ID": "PR ID", "Status": "Status"] %><br>
+	<label>Search By: </label>
+	<%= select f, :category, ["Department": "Department", "Ongoing PRs": "Ongoing PRs", "Completed PRs": "Completed PRs", "Failed PRs": "Failed PRs", "Year": "Year", "Month": "Month", "PR ID": "PR ID"] %>
+	<label>&nbsp;&nbsp;Sort By:&nbsp;</label>
+	<%= select f, :sort_by, ["Date Needed": "Date Needed", "Date Created": "Date Created", "Date Updated": "Date Updated"] %>
 	</div>
 	<div class="search-container">
 	<%= text_input f, :q_string, placeholder: "Search...", class: "tb-search" %>
 	<button type="submit"><i class="fa fa-search"></i>&nbsp;Search</button>
       </div>
-      <% end %>
+	<% end %>
+	<% else %>
+	<%= form_for @conn, Routes.pr_page_path(@conn, :search_pr), fn f -> %>
+
+      <div class="search-container">
+        <label>Search By: </label>
+        <%= select f, :category, ["Ongoing PRs": "Ongoing PRs", "Completed PRs": "Completed PRs", "Failed PRs": "Failed PRs", "Year": "Year", "Month": "Month", "PR ID": "PR ID"] %>
+        <label>&nbsp;&nbsp;Sort By:&nbsp;</label>
+        <%= select f, :sort_by, ["Date Needed": "Date Needed", "Date Created": "Date Created", "Date Updated": "Date Updated"] %>
+        </div>
+        <div class="search-container">
+        <%= text_input f, :q_string, placeholder: "Search...", class: "tb-search" %>
+        <button type="submit"><i class="fa fa-search"></i>&nbsp;Search</button>
+      </div>
+        <% end %>
+	<% end %>
       
       <%= cond do %>
-      <% @query != nil -> %>
-      <table>
-	<thead>
-	  <tr>
-	    <th>PR No.</th>
-	    <th>Department</th>
-	    <th>End User</th>
-	    <th>Purpose</th>
-	    <th>Created</th>
-	    <th>Updated</th>
-	    <th>Status</th>
-	    <%= if @conn.assigns.current_company != nil && @conn.assigns.current_company.is_admin == true && !process_done(@query.status) do %>
-	    <th>Action</th>
-	    <% end %>
-	  </tr>
-	</thead>
-	<tbody>
-	  <tr>
-	    <td><%= @query.pr_number %></td>
-	    <td><%= @query.company.department %></td>
-	    <td><%= @query.end_user %></td>
-	    <td><%= @query.purpose %></td>
-	    <td><%= get_date(@query.inserted_at) %></td>
-	    <td><%= get_date(@query.updated_at) %></td>
-	    <td><span class="<%= get_css_class(@query.status) %>"><%= @query.status %></span></td>
-	    <%= if @conn.assigns.current_company != nil && @conn.assigns.current_company.is_admin == true && !process_done(@query.status) do %>
-	    <td><%= link "Update", to: Routes.pr_account_path(@conn, :edit, @query.id), class: "statuses blue" %><%= link "Delete", to: Routes.pr_account_path(@conn, :delete, @query.id), method: :delete, class: "statuses red", data: [confirm: "Are you sure?"] %></td>
-	    <% end %>
-	  </tr>
-	</tbody>
-      </table>
-
-      <!-- Display remarks -->
-      <%= for pr <- @query.prs_remarks do %>
-	  <div>
-	    <div><i class="fa fa-user"></i>&nbsp;&nbsp;<%= pr.admin.name %>&nbsp;&nbsp;•&nbsp;&nbsp;<span><%= get_date(pr.inserted_at) %></span></div>
-	    <p><span class="<%= get_css_class(pr.status) %>"><%= pr.status %></span> - <%= pr.remarks %></p>
-	  </div>
-	  <% end %>
-	  <% @query == nil && @q_string != "" -> %>
-      <p>No result found for pr number <%= @q_string %></p>
+      <% @query != [] -> %>
+      <%= render(MyAppWeb.SharedView, "prs.html", conn: @conn, prs: [], sorted_prs: @query) %>
+      
+      <% @query == [] && @category == "PR ID" -> %>
+      <p>No record found for pr number <%= @q_string %></p>
+      <% @query == [] && @category != "" -> %>
+      <p>No records available yet for <%= @q_string %>.</p>
+      
       <% true -> %>
       <br><br>
       <% end %>
-      
     </div>
   </div>
   

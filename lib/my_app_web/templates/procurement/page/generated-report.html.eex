@@ -46,6 +46,13 @@
 	    </div>
           </a>
 	</div>
+	<div class="g-report-container">
+	  <a href="<%= Routes.pr_page_path(@conn, :archived_prs) %>">
+            <div class="report-container">
+              <i class="fa fa-archive"></i> Archived PRs - <%= length(@archived_prs) %>
+            </div>
+          </a>
+	</div>
       </div>
     </div>
 

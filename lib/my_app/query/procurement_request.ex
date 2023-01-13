@@ -6,6 +6,7 @@ defmodule MyApp.Query.ProcurementRequest do
   alias MyApp.Repo
   alias MyApp.Schema.ProcurementRequest, as: PR
   alias MyApp.Schema.PrsRemark, as: Remark
+  alias MyApp.Query.Company
 
   import Ecto.Query, warn: false
 
@@ -13,7 +14,8 @@ defmodule MyApp.Query.ProcurementRequest do
     query =
       from pr in PR,
         where: pr.archive == true,
-	order_by: [asc: :inserted_at]
+	order_by: [asc: :inserted_at],
+	preload: [:company]
 
     Repo.all(query)
   end
@@ -71,6 +73,26 @@ defmodule MyApp.Query.ProcurementRequest do
 
     Repo.all(query)
   end
+
+  @doc """
+  Sort archived prs of a department.
+  """
+  def sort_archived_department_prs(department_id, q_string) do
+    query_string =
+      case q_string do
+        "Date Needed" -> :date_needed
+        "Date Created" -> :inserted_at
+        "Date Updated" -> :updated_at
+      end
+
+    query =
+      from pr in PR,
+        where: pr.company_id == ^department_id and pr.archive == true,
+        order_by: [asc: ^query_string],
+        preload: [:company]
+
+    Repo.all(query)
+  end
   
   def new_pr do
     %PR{}
@@ -93,27 +115,220 @@ defmodule MyApp.Query.ProcurementRequest do
   end
 
   @doc """
-  Searches any procurement request by id. If admin.
+  Sort PRs by month.
   """
-  def admin_search_pr(pr_number) do
-    query =
-      from p in PR,
-        where: p.pr_number == ^pr_number,
-	preload: [:company, prs_remarks: :admin]
+  def sort_prs_by_month(sort_by, q_string, user, user_id) do
+    sorted_by =
+      case sort_by do
+        "Date Needed" -> :date_needed
+        "Date Created" -> :inserted_at
+        "Date Updated" -> :updated_at
+      end
 
-    Repo.one(query)
+    q_str = String.upcase(q_string)
+    
+    month =
+      cond do
+        String.starts_with?(q_str, "JAN") -> 1
+	String.starts_with?(q_str, "JAN") -> 2
+	String.starts_with?(q_str, "JAN") -> 3
+	String.starts_with?(q_str, "JAN") -> 4
+	String.starts_with?(q_str, "JAN") -> 5
+	String.starts_with?(q_str, "JAN") -> 6
+	String.starts_with?(q_str, "JAN") -> 7
+	String.starts_with?(q_str, "JAN") -> 8
+	String.starts_with?(q_str, "JAN") -> 9
+	String.starts_with?(q_str, "JAN") -> 10
+	String.starts_with?(q_str, "JAN") -> 11
+	String.starts_with?(q_str, "JAN") -> 12
+	true -> 0
+      end
+
+    query =
+    if user == "Admin" do
+      query =
+        from p in PR,
+          order_by: [asc: ^sorted_by],
+          preload: [:company]
+    else
+      query =
+        from p in PR,
+	  where: p.company_id == ^user_id,
+          order_by: [asc: ^sorted_by],
+          preload: [:company]
+    end
+
+    prs = Repo.all(query)
+
+    result =
+    case prs do
+      [] -> []
+      _prs ->
+        Enum.reduce(prs, [], fn f, acc ->
+          if f.inserted_at.month == month do
+            [f | acc]
+          else
+            acc
+          end
+        end)
+    end
+    Enum.reverse(result)
   end
+
+  @doc """
+  Sort PRs by year.
+  """
+  def sort_prs_by_year(sort_by, year, user, user_id) do
+    sorted_by =
+      case sort_by do
+        "Date Needed" -> :date_needed
+        "Date Created" -> :inserted_at
+        "Date Updated" -> :updated_at
+      end
+
+    query =
+    if user == "Admin" do
+      query =
+        from p in PR,
+          order_by: [asc: ^sorted_by],
+          preload: [:company]
+    else
+      query =
+        from p in PR,
+          where: p.company_id == ^user_id,
+          order_by: [asc: ^sorted_by],
+          preload: [:company]
+    end
+
+    prs = Repo.all(query)
+
+    result =
+    case prs do
+      [] -> []
+      _prs ->
+        Enum.reduce(prs, [], fn f, acc ->
+	  if f.inserted_at.year == String.to_integer(year) do
+	    [f | acc]
+	  else
+	    acc
+	  end
+	end)
+    end
+    Enum.reverse(result)
+    
+  end
+
+  @doc """
+  Search pr for admin
+  """
+  def admin_search_pr(category, sort_by, q_string) do
+    sorted_by =
+      case sort_by do
+        "Date Needed" -> :date_needed
+	"Date Created" -> :inserted_at
+	"Date Updated" -> :updated_at
+      end
+      
+    case category do
+      "Year" -> sort_prs_by_year(sort_by, q_string, "Admin", 0)
+
+        "Month" -> sort_prs_by_month(sort_by, q_string, "Admin", 0)
+	"Ongoing PRs" ->
+	  query =
+	    from p in PR,
+	      where: p.status != "Delivered Items" and p.status != "Failed Purchase Request" and p.status != "Issued Notice To Proceed",
+	      order_by: [asc: ^sorted_by],
+	      preload: [:company]
+	  Repo.all(query)
+
+        "Failed PRs" ->
+	  query =
+	    from p in PR,
+	      where: p.status == "Failed Purchase Request",
+	        order_by: [asc: ^sorted_by],
+		preload: [:company]
+	  Repo.all(query)
+	    
+	"Completed PRs" ->
+	  query =
+	    from p in PR,
+	      where: p.status == "Delivered Items" or p.status == "Issued Notice To Proceed",
+	        order_by: [asc: ^sorted_by],
+		preload: [:company]
+	  Repo.all(query)
+
+        "Department" ->
+	    company = Company.get_company_by(%{department: q_string})
+	    case company do
+	      nil -> []
+	      _company ->
+	      company_id = company.id
+	      query =
+	      from p in PR,
+	        where: p.company_id == ^company_id,
+		order_by: [asc: ^sorted_by],
+		preload: [:company]
+
+            Repo.all(query)
+	  end
+	    
+	"PR ID" ->
+	  query =
+	    from p in PR,
+	      where: p.pr_number == ^q_string,
+	      preload: [:company]
+
+          Repo.all(query)
+    end
+  end
+  
 
   @doc """
   Search procurement request by id but only for procurement request that belongs to a user.
   """
-  def user_search_pr(user_id, pr_number) do
-    query =
-      from p in PR,
-        where: p.pr_number == ^pr_number and p.company_id == ^user_id,
-	preload: [:company, prs_remarks: :admin]
+  def user_search_pr(category, sort_by, q_string, user_id) do
+    sorted_by =
+      case sort_by do
+        "Date Needed" -> :date_needed
+        "Date Created" -> :inserted_at
+        "Date Updated" -> :updated_at
+      end
 
-    Repo.one(query)
+    case category do
+      "Year" -> sort_prs_by_year(sort_by, q_string, "User", user_id)
+
+        "Month" -> sort_prs_by_month(sort_by, q_string, "User", user_id)
+        "Ongoing PRs" ->
+          query =
+            from p in PR,
+              where: p.company_id == ^user_id and p.status != "Delivered Items" and p.status != "Failed Purchase Request" and p.status != "Issued Notice To Proceed",
+              order_by: [asc: ^sorted_by],
+              preload: [:company]
+          Repo.all(query)
+	"Failed PRs" ->
+          query =
+            from p in PR,
+              where: p.company_id == ^user_id and p.status == "Failed Purchase Request",
+                order_by: [asc: ^sorted_by],
+                preload: [:company]
+          Repo.all(query)
+
+        "Completed PRs" ->
+          query =
+            from p in PR,
+              where: p.company_id == ^user_id and p.status == "Delivered Items" or p.status == "Issued Notice To Proceed",
+                order_by: [asc: ^sorted_by],
+                preload: [:company]
+          Repo.all(query)
+
+	"PR ID" ->
+          query =
+            from p in PR,
+              where: p.company_id == ^user_id and p.pr_number == ^q_string,
+              preload: [:company]
+
+          Repo.all(query)
+    end
   end
 
 

@@ -337,8 +337,13 @@
 	font-weight: bold;
     }
     .search-container {
-	margin: 6.5rem 1rem 1rem 1rem;
+	margin: -1rem 1rem 0 1rem;
 	display: flex;
+    }
+    #select-category {
+	margin-top: -.3rem;
+	margin-bottom: 2rem;
+	height: 3rem;
     }
     .statuses-blue {
 	background-color: #0069d9;
