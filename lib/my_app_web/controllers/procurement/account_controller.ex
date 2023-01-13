@@ -48,8 +48,18 @@ defmodule MyAppWeb.Procurement.AccountController do
   
   def new(conn, _params) do
     new_pr = PR.new_pr
+    pr_number = PR.get_pr_number
     departments = Company.list_approved_companies
+
+    num =
+      cond do
+        is_binary(pr_number) -> 2022
+	is_nil(pr_number) -> 2022
+	true -> pr_number
+      end
+      
     params = [
+      num: num+1,
       new_pr: new_pr,
       departments: departments
     ]
@@ -93,10 +103,20 @@ defmodule MyAppWeb.Procurement.AccountController do
         conn
 	|> redirect(to: Routes.pr_account_path(conn, :ongoing_prs))
       {:error, %Ecto.Changeset{} = new_pr} ->
+        pr_number = PR.get_pr_number
+	departments = Company.list_approved_companies
+	num =
+	  cond do
+            is_binary(pr_number) -> 2022
+            is_nil(pr_number) -> 2022
+            true -> pr_number
+          end
+
         params = [
-	  new_pr: new_pr,
-	  departments: Company.list_approved_companies
-	]
+          num: num+1,
+          new_pr: new_pr,
+          departments: departments
+        ]
         conn
 	|> render(:new, params)
     end

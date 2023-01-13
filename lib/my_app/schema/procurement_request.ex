@@ -6,7 +6,7 @@ defmodule MyApp.Schema.ProcurementRequest do
     belongs_to :company, MyApp.Schema.Company
     belongs_to :pr_personnel, MyApp.Schema.Company
     has_many :prs_remarks, MyApp.Schema.PrsRemark
-    field :pr_number, :string
+    field :pr_number, :integer
     field :status, :string
     field :remarks, :string
     field :purpose, :string

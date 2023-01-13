@@ -10,6 +10,18 @@ defmodule MyApp.Query.ProcurementRequest do
 
   import Ecto.Query, warn: false
 
+  def get_pr_number do
+    query = Repo.all(PR)
+    number =
+      case query do
+        [] -> 1
+	_ ->
+	  pr = List.last(query)
+	  pr.pr_number
+      end
+    number
+  end
+
   def list_archived_prs do
     query =
       from pr in PR,

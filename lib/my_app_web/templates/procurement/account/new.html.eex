@@ -17,7 +17,7 @@
   <%= error_tag f, :company_id %>
 
   <label>*PR number</label>
-  <%= text_input f, :pr_number, placeholder: "12345678" %>
+  <%= text_input f, :pr_number, placeholder: "12345678", value: @num %>
   <%= error_tag f, :pr_number %>
 
   <label>*End User</label>

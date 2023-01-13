@@ -12,11 +12,13 @@
       <%= form_for @conn, Routes.pr_page_path(@conn, :search_pr), fn f -> %>
         <br><br><br>
         <div class="search-container">
-        <label>CATEGORY:&nbsp;&nbsp;</label>
-        <%= select f, :type, ["Year": "Year", "PR ID": "PR ID", "Status": "Status"], id: "select-category" %>
+        <label>Search:</label>
+        <%= select f, :category, ["Ongoing PRs": "Ongoing PRs", "Completed PRs": "Completed PRs", "Failed PRs": "Failed PRs", "Year": "Year", "Month": "Month", "PR ID": "PR ID"], class: "select-category" %>
+        <!--<label>&nbsp;&nbsp;Sort By:&nbsp;</label>-->
+        <%= select f, :sort_by, ["Date Needed": "Date Needed", "Date Created": "Date Created", "Date Updated": "Date Updated"], class: "select-category" %>
         </div>
 	<div class="search-container">
-        <%= text_input f, :pr_number, placeholder: "Search..." %>
+        <%= text_input f, :q_string, placeholder: "Search..." %>
         <button style="background-color:#000;color:#fff;border:1px solid #ddd;" type="submit"><i class="fa fa-search"></i>Search</button>
       </div>
       <% end %>
@@ -36,11 +38,10 @@
 	    <p>Status: <span class="<%= get_css_class(q.status) %>"><%= q.status %></span></p>
 	  </div>
 	  <% end %>
-	  <% @query == [] && @q_string != "" -> %>
-      <div class="sm-pr">
-	<p>No result found for pr number <%= @q_string %></p>
-      </div>
-      
+	  <% @query == [] && @category == "PR ID" -> %>
+      <p align="center">No record found for pr number <%= @q_string %></p>
+      <% @query == [] && @category != "" -> %>
+      <p align="center">No records available yet.</p>  
       <% true -> %>
       <br><br>
       <% end %>
@@ -87,7 +88,7 @@
       <% @query == [] && @category == "PR ID" -> %>
       <p>No record found for pr number <%= @q_string %></p>
       <% @query == [] && @category != "" -> %>
-      <p>No records available yet for <%= @q_string %>.</p>
+      <p>No records available yet.</p>
       
       <% true -> %>
       <br><br>
