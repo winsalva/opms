@@ -10,6 +10,16 @@ defmodule MyApp.Query.ProcurementRequest do
 
   import Ecto.Query, warn: false
 
+  def handle_non_integer_input(q_string) do
+    num =
+      try do
+        String.to_integer(q_string)
+      rescue 
+        e in ArgumentError -> 0
+      end
+    num
+  end
+
   def get_pr_number do
     query = Repo.all(PR)
     number =
@@ -219,7 +229,7 @@ defmodule MyApp.Query.ProcurementRequest do
       [] -> []
       _prs ->
         Enum.reduce(prs, [], fn f, acc ->
-	  if f.inserted_at.year == String.to_integer(year) do
+	  if f.inserted_at.year == handle_non_integer_input(year) do
 	    [f | acc]
 	  else
 	    acc
@@ -285,9 +295,10 @@ defmodule MyApp.Query.ProcurementRequest do
 	  end
 	    
 	"PR ID" ->
+	  id = handle_non_integer_input(q_string)
 	  query =
 	    from p in PR,
-	      where: p.pr_number == ^q_string,
+	      where: p.pr_number == ^id,
 	      preload: [:company]
 
           Repo.all(query)
@@ -334,9 +345,10 @@ defmodule MyApp.Query.ProcurementRequest do
           Repo.all(query)
 
 	"PR ID" ->
+	  id = handle_non_integer_input(q_string)
           query =
             from p in PR,
-              where: p.company_id == ^user_id and p.pr_number == ^q_string,
+              where: p.company_id == ^user_id and p.pr_number == ^id,
               preload: [:company]
 
           Repo.all(query)

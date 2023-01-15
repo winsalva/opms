@@ -1,9 +1,12 @@
 @media only screen and (min-width: 768px) {
-    body {
-	background-image: url("/images/opms-bg.jpeg");
-	background-repeat: no-repeat;
+    /*body, html {
 	height: 100%;
+    }*/
+    body {
+	background-image: url("/images/opms-bg.jpg");
+	background-repeat: no-repeat;
 	background-size: cover;
+	background-attachment: fixed;
     }
     .bid_mode {
 	display: flex;

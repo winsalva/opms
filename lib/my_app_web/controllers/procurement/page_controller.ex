@@ -171,7 +171,7 @@ defmodule MyAppWeb.Procurement.PageController do
 
       conn.assigns.current_company != nil ->
         query = PR.user_search_pr(category, sort_by, q_string, conn.assigns.current_company.id)
-	IO.inspect conn.assigns.current_company.id 
+	
         render(conn, "search.html", query: query, q_string: q_string, category: category)
       true ->
         conn
