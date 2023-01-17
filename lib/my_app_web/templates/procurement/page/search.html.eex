@@ -56,7 +56,7 @@
 
       <div class="search-container">
 	<label>Search By: </label>
-	<%= select f, :category, ["Department": "Department", "Year": "Year", "Month": "Month", "PR ID": "PR ID"] %>
+	<%= select f, :category, ["Department": "Department", "Year": "Year", "Month": "Month", "PR Number": "PR ID"] %>
 	<label>&nbsp;&nbsp;Sort By: </label>
 	<%= select f, :sort_by, ["Date Needed": "Date Needed", "Date Created": "Date Created", "Date Updated": "Date Updated"] %>
 	<!-- added statuses -->
