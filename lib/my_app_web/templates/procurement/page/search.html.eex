@@ -56,9 +56,12 @@
 
       <div class="search-container">
 	<label>Search By: </label>
-	<%= select f, :category, ["Department": "Department", "Ongoing PRs": "Ongoing PRs", "Completed PRs": "Completed PRs", "Failed PRs": "Failed PRs", "Year": "Year", "Month": "Month", "PR ID": "PR ID"] %>
-	<label>&nbsp;&nbsp;Sort By:&nbsp;</label>
+	<%= select f, :category, ["Department": "Department", "Year": "Year", "Month": "Month", "PR ID": "PR ID"] %>
+	<label>&nbsp;&nbsp;Sort By: </label>
 	<%= select f, :sort_by, ["Date Needed": "Date Needed", "Date Created": "Date Created", "Date Updated": "Date Updated"] %>
+	<!-- added statuses -->
+	<label>&nbsp;&nbsp;Status: </label>
+	<%= select f, :statuses, ["Ongoing PRs": "Ongoing PR", "Completed PRs": "Completed PR", "Failed PRs": "Failed PR"] %>
 	</div>
 	<div class="search-container">
 	<%= text_input f, :q_string, placeholder: "Search...", class: "tb-search" %>

@@ -16,6 +16,7 @@ defmodule MyApp.Schema.ProcurementRequest do
     field :bid_mode, :string
     field :date_needed, :date
     field :archive, :boolean, default: false
+    field :current_status, :string, default: "Ongoing PR"
     timestamps()
   end
 
@@ -31,7 +32,8 @@ defmodule MyApp.Schema.ProcurementRequest do
     :seen,
     :bid_mode,
     :date_needed,
-    :archive
+    :archive,
+    :current_status
   ]
 
   @required_fields @allowed_fields

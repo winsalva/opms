@@ -148,12 +148,22 @@ defmodule MyAppWeb.Procurement.AccountController do
   def update(conn, %{"procurement_request" => %{ "remarks" => remarks, "status" => status}, "id" => id}) do
   
     pr = PR.get_pr(id)
+
+    current_status =
+      cond do
+        status == "Failed Purchase Request" ->
+	  status
+	status == "Delivered Items" || status == "Issued Notice To Proceed" ->
+	  status
+	true -> "Ongoing PR"
+      end
     
     params = %{
       status: status,
       remarks: remarks,
       update_count: pr.update_count + 1,
-      archive: false
+      archive: false,
+      current_status: current_status
     }
     
     case PR.update_pr(id, params) do

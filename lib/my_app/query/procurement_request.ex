@@ -139,7 +139,7 @@ defmodule MyApp.Query.ProcurementRequest do
   @doc """
   Sort PRs by month.
   """
-  def sort_prs_by_month(sort_by, q_string, user, user_id) do
+  def sort_prs_by_month(sort_by, q_string, user, user_id, statuses) do
     sorted_by =
       case sort_by do
         "Date Needed" -> :date_needed
@@ -170,12 +170,13 @@ defmodule MyApp.Query.ProcurementRequest do
     if user == "Admin" do
       query =
         from p in PR,
+	  where: p.current_status == ^statuses,
           order_by: [asc: ^sorted_by],
           preload: [:company]
     else
       query =
         from p in PR,
-	  where: p.company_id == ^user_id,
+	  where: p.company_id == ^user_id and p.current_status == ^statuses,
           order_by: [asc: ^sorted_by],
           preload: [:company]
     end
@@ -200,7 +201,7 @@ defmodule MyApp.Query.ProcurementRequest do
   @doc """
   Sort PRs by year.
   """
-  def sort_prs_by_year(sort_by, year, user, user_id) do
+  def sort_prs_by_year(sort_by, year, user, user_id, statuses) do
     sorted_by =
       case sort_by do
         "Date Needed" -> :date_needed
@@ -212,12 +213,13 @@ defmodule MyApp.Query.ProcurementRequest do
     if user == "Admin" do
       query =
         from p in PR,
+	  where: p.current_status == ^statuses,
           order_by: [asc: ^sorted_by],
           preload: [:company]
     else
       query =
         from p in PR,
-          where: p.company_id == ^user_id,
+          where: p.company_id == ^user_id and p.current_status == ^statuses,
           order_by: [asc: ^sorted_by],
           preload: [:company]
     end
@@ -243,7 +245,7 @@ defmodule MyApp.Query.ProcurementRequest do
   @doc """
   Search pr for admin
   """
-  def admin_search_pr(category, sort_by, q_string) do
+  def admin_search_pr(category, sort_by, q_string, statuses) do
     sorted_by =
       case sort_by do
         "Date Needed" -> :date_needed
@@ -252,9 +254,9 @@ defmodule MyApp.Query.ProcurementRequest do
       end
       
     case category do
-      "Year" -> sort_prs_by_year(sort_by, q_string, "Admin", 0)
+      "Year" -> sort_prs_by_year(sort_by, q_string, "Admin", 0, statuses)
 
-        "Month" -> sort_prs_by_month(sort_by, q_string, "Admin", 0)
+        "Month" -> sort_prs_by_month(sort_by, q_string, "Admin", 0, statuses)
 	"Ongoing PRs" ->
 	  query =
 	    from p in PR,
@@ -285,9 +287,10 @@ defmodule MyApp.Query.ProcurementRequest do
 	      nil -> []
 	      _company ->
 	      company_id = company.id
+	     
 	      query =
 	      from p in PR,
-	        where: p.company_id == ^company_id,
+	        where: p.company_id == ^company_id and p.current_status == ^statuses,
 		order_by: [asc: ^sorted_by],
 		preload: [:company]
 
@@ -309,7 +312,7 @@ defmodule MyApp.Query.ProcurementRequest do
   @doc """
   Search procurement request by id but only for procurement request that belongs to a user.
   """
-  def user_search_pr(category, sort_by, q_string, user_id) do
+  def user_search_pr(category, sort_by, q_string, user_id, statuses) do
     sorted_by =
       case sort_by do
         "Date Needed" -> :date_needed
@@ -318,9 +321,9 @@ defmodule MyApp.Query.ProcurementRequest do
       end
 
     case category do
-      "Year" -> sort_prs_by_year(sort_by, q_string, "User", user_id)
+      "Year" -> sort_prs_by_year(sort_by, q_string, "User", user_id, statuses)
 
-        "Month" -> sort_prs_by_month(sort_by, q_string, "User", user_id)
+        "Month" -> sort_prs_by_month(sort_by, q_string, "User", user_id, statuses)
         "Ongoing PRs" ->
           query =
             from p in PR,

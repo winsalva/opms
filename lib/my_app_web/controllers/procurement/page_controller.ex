@@ -163,14 +163,14 @@ defmodule MyAppWeb.Procurement.PageController do
     end
   end
 
-  def search_pr(conn, %{"category" => category, "sort_by" => sort_by, "q_string" => q_string}) do
+  def search_pr(conn, %{"category" => category, "sort_by" => sort_by, "q_string" => q_string, "statuses" => statuses}) do
     cond do
       conn.assigns.current_company != nil && conn.assigns.current_company.is_admin ->
-        query = PR.admin_search_pr(category, sort_by, q_string)
+        query = PR.admin_search_pr(category, sort_by, q_string, statuses)
         render(conn, "search.html", query: query, q_string: q_string, category: category)
 
       conn.assigns.current_company != nil ->
-        query = PR.user_search_pr(category, sort_by, q_string, conn.assigns.current_company.id)
+        query = PR.user_search_pr(category, sort_by, q_string, conn.assigns.current_company.id, statuses)
 	
         render(conn, "search.html", query: query, q_string: q_string, category: category)
       true ->
