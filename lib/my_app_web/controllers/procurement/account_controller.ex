@@ -152,9 +152,9 @@ defmodule MyAppWeb.Procurement.AccountController do
     current_status =
       cond do
         status == "Failed Purchase Request" ->
-	  status
+	  "Failed PR"
 	status == "Delivered Items" || status == "Issued Notice To Proceed" ->
-	  status
+	  "Completed PR"
 	true -> "Ongoing PR"
       end
     
