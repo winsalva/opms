@@ -155,17 +155,17 @@ defmodule MyApp.Query.ProcurementRequest do
     month =
       cond do
         String.starts_with?(q_str, "JAN") -> 1
-	String.starts_with?(q_str, "JAN") -> 2
-	String.starts_with?(q_str, "JAN") -> 3
-	String.starts_with?(q_str, "JAN") -> 4
-	String.starts_with?(q_str, "JAN") -> 5
-	String.starts_with?(q_str, "JAN") -> 6
-	String.starts_with?(q_str, "JAN") -> 7
-	String.starts_with?(q_str, "JAN") -> 8
-	String.starts_with?(q_str, "JAN") -> 9
-	String.starts_with?(q_str, "JAN") -> 10
-	String.starts_with?(q_str, "JAN") -> 11
-	String.starts_with?(q_str, "JAN") -> 12
+	String.starts_with?(q_str, "FEB") -> 2
+	String.starts_with?(q_str, "MAR") -> 3
+	String.starts_with?(q_str, "APR") -> 4
+	String.starts_with?(q_str, "MAY") -> 5
+	String.starts_with?(q_str, "JUN") -> 6
+	String.starts_with?(q_str, "JUL") -> 7
+	String.starts_with?(q_str, "AUG") -> 8
+	String.starts_with?(q_str, "SEP") -> 9
+	String.starts_with?(q_str, "OCT") -> 10
+	String.starts_with?(q_str, "NOV") -> 11
+	String.starts_with?(q_str, "DEC") -> 12
 	true -> 0
       end
 
