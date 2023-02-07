@@ -10,6 +10,9 @@ defmodule MyApp.Query.ProcurementRequest do
 
   import Ecto.Query, warn: false
 
+  @doc """
+  Handles non integer inputs for PR numbers.
+  """
   def handle_non_integer_input(q_string) do
     num =
       try do
