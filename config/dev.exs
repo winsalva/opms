@@ -2,8 +2,8 @@ import Config
 
 # Configure your database
 config :my_app, MyApp.Repo,
-  username: "my_app",
-  password: "my_app_pass",
+  username: "postgres",
+  password: "postgres",
   database: "my_app_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
