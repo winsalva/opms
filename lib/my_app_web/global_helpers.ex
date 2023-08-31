@@ -21,7 +21,7 @@ defmodule MyAppWeb.GlobalHelpers do
   end
 
   def app_name do
-    "SLSU"
+    "School Name"
   end
 
   def get_date(date) do
