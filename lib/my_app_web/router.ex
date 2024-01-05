@@ -19,7 +19,7 @@ defmodule MyAppWeb.Router do
   scope "/", MyAppWeb do
     pipe_through :browser
 
-    get "/*default_page", PageController, :under_maintenance
+    # get "/*default_page", PageController, :under_maintenance
     get "/tests", PageController, :test
     get "/", PageController, :index
     get "/about-us", PageController, :about_us
